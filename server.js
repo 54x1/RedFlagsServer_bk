@@ -1,5 +1,5 @@
 // const io = require('socket.io')();
-const { makeid } = require('utils');
+const { makeid } = require('./utils');
 
 
 const path = require('path');
