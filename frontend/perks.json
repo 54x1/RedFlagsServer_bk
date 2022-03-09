@@ -1,0 +1,520 @@
+{
+    "perks": [
+        {
+            "card": "Is fiercely loyal"
+        },
+        {
+            "card": "Believes you are the most attractive person they've ever seen"
+        },
+        {
+            "card": "Is trusting"
+        },
+        {
+            "card": "Is respectful"
+        },
+        {
+            "card": "Is honest"
+        },
+        {
+            "card": "Is patient"
+        },
+        {
+            "card": "Is reliable"
+        },
+        {
+            "card": "Is courteous"
+        },
+        {
+            "card": "Is the funniest person in the world"
+        },
+        {
+            "card": "Is affectionate"
+        },
+        {
+            "card": "Is good listener"
+        },
+        {
+            "card": "Is supportive"
+        },
+        {
+            "card": "Is generous"
+        },
+        {
+            "card": "Is driven"
+        },
+        {
+            "card": "Is a perfect communicator"
+        },
+        {
+            "card": "Always makes time for you"
+        },
+        {
+            "card": "Always gives you perfect gifts"
+        },
+        {
+            "card": "Gives perfect amount of physical affection"
+        },
+        {
+            "card": "Is adventurous"
+        },
+        {
+            "card": "Loves you unconditionally"
+        },
+        {
+            "card": "Is in touch with their feelings"
+        },
+        {
+            "card": "Your parents love them"
+        },
+        {
+            "card": "Your friends and enemies are jealous"
+        },
+        {
+            "card": "Owns a magic carpet"
+        },
+        {
+            "card": "Volunteers with elderly people"
+        },
+        {
+            "card": "Loves dogs"
+        },
+        {
+            "card": "Loves cats"
+        },
+        {
+            "card": "Loves theater"
+        },
+        {
+            "card": "Is an animal shelter volunteer"
+        },
+        {
+            "card": "Travels a lot"
+        },
+        {
+            "card": "Is really into wine"
+        },
+        {
+            "card": "Loves video games"
+        },
+        {
+            "card": "Has front row tickets to every concert"
+        },
+        {
+            "card": "Has front row tickets to every sporting event"
+        },
+        {
+            "card": "Loves sports"
+        },
+        {
+            "card": "Loves the outdoors"
+        },
+        {
+            "card": "Loves staying in"
+        },
+        {
+            "card": "Owns your favorite museum"
+        },
+        {
+            "card": "Likes the same favorite movies"
+        },
+        {
+            "card": "Likes the same favorite books"
+        },
+        {
+            "card": "Likes the same favorite foods"
+        },
+        {
+            "card": "Likes the same favorite music"
+        },
+        {
+            "card": "Lives off the grid"
+        },
+        {
+            "card": "Loves children"
+        },
+        {
+            "card": "Is a Billionaire"
+        },
+        {
+            "card": "Is the most physically attractive person you have ever seen"
+        },
+        {
+            "card": "Owns a vineyard"
+        },
+        {
+            "card": "Owns an adorable coffee shop"
+        },
+        {
+            "card": "Lives on 100 beachfront acres"
+        },
+        {
+            "card": "Owns a solid gold private jet"
+        },
+        {
+            "card": "Has a magic bag that contains unlimited cheese"
+        },
+        {
+            "card": "Owns a 500-foot yacht"
+        },
+        {
+            "card": "Owns an island in the Bahamas"
+        },
+        {
+            "card": "Owns one of every car"
+        },
+        {
+            "card": "Owns 100 horses"
+        },
+        {
+            "card": "Owns your favorite sports team"
+        },
+        {
+            "card": "Owns a penthouse suite in your favorite city"
+        },
+        {
+            "card": "Gives billions to your favorite charity"
+        },
+        {
+            "card": "Owns a time machine"
+        },
+        {
+            "card": "Lives in a castle"
+        },
+        {
+            "card": "Has the best hair ever"
+        },
+        {
+            "card": "Owns a unicorn"
+        },
+        {
+            "card": "Has genius-level IQ"
+        },
+        {
+            "card": "Owns a successful startup"
+        },
+        {
+            "card": "Gives the best sex ever"
+        },
+        {
+            "card": "Can get you both into literally anywhere"
+        },
+        {
+            "card": "You'll never have to work while you date them"
+        },
+        {
+            "card": "You'll never get sick while you date them"
+        },
+        {
+            "card": "You literally will not age while you date them"
+        },
+        {
+            "card": "Always smells like _____"
+        },
+        {
+            "card": "Looks exactly like _____"
+        },
+        {
+            "card": "Has a mansion in _____"
+        },
+        {
+            "card": "Speaks every romantic language"
+        },
+        {
+            "card": "Drives a _____"
+        },
+        {
+            "card": "Is a professional _____"
+        },
+        {
+            "card": "Owns a _____"
+        },
+        {
+            "card": "Knows everything about _____"
+        },
+        {
+            "card": "Volunteers for _____"
+        },
+        {
+            "card": "You will never gain weight while you date them"
+        },
+        {
+            "card": "Has the voice of an angel"
+        },
+        {
+            "card": "Owns a goose that lays designer clothing"
+        },
+        {
+            "card": "Has a cellar full of _____"
+        },
+        {
+            "card": "Is a Professional surfer"
+        },
+        {
+            "card": "Is a rocket scientist"
+        },
+        {
+            "card": "Is a model"
+        },
+        {
+            "card": "Is a professional football player"
+        },
+        {
+            "card": "Is a famous artist"
+        },
+        {
+            "card": "Is a college English professor"
+        },
+        {
+            "card": "Is a firefighter"
+        },
+        {
+            "card": "Is an astronaut"
+        },
+        {
+            "card": "Is a President"
+        },
+        {
+            "card": "Is a Rodeo champion"
+        },
+        {
+            "card": "Is a professional wrestler"
+        },
+        {
+            "card": "Is a famous movie star"
+        },
+        {
+            "card": "Is a famous musician"
+        },
+        {
+            "card": "Is a famous rapper"
+        },
+        {
+            "card": "Is a Porn star"
+        },
+        {
+            "card": "Is a supermodel"
+        },
+        {
+            "card": "Is a professional chef"
+        },
+        {
+            "card": "Is never gonna give you up! Let you down! Run around! Or desert you!"
+        },
+        {
+            "card": "Is the world's best hair stylist"
+        },
+        {
+            "card": "Is a brain surgeon"
+        },
+        {
+            "card": "Is a lawyer"
+        },
+        {
+            "card": "Is a CEO"
+        },
+        {
+            "card": "Is the world's best advertising executive"
+        },
+        {
+            "card": "Is an airline pilot"
+        },
+        {
+            "card": "Is a marine"
+        },
+        {
+            "card": "Is a spin instructor"
+        },
+        {
+            "card": "Is a bestselling author"
+        },
+        {
+            "card": "Is a YouTube celebrity"
+        },
+        {
+            "card": "Is a lumberjack"
+        },
+        {
+            "card": "Is an organic farmer"
+        },
+        {
+            "card": "Is a stunt double"
+        },
+        {
+            "card": "Is a park ranger"
+        },
+        {
+            "card": "Is a ski instructor"
+        },
+        {
+            "card": "Is a photographer"
+        },
+        {
+            "card": "Is a famous fashion designer"
+        },
+        {
+            "card": "Is royalty"
+        },
+        {
+            "card": "Is a genie"
+        },
+        {
+            "card": "Is a world champion _____"
+        },
+        {
+            "card": "Is a world champion hunter"
+        },
+        {
+            "card": "Has won the medal of honor"
+        },
+        {
+            "card": "Was on the news for rescuing a kitten"
+        },
+        {
+            "card": "Is the best-smelling person in the world"
+        },
+        {
+            "card": "Is a yoga instructor"
+        },
+        {
+            "card": "The hot barista"
+        },
+        {
+            "card": "Has an 8-pack"
+        },
+        {
+            "card": "Is an olympic gymnast"
+        },
+        {
+            "card": "Is an actor/actress"
+        },
+        {
+            "card": "Never arrives prematurely"
+        },
+        {
+            "card": "Loves to cuddle"
+        },
+        {
+            "card": "Is a vampire... the sexy kind"
+        },
+        {
+            "card": "Has the most attractive _____ you've ever seen"
+        },
+        {
+            "card": "Is the lead singer of your favorite band"
+        },
+        {
+            "card": "Has beautiful eyes"
+        },
+        {
+            "card": "Is completely blind to all of your flaws"
+        },
+        {
+            "card": "Is spontaneous and fun"
+        },
+        {
+            "card": "Makes you feel secure"
+        },
+        {
+            "card": "Has the hottest friends"
+        },
+        {
+            "card": "Has a twin"
+        },
+        {
+            "card": "Life is the true story that _____ is based on"
+        },
+        {
+            "card": "Can fly"
+        },
+        {
+            "card": "Is a superhero"
+        },
+        {
+            "card": "Loves to laugh"
+        },
+        {
+            "card": "Makes scented candles"
+        },
+        {
+            "card": "Loves the '80s"
+        },
+        {
+            "card": "Cooks all your favorite foods"
+        },
+        {
+            "card": "Knows all the words to your favorite children's TV theme songs"
+        },
+        {
+            "card": "Never blames you for anything"
+        },
+        {
+            "card": "Can get you free drinks forever at any bar in the world"
+        },
+        {
+            "card": "Creates shelters for the homeless"
+        },
+        {
+            "card": "Their kisses cure cancer"
+        },
+        {
+            "card": "Is a great conversationalist"
+        },
+        {
+            "card": "Gives the best hugs"
+        },
+        {
+            "card": "Gives you multiple orgasms"
+        },
+        {
+            "card": "Is a merperson"
+        },
+        {
+            "card": "Always knows how to stop you from crying"
+        },
+        {
+            "card": "Can multiply themselves"
+        },
+        {
+            "card": "An amazing dancer"
+        },
+        {
+            "card": "Always defends you"
+        },
+        {
+            "card": "Can get you a table at any 5-star restaurant any time any place"
+        },
+        {
+            "card": "Can fire your most hated co-worker or boss"
+        },
+        {
+            "card": "Their farts smell like flowers"
+        },
+        {
+            "card": "Never farts"
+        },
+        {
+            "card": "Their morning breath smells like fresh-baked cookies"
+        },
+        {
+            "card": "Owns Mars"
+        },
+        {
+            "card": "Is a night person and a morning person"
+        },
+        {
+            "card": "Loves their job"
+        },
+        {
+            "card": "Has all the same hobbies as you"
+        },
+        {
+            "card": "Can talk to animals"
+        },
+        {
+            "card": "Owns real dinosaurs"
+        },
+        {
+            "card": "Gives great massages"
+        }
+    ]
+}

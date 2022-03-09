@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Red Flags</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+<style>
+#gameScreen {
+  display: none;
+}
+.text-center{margin-bottom: 0;}
+.col-centered {
+    float: none;
+    margin: 0 auto;
+    padding: 24px;
+}
+.plus-sign{font-size: 4em;}
+.vcenter, .game-section, .red-flag-section, .card-section{
+
+  max-height: fit-content;
+  min-height: fit-content;
+      border: 3px solid #dae0e5;
+      border-radius: 4px;
+      margin: 15px 0 0 0;
+      padding: 6px;
+}
+
+.game-section, .red-flag-section{
+  width: 100%;
+    height: 20vh;
+}
+
+
+.card-section{
+  width: 170px;
+  margin: 5px;
+  padding: 5px;
+  cursor: grabbing;
+  background-color: white;
+  height: 150px;
+  min-height: 150px;
+  border: 3px solid #c82333;
+  display: inline-block;
+}
+.name>a, .name {
+    text-decoration: none;
+    color: #ffffff;
+}
+.btn {
+    width: 100%;
+    margin: 1.75rem 0 0;
+}
+.title {
+    font-size: 2em;
+}
+.icon-right {
+    position: absolute;
+    right: 30px;
+    padding-top: 10px;
+}
+.right {
+  margin-right: 2.5%;
+  width: 50px;
+  top: 68px;
+  right: 20px;
+  font-size: 2em;
+  position: absolute;
+}
+.cards {
+  display: flex;
+}
+.red-flag-section.text-center {
+    margin-bottom: 12px;
+}
+
+.flags{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+  margin: 0 auto;
+}
+.perk3, .perk4{
+  /* display: none; */
+}
+</style>
+</head>
+<body>
+  <section class="container">
+    <div class="row">
+
+
+
+                          </div>
+          <!-- </div>
+
+      </div> -->
+    <div class="container h-100">
+
+      <div id="initialScreen" class="h-100">
+        <div class="d-flex flex-column align-items-center justify-content-center h-100">
+            <h1>Multiplayer Snake</h1>
+            <button
+              type="submit"
+              class="btn btn-success"
+              id="newGameButton"
+            >
+              Create New Game
+            </button>
+            <div>OR</div>
+            <div class="form-group">
+              <input type="text" placeholder="Enter Game Code" id="gameCodeInput"/>
+            </div>
+            <button
+              type="submit"
+              class="btn btn-success"
+              id="joinGameButton"
+            >
+              Join Game
+            </button>
+        </div>
+      </div>
+
+      <div id="gameScreen" class="h-100">
+        <div class="d-flex flex-column align-items-center justify-content-center h-100">
+
+          <h1>Your game code is: <span id="gameCodeDisplay"></span></h1>
+
+          <div class="col-sx-6 col-md-12 col-centered">
+
+
+          <div class="btn btn-danger">
+                <i class="right fas fa-flag right"></i>
+                <span class="title">Red Flags</span>
+          </div>
+
+              <!-- <button class="btn btn-secondary">
+                        <span class="restart name"><a href="#">RESTART</a></span>
+                    </button> -->
+
+                <div class="game-section vcenter">
+                    <p>Would you rather date someone who: </p>
+                                    <p id="perk1" class="perk1 text-center">
+
+                                    </p>
+                                    <span class="perk3">
+
+                                    </span>
+                                    <p class="text-center text-primary">
+                                      AND
+                                    </p>
+                                    <p id="perk2" class="perk2 text-center">
+
+                                    </p>
+                                    <span class="perk4">
+
+                                    </span>
+                                    <p class="text-center text-danger">
+                                      BUT...
+                                    </p>
+                                </div>
+                                <div class="place">
+                                <div class="red-flag-section text-center">
+                                  <p>
+                                    PLACE RED FLAG OPTION
+                                  </p>
+                                  <p class="plus-sign">
+                                    <i class="text-danger far fa-plus-square"></i>
+                                  </p>
+                                </div>
+                                <div class="flags">
+                                  <div class="card-section text-center">
+                                    <p>
+
+                                    </p>
+                                  </div>
+                                  <div class="card-section text-center">
+                                    <p>
+
+                                    </p>
+                                  </div>
+                                  <div class="card-section text-center">
+                                    <p>
+
+                                    </p>
+                                  </div>
+                                  <div class="card-section text-center">
+                                    <p>
+
+                                    </p>
+                                  </div>
+
+                                <!-- <div class="cards first">
+
+
+                                <div class="card-section text-center">
+                                  <p>
+
+                                  </p>
+                                </div>
+                                <div class="card-section text-center">
+                                  <p>
+
+                                  </p>
+                                </div>
+                              </div>
+                                              <div class="cards second">
+                                <div class="card-section text-center">
+                                  <p>
+
+                                  </p>
+                                </div>
+                                <div class="card-section text-center">
+                                  <p>
+
+                                  </p>
+                                </div> -->
+                          </div>
+                        </div>
+                      </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script src="/socket.io/socket.io.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!-- <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script> -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+
+  <script src="index.js"></script>
+</body>
+</html>
