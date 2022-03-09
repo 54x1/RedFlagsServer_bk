@@ -58,8 +58,7 @@ function handlePerks(){
    console.log('here')
   handlePerks()
   console.log('pp2', pp)
-  // client.emit('perks', pp);
-  io.sockets.in(roomName).emit('perks', pp);
+  client.emit('perks', pp);
 }
 
 
