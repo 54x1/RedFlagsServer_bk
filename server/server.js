@@ -7,11 +7,9 @@ const http = require('http');
 const express = require('express');
 const socketIO = require('socket.io');
 
-const publicPath = path.join(__dirname, '/');
+const publicPath = path.join(__dirname, '/frontend/build');
 
-// console.log(publicPath)
-
-let jsonData = require(path.join(__dirname, '/perks.json'));
+let jsonData = require(path.join(__dirname, '/frontend/perks.json'));
 
 console.log(jsonData);
 const port = process.env.PORT || 3000
