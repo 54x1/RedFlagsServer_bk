@@ -1,5 +1,5 @@
 // const io = require('socket.io')();
-const { makeid } = require('/utils');
+const { makeid } = require('utils');
 
 
 const path = require('path');
@@ -7,7 +7,7 @@ const http = require('http');
 const express = require('express');
 const socketIO = require('socket.io');
 
-const publicPath = path.join(__dirname, '/frontend/build');
+const publicPath = path.join(__dirname, '/frontend/');
 
 let jsonData = require(path.join(__dirname, '/frontend/perks.json'));
 
