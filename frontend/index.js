@@ -23,8 +23,8 @@ $('.card-section').on('touchmove', function(){
 let pppperksss;
 let qperks = []
 let qqperk;
-// const socket = io('https://flags-54x1.herokuapp.com/');
-const socket = io('https://red-flags-server.herokuapp.com/')
+const socket = io('https://flags-54x1.herokuapp.com/');
+// const socket = io('https://red-flags-server.herokuapp.com/')
 // var perk1val = document.getElementsByClassName('perk3');
 // var perk2val = document.getElementsByClassName('perk4');
 // // console.log(perk2val.value);
