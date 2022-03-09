@@ -1,5 +1,5 @@
 // const io = require('socket.io')();
-const { makeid } = require('./utils');
+const { makeid } = require('/utils');
 
 
 const path = require('path');
@@ -7,11 +7,11 @@ const http = require('http');
 const express = require('express');
 const socketIO = require('socket.io');
 
-const publicPath = path.join(__dirname, '/../frontend');
+const publicPath = path.join(__dirname, '/');
 
 // console.log(publicPath)
 
-let jsonData = require(path.join(__dirname, '/../frontend/perks.json'));
+let jsonData = require(path.join(__dirname, '/perks.json'));
 
 console.log(jsonData);
 const port = process.env.PORT || 3000
