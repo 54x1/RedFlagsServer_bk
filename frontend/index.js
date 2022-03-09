@@ -66,7 +66,7 @@ const gameCodeDisplay = document.getElementById('gameCodeDisplay');
 const perk1 = document.getElementById('perk1');
 const perk2 = document.getElementById('perk2');
 newGameBtn.addEventListener('click', newGame);
-newPerks.addEventListener('click', newPerks);
+newPerks.addEventListener('click', newPerksFunc);
 // joinGameBtn.addEventListener('click', joinGame);
 
 
@@ -78,7 +78,7 @@ function newGame() {
   init();
 }
 
-function newPerks(){
+function newPerksFunc(){
   socket.emit('newGame');
 
 }
