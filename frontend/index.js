@@ -19,11 +19,11 @@ $('.flags').sortable();
 $('.card-section').on('touchmove', function(){
 // $(this).css({"left"}) =
 });
-let socket = io();
+// let socket = io();
 let pppperksss;
 let qperks = []
 let qqperk;
-// const socket = io('https://flags-54x1.herokuapp.com/');
+const socket = io('https://flags-54x1.herokuapp.com/');
 // var perk1val = document.getElementsByClassName('perk3');
 // var perk2val = document.getElementsByClassName('perk4');
 // // console.log(perk2val.value);
