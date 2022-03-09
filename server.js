@@ -58,7 +58,7 @@ function handlePerks(){
    console.log('here')
   handlePerks()
   console.log('pp2', pp)
-  client.emit('perks', pp);
+  client.emit('ppperks', pp);
 }
 
 
