@@ -60,12 +60,13 @@ const initialScreen = document.getElementById('initialScreen');
 const newGameBtn = document.getElementById('newGameButton');
 const joinGameBtn = document.getElementById('joinGameButton');
 const gameCodeInput = document.getElementById('gameCodeInput');
+const newPerks = document.getelementsbyclassname('btn-danger');
 const gamePerk1 = document.getElementById('perk1');
 const gameCodeDisplay = document.getElementById('gameCodeDisplay');
 const perk1 = document.getElementById('perk1');
 const perk2 = document.getElementById('perk2');
 newGameBtn.addEventListener('click', newGame);
-// newGameBtn.addEventListener('click', joinPerks);
+newPerks.addEventListener('click', newPerks);
 // joinGameBtn.addEventListener('click', joinGame);
 
 
@@ -77,13 +78,10 @@ function newGame() {
   init();
 }
 
-// function joinPerks(){
-//   // console.log(data);
-//   $('.perk1').append(perks[0])
-//         $('.perk2').append(perks[1])
+function newPerks(){
+  socket.emit('newGame');
 
-
-// }
+}
 
 
 
