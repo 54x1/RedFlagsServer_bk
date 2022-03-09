@@ -30,9 +30,10 @@ console.log("connected")
   client.on('joinGame', handleJoinGame);
   client.on('pperks', pperksHandle);
   client.on('perks', perksHandle);
+  client.on('newPerks', newPerksHandle);
 
 
-
+  let pperkss;
 function handlePerks(){
   let data = jsonData;
     var randIn = Math.floor(Math.random() * (data.perks.length));
@@ -52,7 +53,14 @@ function handlePerks(){
   // return pp
 
  }
- let pperkss;
+
+ function newPerksHandle(){
+   console.log('here')
+  handlePerks()
+  console.log('pp2', pp)
+}
+
+
 function pperksHandle(data){
   console.log("pp", pp)
 console.log('is here after press new game/', data)

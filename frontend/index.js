@@ -60,7 +60,7 @@ const initialScreen = document.getElementById('initialScreen');
 const newGameBtn = document.getElementById('newGameButton');
 const joinGameBtn = document.getElementById('joinGameButton');
 const gameCodeInput = document.getElementById('gameCodeInput');
-const newPerks = document.getElementsByClassName('btn-danger');
+const newPerks = document.getElementById('new-red-flags');
 const gamePerk1 = document.getElementById('perk1');
 const gameCodeDisplay = document.getElementById('gameCodeDisplay');
 const perk1 = document.getElementById('perk1');
@@ -79,7 +79,8 @@ function newGame() {
 }
 
 function newPerksFunc(){
-  socket.emit('newGame');
+  socket.emit('newPerks');
+  console.log('here')
 
 }
 
