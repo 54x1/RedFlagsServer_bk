@@ -60,6 +60,7 @@ function handlePerks(){
   handlePerks()
   console.log('pp33', pp)
   client.broadcast.emit('newPerks', pp);
+  client.emit('newPerks', pp);
 }
 function newpperksHandle(data){
 console.log("data", data)
