@@ -59,7 +59,7 @@ function handlePerks(){
    console.log('here22')
   handlePerks()
   console.log('pp33', pp)
-  client.emit('newPerks', pp);
+  client.broadcast.emit('newPerks', pp);
 }
 function newpperksHandle(data){
 console.log("data", data)
