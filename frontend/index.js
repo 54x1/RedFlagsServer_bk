@@ -46,12 +46,6 @@ socket.on('tooManyPlayers', handleTooManyPlayers);
 
 
 
-function handleNewPerks(data){
-console.log("data", data)
-let perks = data;
-perk1.innerText = perks[0];
-perk2.innerText = perks[1];
-}
 
 const gameScreen = document.getElementById('gameScreen');
 const initialScreen = document.getElementById('initialScreen');
@@ -67,7 +61,13 @@ newGameBtn.addEventListener('click', newGame);
 newPerks.addEventListener('click', newPerksFunc);
 // joinGameBtn.addEventListener('click', joinGame);
 
-
+function handleNewPerks(data){
+  console.log("data", data)
+  let perks = data;
+  perk1.innerText = perks[0];
+  perk2.innerText = perks[1];
+  }
+  
 // console.log();
 function newGame() {
   socket.emit('newGame');
