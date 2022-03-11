@@ -29,6 +29,7 @@ console.log("connected")
   client.on('newGame', handleNewGame);
   client.on('joinGame', handleJoinGame);
   client.on('pperks', pperksHandle);
+  client.on('newpperks', newpperksHandle);
   client.on('perks', perksHandle);
   client.on('newPerks', newPerksHandle);
 
@@ -55,12 +56,14 @@ function handlePerks(){
  }
 
  function newPerksHandle(){
-   console.log('here')
+   console.log('here22')
   handlePerks()
-  console.log('pp2', pp)
-  client.emit('ppperks', pp);
+  console.log('pp33', pp)
+  client.emit('newPerks', pp);
 }
-
+function newpperksHandle(data){
+console.log("data", data)
+}
 
 function pperksHandle(data){
   console.log("pp", pp)

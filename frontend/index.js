@@ -37,7 +37,7 @@ socket.on('gameState', handleGameState);
 socket.on('gameOver', handleGameOver);
 socket.on('gameCode', handleGameCode);
 socket.on('perks', handlePerks);
-// socket.on('pperks', joinGame)
+socket.on('newPerks', handleNewPerks)
 // socket.on('pperks', handlePPerks);
 socket.on('ppperks', handlePPerks);
 socket.on('unknownCode', handleUnknownCode);
@@ -46,12 +46,8 @@ socket.on('tooManyPlayers', handleTooManyPlayers);
 
 
 
-function perk(data){
-    // console.log(data);
-    // socket.on('question', function (message) {
-    //   console.log("question", message)
-    //     $('.perk1').append(message);
-    //       });
+function handleNewPerks(data){
+console.log("data", data)
 
 }
 
@@ -80,7 +76,12 @@ function newGame() {
 
 function newPerksFunc(){
   socket.emit('newPerks');
-  console.log('here')
+  // perk1.innerText = perks[0];
+  // perk2.innerText = perks[1];
+  // pppperksss = perks
+  // console.log('heeh', pppperksss)
+
+  // socket.emit('newpperks', pppperksss);
 
 }
 
@@ -89,7 +90,6 @@ function newPerksFunc(){
 $(joinGameBtn).on('click', function(){
   $(gameCodeDisplay).html($(gameCodeInput).val());
   $(perk1).html($(gamePerk1).val());
-  console.log('pppperksssjbtn', pppperksss)
   socket.emit('perks');
   const code = gameCodeInput.value;
   socket.emit('joinGame', code);
@@ -114,8 +114,6 @@ function handlePPerks(pperks){
   perk2.innerText = perks[1];
   console.log('hiih', perks)
 }
-
-qperks.push(pppperksss)
 
 
 let playerNumber;
