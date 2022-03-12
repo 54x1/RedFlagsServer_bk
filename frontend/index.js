@@ -34,21 +34,22 @@ $( ".card-section" ).each(function() {
     socket.emit('flag', $(this).html());
 
     $(this).remove()
-    $('.red-flag-section').append("<p class='remove-sign'><i class='text-danger fas fa-times-circle'></i></p><div class='card-section'>"+$(this).html()+"</div>")
+    $('.red-flag-section').append("<p id='remove-sign'><i class='text-danger fas fa-times-circle'></i></p><div class='card-section'>"+$(this).html()+"</div>")
     $(".flags .card-section").css({"pointer-events": "none"});
   })
 
 });
+const removeSign = document.getElementById('remove-sign');
+removeSign.addEventListener('click', flagDataHandle);
 
 function flagDataHandle(data){
-$(document).on("click", ".remove-sign", function() {
-$(".flags").append("<div class='card-section'>"+$('.red-flag-section .card-selection').text()+"</div>")
-console.log("flagdata", data)
+  console.log("hereflag")
+console.log("flagdatafrontend", data)
+$(".flags").append("<div class='card-section'>"+data+"</div>")
 $(this).remove()
 $(".red-flag-section .card-section").remove()
 
 $(".flags .card-section").css({"pointer-events": "auto"});
-});
 }
 
 
