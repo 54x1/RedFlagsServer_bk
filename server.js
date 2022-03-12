@@ -32,8 +32,11 @@ console.log("connected")
   client.on('newpperks', newpperksHandle);
   client.on('perks', perksHandle);
   client.on('newPerks', newPerksHandle);
+  client.on('flag', handleFlag);
 
-
+  function handleFlag(data){
+console.log('flagdata', data)
+  }
   let pperkss;
 function handlePerks(){
   let data = jsonData;

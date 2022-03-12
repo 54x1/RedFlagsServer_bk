@@ -1,24 +1,4 @@
 
-$( ".card-section" ).click(function() {
-    if ( $( this ).hasClass("ui-draggable-dragging") ) {
-
-}
-});
-
-$('.card-section').draggable({
-  cursor: "grabbing",
-  containment: ".place",
-  stack: ".card-section",
-  snapTolerance: 20
-});
-
-
-$('.flags').sortable();
-
-
-$('.card-section').on('touchmove', function(){
-// $(this).css({"left"}) =
-});
 // let socket = io();
 let pppperksss;
 let qperks = []
@@ -45,6 +25,29 @@ socket.on('tooManyPlayers', handleTooManyPlayers);
 // socket.on('handlePerks', joinPerks);
 
 
+
+
+$( ".card-section" ).each(function() {
+  $(this).click(function (){
+    console.log($(this).html())
+
+    socket.emit('flag', $(this).html());
+
+    $(this).remove()
+    $('.red-flag-section').append("<p class='remove-sign'><i class='text-danger fas fa-times-circle'></i></p><div class='card-section'>"+$(this).html()+"</div>")
+    $(".flags .card-section").css({"pointer-events": "none"});
+  })
+
+});
+
+$(document).on("click", ".remove-sign", function() {
+$(".flags").append("<div class='card-section'>"+$('.red-flag-section .card-selection').text()+"</div>")
+console.log($('.red-flag-section .card-selection').val())
+$(this).remove()
+$(".red-flag-section .card-section").remove()
+
+$(".flags .card-section").css({"pointer-events": "auto"});
+});
 
 
 const gameScreen = document.getElementById('gameScreen');
