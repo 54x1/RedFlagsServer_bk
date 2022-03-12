@@ -22,7 +22,7 @@ socket.on('newPerks', handleNewPerks)
 socket.on('ppperks', handlePPerks);
 socket.on('unknownCode', handleUnknownCode);
 socket.on('tooManyPlayers', handleTooManyPlayers);
-// socket.on('handlePerks', joinPerks);
+socket.on('flagData', flagDataHandle);
 
 
 
@@ -40,14 +40,16 @@ $( ".card-section" ).each(function() {
 
 });
 
+function flagDataHandle(data){
 $(document).on("click", ".remove-sign", function() {
 $(".flags").append("<div class='card-section'>"+$('.red-flag-section .card-selection').text()+"</div>")
-console.log($('.red-flag-section .card-selection').val())
+console.log(data)
 $(this).remove()
 $(".red-flag-section .card-section").remove()
 
 $(".flags .card-section").css({"pointer-events": "auto"});
 });
+}
 
 
 const gameScreen = document.getElementById('gameScreen');
