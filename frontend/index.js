@@ -43,7 +43,7 @@ $( ".card-section" ).each(function() {
 function flagDataHandle(data){
 $(document).on("click", ".remove-sign", function() {
 $(".flags").append("<div class='card-section'>"+$('.red-flag-section .card-selection').text()+"</div>")
-console.log(data)
+console.log("flagdata", data)
 $(this).remove()
 $(".red-flag-section .card-section").remove()
 
