@@ -41,17 +41,18 @@ $( ".card-section" ).each(function() {
 });
 function flagDataHandle(){
 $(document).on('click', '.remove-sign', function() {
-  flagData()
+  let data = flagData()
+  console.log("hereflag")
+  console.log("flagdatafrontend", data)
+  $(".flags").append("<div class='card-section'>"+data+"</div>")
+  $(this).remove()
+  $(".red-flag-section .card-section").remove()
+  
+  $(".flags .card-section").css({"pointer-events": "auto"});
 });
 }
 function flagData(data){
-  console.log("hereflag")
-console.log("flagdatafrontend", data)
-$(".flags").append("<div class='card-section'>"+data+"</div>")
-$(this).remove()
-$(".red-flag-section .card-section").remove()
-
-$(".flags .card-section").css({"pointer-events": "auto"});
+return data
 }
 
 
