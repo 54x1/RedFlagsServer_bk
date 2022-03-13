@@ -40,7 +40,7 @@ $( ".card-section" ).each(function() {
 
 });
 
-$(document).on('click', '.remove-sign', function() {
+$(document).on('click', '.red-flag-section .remove-sign', function() {
   let data = flagData()
   console.log("hereflag")
   console.log("flagdatafrontend", data)
