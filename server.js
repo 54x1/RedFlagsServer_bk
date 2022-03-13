@@ -33,12 +33,15 @@ console.log("connected")
   client.on('perks', perksHandle);
   client.on('newPerks', newPerksHandle);
   client.on('flag', handleFlag);
-
   function handleFlag(data){
 console.log('flagdatabkend', data)
 client.emit('flagData', data);
-data = ""
   }
+  function handleFlag2(data){
+    console.log('flagdatabkend', data)
+    client.emit('flagData', data);
+    data = ""
+      }
   let pperkss;
 function handlePerks(){
   let data = jsonData;
@@ -89,10 +92,10 @@ client.emit('ppperks', pp)
     if (room) {
       allUsers = room.sockets;
     }
-
+    console.log("users", room.length)
     let numClients = 0;
     if (allUsers) {
-      numClients = Object.keys(allUsers).length;
+      numClients = room.length;
     }
 
     if (numClients === 0) {

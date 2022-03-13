@@ -23,38 +23,49 @@ socket.on('ppperks', handlePPerks);
 socket.on('unknownCode', handleUnknownCode);
 socket.on('tooManyPlayers', handleTooManyPlayers);
 socket.on('flagData', flagData);
+// socket.on('flagData2', flagData);
 
 
-
-
-$( ".card-section" ).each(function() {
-  $(this).click(function (){
+$(document).on('click', '.fa-plus-square', function() {
+alert("You have submitted your flag!")
+$('#sign').html("<i class='text-danger fas fa-times-circle'></i>")
+})
+$(document).on('click', '.flags .card-section', function() {
+  // $(this).click(function (){
     console.log($(this).html())
 
-    socket.emit('flag', $(this).html());
+    // socket.emit('flag', $(this).html());
 
     $(this).remove()
-    $('.red-flag-section').append("<p id='remove-sign'><i class='text-danger fas fa-times-circle'></i></p><div class='card-section'>"+$(this).html()+"</div>")
-    $(".flags .card-section").css({"pointer-events": "none"});
-  })
+  //   <p class="sign">
+  //   <i class="text-danger far fa-plus-square"></i>
+  // </p>
+  $('.red-flag-section').append("<p id='sign'><i class='text-danger far fa-plus-square'></i></p><div class='card-section'>"+$(this).html()+"</div>")
+    // $('.red-flag-section').append("<p id='sign'><i class='text-danger fas fa-times-circle'></i></p><div class='card-section'>"+$(this).html()+"</div>")
+    $(".flags").children().bind('click', function(){ return false; });
+    $(".flags .card-section").css( {"cursor":"not-allowed"});
+  // })
 
 });
 
-$(document).on('click', '#remove-sign', function() {
-  socket.emit('flag', $('.red-flag-section .card-section').html());
+$(document).on('click', '.fa-times-circle', function() {
+  if (confirm('Are You Sure?') == true) {
+    socket.emit('flag', $('.red-flag-section .card-section').html());
 
-  console.log("hereflag", $('.red-flag-section .card-section').html())
+    console.log("hereflag", $('.red-flag-section .card-section').html())
+    $(this).remove()
+    $(".red-flag-section .card-section, #sign").remove()
   
-  console.log("flagdatafrontend", flagData())
-  flagData()
-  $(this).remove()
-  $(".red-flag-section .card-section").remove()
-  
-  $(".flags .card-section").css({"pointer-events": "auto"});
+    $(".flags .card-section").css({"pointer-events": "auto"});
+    $(".flags .card-section").css( {"cursor":"pointer"});
+  }
+
+
 });
 
 function flagData(data){
-  data = ""
+  $(".flags").children().unbind('click');
+  console.log("flagdatafrontend", data)
   $(".flags").append("<div class='card-section'>"+data+"</div>")
 }
 

@@ -21,7 +21,8 @@
 .red-flag-section p, .red-flag-section .card-section {
   margin: 0;
 }
-#remove-sign{
+#sign{
+  cursor: pointer;
   font-size: 3em;
 }
 .vcenter, .game-section, .red-flag-section, .card-section, .public-flags{
@@ -54,6 +55,8 @@
 }
 
 .card-section{
+  
+  cursor: default;
   display: flex;
     align-items: center;
     height: auto;
@@ -65,7 +68,7 @@
   width: calc(50% - 0.75em);
   margin: 5px;
   padding: 5px;
-  cursor: grabbing;
+  cursor: pointer;
   background-color: white;
   height: 150px;
   min-height: 150px;
@@ -202,27 +205,28 @@ float: right;
                      FLAGS
                       </p>
                     </div>
-                <div class="game-section vcenter">
-       
-                  <div class="game-content">
-           
-                    <p>Would you rather date someone who: </p>
-                                    <p id="perk1" class="perk1 text-center">
 
-                                    </p>
-                                    <p class="h4 text-center text-primary">
-                                      AND
-                                    </p>
-                                    <p id="perk2" class="perk2 text-center">
-
-                                    </p>
-                                    <p class="h4 text-center text-danger">
-                                      BUT
-                                    </p>
-                                </div>
-                                </div>
                               
-                                <div class="place">
+                                <div class="game-place">
+                                  <div class="game-section vcenter">
+       
+                                    <div class="game-content">
+                             
+                                      <p>Would you rather date someone who: </p>
+                                                      <p id="perk1" class="perk1 text-center">
+                  
+                                                      </p>
+                                                      <p class="h4 text-center text-primary">
+                                                        AND
+                                                      </p>
+                                                      <p id="perk2" class="perk2 text-center">
+                  
+                                                      </p>
+                                                      <p class="h4 text-center text-danger">
+                                                        BUT
+                                                      </p>
+                                                  </div>
+                                                  </div>
                                 <div class="red-flag-section text-danger text-center">
                                   <p>
                                     YOUR FLAG
