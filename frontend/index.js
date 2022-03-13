@@ -23,6 +23,7 @@ socket.on('ppperks', handlePPerks);
 socket.on('unknownCode', handleUnknownCode);
 socket.on('tooManyPlayers', handleTooManyPlayers);
 socket.on('flagData', flagData);
+socket.on("unknownData", unknownData)
 // socket.on('flagData2', flagData);
 
 
@@ -110,6 +111,9 @@ function newPerksFunc(){
 
 }
 
+function unknownData(data){
+console.log('data', data);
+}
 
 
 $(joinGameBtn).on('click', function(){
@@ -119,19 +123,8 @@ $(joinGameBtn).on('click', function(){
   socket.emit('perks');
   const code = gameCodeInput.value;
 
-  // init();
+  init();
 })
-
-function joinGame() {
-
-  console.log('pppperksssjfunc', qqperk)
-
-
-  // socket.on('perk1', function (message) {
-  //   console.log("question2", message)
-  //       });
-  
-}
 
 function handlePPerks(pperks){
   let perks = pperks
@@ -250,6 +243,8 @@ function handlePerks(perks){
 // }
 function handleUnknownCode() {
   reset();
+  
+  socket.emit('unknown');
   alert('Unknown Game Code');
 }
 

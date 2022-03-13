@@ -33,6 +33,11 @@ console.log("connected")
   client.on('perks', perksHandle);
   client.on('newPerks', newPerksHandle);
   client.on('flag', handleFlag);
+  client.on('unknown', handleUnknown);
+
+  function handleUnknown(){
+    client.emit('unknownData', {data: True});
+  }
   function handleFlag(data){
 console.log('flagdatabkend', data)
 client.emit('flagData', data);
