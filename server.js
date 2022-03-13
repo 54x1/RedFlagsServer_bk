@@ -42,11 +42,7 @@ console.log("connected")
 console.log('flagdatabkend', data)
 client.emit('flagData', data);
   }
-  function handleFlag2(data){
-    console.log('flagdatabkend', data)
-    client.emit('flagData', data);
-    data = ""
-      }
+
   let pperkss;
 function handlePerks(){
   let data = jsonData;

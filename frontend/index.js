@@ -112,7 +112,11 @@ function newPerksFunc(){
 }
 
 function unknownData(data){
-console.log('data', data);
+
+if (data != 'True'){
+  console.log('dataun', data);
+}
+return data
 }
 
 
@@ -123,7 +127,10 @@ $(joinGameBtn).on('click', function(){
   socket.emit('perks');
   const code = gameCodeInput.value;
   socket.emit('joinGame', code);
+  console.log('un',unknownData())
+  if (unknownData() != 'True'){
   init();
+  }
 })
 
 function handlePPerks(pperks){
