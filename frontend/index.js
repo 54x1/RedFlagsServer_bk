@@ -39,9 +39,10 @@ $( ".card-section" ).each(function() {
   })
 
 });
-const removeSign = document.getElementById('remove-sign');
-removeSign.addEventListener('click', flagDataHandle);
 
+$(document).on('click', '.remove-sign', function() {
+  flagDataHandle()
+});
 function flagDataHandle(data){
   console.log("hereflag")
 console.log("flagdatafrontend", data)
