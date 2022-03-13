@@ -36,7 +36,7 @@ console.log("connected")
   client.on('unknown', handleUnknown);
 
   function handleUnknown(){
-    client.emit('unknownData', {data: True});
+    client.emit('unknownData', {data: "True"});
   }
   function handleFlag(data){
 console.log('flagdatabkend', data)
