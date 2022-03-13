@@ -92,10 +92,10 @@ client.emit('ppperks', pp)
     if (room) {
       allUsers = room.sockets;
     }
-    console.log("users", room.length)
+    console.log("users", Object.keys(io.sockets.in(room).connected).length)
     let numClients = 0;
     if (allUsers) {
-      numClients = room.length;
+      numClients = Object.keys(allUsers).length;
     }
 
     if (numClients === 0) {
