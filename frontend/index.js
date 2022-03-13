@@ -51,7 +51,7 @@ $(document).on('click', '.flags .card-section', function() {
   if (confirm('Submit this FLAG?') == true) {
     $('.home-section').show()
 $('.flag-section').hide()
-socket.emit('subFlagCard', $('.flags .card-section').html())
+socket.emit('subFlagCard', $(this).html())
 // $('.home-section .public-flags').append("<div class='card-section text-center'>"+ $(this).html()+"</div>")
 // socket.emit('flag', $(this).html());
 // $("#sign").bind('click', function(){ return false; });
