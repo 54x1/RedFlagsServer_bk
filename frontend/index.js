@@ -29,6 +29,7 @@ socket.on("unknownData", unknownData)
 function subFlagData(data){
 console.log("subFlagData", data)
 $('.public-flags').append("<div class='card-section text-center'>"+data+"</div>")
+
 }
 
 
