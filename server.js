@@ -34,7 +34,12 @@ console.log("connected")
   client.on('newPerks', newPerksHandle);
   client.on('flag', handleFlag);
   client.on('unknown', handleUnknown);
+client.on('subFlagCard', subFlagCardHandle)
 
+function subFlagCardHandle(data){
+  console.log("subFlagData", data)
+  client.emit('subFlagData', data);
+}
   function handleUnknown(){
     client.emit('unknownData', {data: "True"});
   }

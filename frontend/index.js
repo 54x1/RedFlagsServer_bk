@@ -23,8 +23,13 @@ socket.on('ppperks', handlePPerks);
 socket.on('unknownCode', handleUnknownCode);
 socket.on('tooManyPlayers', handleTooManyPlayers);
 socket.on('flagData', flagData);
+socket.on('subFlagData', subFlagData);
 socket.on("unknownData", unknownData)
-// socket.on('flagData2', flagData);
+
+function subFlagData(data){
+console.log("subFlagData", data)
+$('.public-flags').append("<div class='card-section text-center'>"+data+"</div>")
+}
 
 
 $(document).on('click', '.fa-plus-square', function() {
@@ -32,6 +37,8 @@ alert("You have submitted your flag!")
 $('#sign').html("<i class='text-danger fas fa-times-circle'></i>")
 $(".flags").children().bind('click', function(){ return false; });
 $(".flags .card-section").css( {"cursor":"not-allowed"});
+console.log( $('.red-flag-section .card-section').html())
+socket.emit('subFlagCard', $('.red-flag-section .card-section').html())
 })
 $(document).on('click', '.flags .card-section', function() {
   // $(this).click(function (){
