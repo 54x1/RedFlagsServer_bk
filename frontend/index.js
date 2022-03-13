@@ -42,11 +42,11 @@ $( ".card-section" ).each(function() {
 
 $(document).on('click', '#remove-sign', function() {
   socket.emit('flag', $('.red-flag-section .card-section').html());
-  let fdata = flagData()
+
   console.log("hereflag", $('.red-flag-section .card-section').html())
   
   console.log("flagdatafrontend", flagData())
-  $(".flags").append("<div class='card-section'>"+fdata+"</div>")
+  flagData()
   $(this).remove()
   $(".red-flag-section .card-section").remove()
   
@@ -55,7 +55,7 @@ $(document).on('click', '#remove-sign', function() {
 
 function flagData(data){
   console.log('herefd', data)
-return data
+  $(".flags").append("<div class='card-section'>"+data+"</div>")
 }
 
 
