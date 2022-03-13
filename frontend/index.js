@@ -139,6 +139,7 @@ $(joinGameBtn).on('click', function(){
   const code = gameCodeInput.value;
   socket.emit('joinGame', code);
   if($('.public-flags .card-section').length){
+    console.log('text', $('.red-flag-section .card-section').html())
     socket.emit('joinFlags', $('.red-flag-section .card-section').html())
     }
 
