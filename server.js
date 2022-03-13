@@ -39,14 +39,19 @@ client.on('joinFlags', subFlagCardHandle)
 client.on('newJoinFlag', newJoinFlagHandle)
 
 function newJoinFlagHandle(){
-  console.log("flagState", flagState)
-  client.emit('flagStateData', flagState);
+  if(flagState == null){
+flagState = ""
+  }
+  else{
+    console.log("flagState", flagState)
+    client.emit('flagStateData', flagState);
+  }
 }
 function subFlagCardHandle(data){
   console.log("subFlagData", data)
   flagState = data
-  client.emit('subFlagData', data);
-  client.broadcast.emit('subFlagData', data);
+  io.emit('subFlagData', data);
+  // client.broadcast.emit('subFlagData', data);
 }
   function handleUnknown(){
     client.emit('unknownData', {data: "True"});
