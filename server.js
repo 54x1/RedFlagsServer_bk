@@ -24,33 +24,6 @@ const clientRooms = {};
 app.use(express.static(publicPath));
 io.on('connection', client => {
 
-  client.on('join', ({ name, room }, callback) => {
- 
-    const { error, user } = addUser(
-        { id: client.id, name, room });
-
-    if (error) return callback(error);
-
-    // Emit will send message to the user
-    // who had joined
-    client.emit('message', { user: 'admin', text:
-        `${user.name},
-        welcome to room ${user.room}.` });
-
-    // Broadcast will send message to everyone
-    // in the room except the joined user
-    client.broadcast.to(user.room)
-        .emit('message', { user: "admin",
-        text: `${user.name}, has joined` });
-
-        client.join(user.room);
-
-    io.to(user.room).emit('roomData', {
-        room: user.room,
-        users: getUsersInRoom(user.room)
-    });
-    callback();
-
 console.log("connected")
   // client.on('keydown', handleKeydown);
   client.on('newGame', handleNewGame);
