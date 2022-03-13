@@ -117,12 +117,12 @@ console.log('data', data);
 
 
 $(joinGameBtn).on('click', function(){
-  socket.emit('joinGame', code);
+
   $(gameCodeDisplay).html($(gameCodeInput).val());
   $(perk1).html($(gamePerk1).val());
   socket.emit('perks');
   const code = gameCodeInput.value;
-
+  socket.emit('joinGame', code);
   init();
 })
 
