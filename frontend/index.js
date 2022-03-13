@@ -25,7 +25,7 @@ socket.on('tooManyPlayers', handleTooManyPlayers);
 socket.on('flagData', flagData);
 socket.on('subFlagData', subFlagData);
 socket.on("unknownData", unknownData)
-
+socket.on("flagStateData", subFlagData)
 function subFlagData(data){
 console.log("subFlagData", data)
 $('.public-flags').append("<div class='card-section text-center'>"+data+"</div>")

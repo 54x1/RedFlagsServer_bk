@@ -40,6 +40,7 @@ client.on('newJoinFlag', newJoinFlagHandle)
 
 function newJoinFlagHandle(){
   console.log("flagState", flagState)
+  client.emit('flagStateData', flagState);
 }
 function subFlagCardHandle(data){
   console.log("subFlagData", data)
