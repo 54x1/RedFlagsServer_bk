@@ -54,7 +54,7 @@ $(document).on('click', '#remove-sign', function() {
 });
 
 function flagData(data){
-  console.log('herefd', data)
+  data = ""
   $(".flags").append("<div class='card-section'>"+data+"</div>")
 }
 

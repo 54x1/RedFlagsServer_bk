@@ -37,7 +37,7 @@ console.log("connected")
   function handleFlag(data){
 console.log('flagdatabkend', data)
 client.emit('flagData', data);
-
+data = ""
   }
   let pperkss;
 function handlePerks(){
