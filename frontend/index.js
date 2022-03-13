@@ -39,11 +39,12 @@ $( ".card-section" ).each(function() {
   })
 
 });
-
+function flagDataHandle(){
 $(document).on('click', '.remove-sign', function() {
-  flagDataHandle()
+  flagData()
 });
-function flagDataHandle(data){
+}
+function flagData(data){
   console.log("hereflag")
 console.log("flagdatafrontend", data)
 $(".flags").append("<div class='card-section'>"+data+"</div>")
