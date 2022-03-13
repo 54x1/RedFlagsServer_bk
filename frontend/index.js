@@ -127,7 +127,7 @@ $(joinGameBtn).on('click', function(){
   socket.emit('perks');
   const code = gameCodeInput.value;
   socket.emit('joinGame', code);
-  console.log('un',unknownData())
+  console.log('un', unknownData())
   if (unknownData() != 'True'){
   init();
   }
