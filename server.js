@@ -35,6 +35,7 @@ console.log("connected")
   client.on('flag', handleFlag);
   client.on('unknown', handleUnknown);
 client.on('subFlagCard', subFlagCardHandle)
+client.on('joinFlags', subFlagCardHandle)
 
 function subFlagCardHandle(data){
   console.log("subFlagData", data)

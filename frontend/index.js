@@ -138,6 +138,10 @@ $(joinGameBtn).on('click', function(){
   socket.emit('perks');
   const code = gameCodeInput.value;
   socket.emit('joinGame', code);
+  if($('.public-flags .card-section').length){
+    socket.emit('joinFlags', $('.red-flag-section .card-section').html())
+    }
+
   console.log('un', unknownData())
   if (unknownData() != 'True'){
   init();
