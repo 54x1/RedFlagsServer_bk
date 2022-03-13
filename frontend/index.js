@@ -22,7 +22,7 @@ socket.on('newPerks', handleNewPerks)
 socket.on('ppperks', handlePPerks);
 socket.on('unknownCode', handleUnknownCode);
 socket.on('tooManyPlayers', handleTooManyPlayers);
-socket.on('flagData', flagDataHandle);
+socket.on('flagData', flagData);
 
 
 
@@ -39,7 +39,7 @@ $( ".card-section" ).each(function() {
   })
 
 });
-function flagDataHandle(){
+
 $(document).on('click', '.remove-sign', function() {
   let data = flagData()
   console.log("hereflag")
@@ -50,7 +50,7 @@ $(document).on('click', '.remove-sign', function() {
   
   $(".flags .card-section").css({"pointer-events": "auto"});
 });
-}
+
 function flagData(data){
 return data
 }
