@@ -53,7 +53,7 @@ $(document).on('click', '.flags .card-section', function() {
 $('.flag-section').hide()
 socket.emit('subFlagCard', $('.flags .card-section').html())
 // $('.home-section .public-flags').append("<div class='card-section text-center'>"+ $(this).html()+"</div>")
-socket.emit('flag', $(this).html());
+// socket.emit('flag', $(this).html());
 // $("#sign").bind('click', function(){ return false; });
 $("#sign").css( {"cursor":"not-allowed"});
 $('#sign').html('<i class="text-secondary far fa-plus-square"></i>')
