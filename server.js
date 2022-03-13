@@ -50,8 +50,8 @@ flagState = ""
 function subFlagCardHandle(data){
   console.log("subFlagData", data)
   flagState = data
-  io.emit('subFlagData', data);
-  // client.broadcast.emit('subFlagData', data);
+  client.emit('subFlagData', data);
+  client.broadcast.emit('subFlagData', data);
 }
   function handleUnknown(){
     client.emit('unknownData', {data: "True"});
