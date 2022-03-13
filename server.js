@@ -18,7 +18,7 @@ let server = http.createServer(app);
 let io = socketIO(server);
 
 let pp
-
+let flagState;
 const state = {};
 const clientRooms = {};
 app.use(express.static(publicPath));
@@ -36,9 +36,14 @@ console.log("connected")
   client.on('unknown', handleUnknown);
 client.on('subFlagCard', subFlagCardHandle)
 client.on('joinFlags', subFlagCardHandle)
+client.on('newJoinFlag', newJoinFlagHandle)
 
+function newJoinFlagHandle(){
+  console.log("flagState", flagState)
+}
 function subFlagCardHandle(data){
   console.log("subFlagData", data)
+  flagState = data
   client.emit('subFlagData', data);
   client.broadcast.emit('subFlagData', data);
 }

@@ -34,29 +34,46 @@ $('.public-flags').append("<div class='card-section text-center'>"+data+"</div>"
 
 
 $(document).on('click', '.fa-plus-square', function() {
-alert("You have submitted your flag!")
-$('#sign').html("<i class='text-danger fas fa-times-circle'></i>")
-$(".flags").children().bind('click', function(){ return false; });
-$(".flags .card-section").css( {"cursor":"not-allowed"});
-console.log( $('.red-flag-section .card-section').html())
-socket.emit('subFlagCard', $('.red-flag-section .card-section').html())
+$('.home-section').hide()
+$('.flag-section').show()
+$('.perk1').html(perk1.innerText)
+$('.perk2').html(perk2.innerText)
+
+
+// alert("You have submitted your flag!")
+// $('#sign').html("<i class='text-danger fas fa-times-circle'></i>")
+// $(".flags").children().bind('click', function(){ return false; });
+// $(".flags .card-section").css( {"cursor":"not-allowed"});
+// console.log( $('.red-flag-section .card-section').html())
+// socket.emit('subFlagCard', $('.red-flag-section .card-section').html())
 })
 $(document).on('click', '.flags .card-section', function() {
-  // $(this).click(function (){
-    console.log($('.red-flag-section .card-section').html())
-    if($('.red-flag-section .card-section').length){
-    $('.flags').append("<div class='card-section text-center'>"+$('.red-flag-section .card-section').html()+"</div>")
-    }
-    // socket.emit('flag', $(this).html());
-
+  if (confirm('Submit this FLAG?') == true) {
+    $('.home-section').show()
+$('.flag-section').hide()
+socket.emit('subFlagCard', $('.flags .card-section').html())
+// $('.home-section .public-flags').append("<div class='card-section text-center'>"+ $(this).html()+"</div>")
+socket.emit('flag', $(this).html());
+// $("#sign").bind('click', function(){ return false; });
+$("#sign").css( {"cursor":"not-allowed"});
+$('#sign').html('<i class="text-secondary far fa-plus-square"></i>')
     $(this).remove()
-  //   <p class="sign">
-  //   <i class="text-danger far fa-plus-square"></i>
-  // </p>
-  $('.red-flag-section').html("<p id='sign'><i class='text-danger far fa-plus-square'></i></p><div class='card-section'>"+$(this).html()+"</div>")
-    // $('.red-flag-section').append("<p id='sign'><i class='text-danger fas fa-times-circle'></i></p><div class='card-section'>"+$(this).html()+"</div>")
+  }
+  // // $(this).click(function (){
+  //   console.log($('.red-flag-section .card-section').html())
+  //   if($('.red-flag-section .card-section').length){
+  //   $('.flags').append("<div class='card-section text-center'>"+$('.red-flag-section .card-section').html()+"</div>")
+  //   }
+  //   // socket.emit('flag', $(this).html());
 
-  // })
+  //   $(this).remove()
+  // //   <p class="sign">
+  // //   <i class="text-danger far fa-plus-square"></i>
+  // // </p>
+  // $('.red-flag-section').html("<p id='sign'><i class='text-danger far fa-plus-square'></i></p><div class='card-section'>"+$(this).html()+"</div>")
+  //   // $('.red-flag-section').append("<p id='sign'><i class='text-danger fas fa-times-circle'></i></p><div class='card-section'>"+$(this).html()+"</div>")
+
+  // // })
 
 });
 
@@ -78,7 +95,7 @@ $(document).on('click', '.fa-times-circle', function() {
 function flagData(data){
   $(".flags").children().unbind('click');
   console.log("flagdatafrontend", data)
-  $(".flags").append("<div class='card-section'>"+data+"</div>")
+  $(".home-section .public-flags").append("<div class='card-section'>"+data+"</div>")
 }
 
 
@@ -141,12 +158,14 @@ $(joinGameBtn).on('click', function(){
   if($('.public-flags .card-section').length){
     console.log('text', $('.red-flag-section .card-section').html())
     socket.emit('joinFlags', $('.red-flag-section .card-section').html())
+    }else{
+      socket.emit('newJoinFlag')
     }
 
   console.log('un', unknownData())
-  if (unknownData() != 'True'){
+  // if (unknownData() == 'True'){
   init();
-  }
+  // }
 })
 
 function handlePPerks(pperks){
