@@ -28,10 +28,13 @@ socket.on("unknownData", unknownData)
 socket.on("flagStateData", subFlagData)
 function subFlagData(data){
 console.log("subFlagData", data)
+if(data == null){
+  data = "";
+}else{
 $('.public-flags').append("<div class='card-section text-center'>"+data+"</div>")
 
 }
-
+}
 
 $(document).on('click', '.fa-plus-square', function() {
 $('.home-section').hide()
