@@ -30,21 +30,24 @@ socket.on("unknownData", unknownData)
 $(document).on('click', '.fa-plus-square', function() {
 alert("You have submitted your flag!")
 $('#sign').html("<i class='text-danger fas fa-times-circle'></i>")
+$(".flags").children().bind('click', function(){ return false; });
+$(".flags .card-section").css( {"cursor":"not-allowed"});
 })
 $(document).on('click', '.flags .card-section', function() {
   // $(this).click(function (){
-    console.log($(this).html())
-
+    console.log($('.red-flag-section .card-section').html())
+    if($('.red-flag-section .card-section').length){
+    $('.flags').append("<div class='card-section text-center'>"+$('.red-flag-section .card-section').html()+"</div>")
+    }
     // socket.emit('flag', $(this).html());
 
     $(this).remove()
   //   <p class="sign">
   //   <i class="text-danger far fa-plus-square"></i>
   // </p>
-  $('.red-flag-section').append("<p id='sign'><i class='text-danger far fa-plus-square'></i></p><div class='card-section'>"+$(this).html()+"</div>")
+  $('.red-flag-section').html("<p id='sign'><i class='text-danger far fa-plus-square'></i></p><div class='card-section'>"+$(this).html()+"</div>")
     // $('.red-flag-section').append("<p id='sign'><i class='text-danger fas fa-times-circle'></i></p><div class='card-section'>"+$(this).html()+"</div>")
-    $(".flags").children().bind('click', function(){ return false; });
-    $(".flags .card-section").css( {"cursor":"not-allowed"});
+
   // })
 
 });
@@ -257,7 +260,7 @@ function handleUnknownCode() {
 
 function handleTooManyPlayers() {
   reset();
-  alert('This game is already in progress');
+  alert('This game has max players');
 }
 
 

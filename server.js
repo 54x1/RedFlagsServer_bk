@@ -103,7 +103,7 @@ client.emit('ppperks', pp)
     if (numClients === 0) {
       client.emit('unknownCode');
       return;
-    } else if (numClients > 2) {
+    } else if (numClients > 4) {
       client.emit('tooManyPlayers');
       return;
     }
