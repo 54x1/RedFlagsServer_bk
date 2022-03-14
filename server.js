@@ -104,6 +104,8 @@ function newJoinFlagHandle(){
   if(flagState != null){
     console.log("flagState", flagState)
     client.emit('flagStateData', flagState);
+  }else{
+    client.emit('newFlagData');
   }
 }
 function subFlagCardHandle(data){
