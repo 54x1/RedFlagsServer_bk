@@ -310,7 +310,7 @@ function handleTooManyPlayers() {
 
 
 socket.on('disconnect', () => {
-  if (client.rooms.size === 0){
+  if (socket.rooms.size === 0){
     flagState = ""
     console.log('roomName', roomName)
   }
