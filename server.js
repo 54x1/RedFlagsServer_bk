@@ -180,17 +180,17 @@ client.emit('ppperks', pp)
   //   // if (vel) {
   //   //   state[roomName].players[client.number - 1].vel = vel;
   //   // }
-  // }
 
-  client.on("disconnecting", (roomName) => {
-    if (client.rooms.size === 0){
-      flagState = ""
-      console.log('roomName', roomName)
-    }
-    console.log('client.rooms', client.rooms); // the Set contains at least the socket ID
-  });
 });
 
+io.on('disconnecting', client => {
+  if (client.rooms.size === 0){
+    flagState = ""
+    console.log('roomName', roomName)
+  }
+  console.log('client.rooms', client.rooms); // the Set contains at least the socket ID
+});
+}
 // function startGameInterval(roomName) {
 //   const intervalId = setInterval(() => {
 //     const winner = gameLoop(state[roomName]);
