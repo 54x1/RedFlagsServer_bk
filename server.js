@@ -184,9 +184,10 @@ client.emit('ppperks', pp)
 
   client.on("disconnecting", (roomName) => {
     if (client.rooms.size === 0){
-      console.log(roomName)
+      flagState = ""
+      console.log('roomName', roomName)
     }
-    console.log(client.rooms); // the Set contains at least the socket ID
+    console.log('client.rooms', client.rooms); // the Set contains at least the socket ID
   });
 });
 
