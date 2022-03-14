@@ -18,7 +18,7 @@ let server = http.createServer(app);
 let io = socketIO(server);
 
 let pp
-let flagState = [];
+
 let pperkss;
 const clientRooms = {};
 app.use(express.static(publicPath));
@@ -37,7 +37,7 @@ console.log("connected")
 client.on('subFlagCard', subFlagCardHandle)
 client.on('joinFlags', subFlagCardHandle)
 client.on('newJoinFlag', newJoinFlagHandle)
-
+let flagState = []
 
 function handleJoinGame(roomName) {
   const room = io.sockets.adapter.rooms[roomName];
@@ -95,10 +95,7 @@ function handleNewGame() {
 client.emit('perks', pp);
 }
 
-client.on('disconnect', ()=>{
-console.log('disconnect', client.id)
-flagState = ""
-})
+
 
 function newJoinFlagHandle(){
   if(flagState != null){
@@ -170,7 +167,10 @@ console.log('pperkss', pp)
 client.emit('ppperks', pp)
 
  }
-
+ client.on('disconnect', ()=>{
+  console.log('disconnect', client.id)
+  flagState = ""
+  })
 
 });
 
