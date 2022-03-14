@@ -33,10 +33,15 @@ socket.on('flagData', flagData);
 socket.on('subFlagData', subFlagData);
 socket.on("unknownData", unknownData)
 socket.on("flagStateData", subFlagData)
+socket.on("newFlagData", newFlagData)
+
+function newFlagData(){
+  console.log('newFlagData')
+}
 function subFlagData(data){
 console.log("subFlagData", data)
 if(data == null){
-  // data = "";
+socket.emit('newJoinFlag')
 }else{
   console.log("datalength", data.length)
   // if ( data.length > 1){

@@ -96,7 +96,6 @@ client.emit('perks', pp);
 }
 
 client.on('disconnect', ()=>{
-console.log('disconnect', clientRooms)
 console.log('disconnect', client.id)
 flagState = ""
 })
