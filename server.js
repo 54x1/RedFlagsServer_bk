@@ -18,7 +18,7 @@ let server = http.createServer(app);
 let io = socketIO(server);
 
 let pp
-let flagState;
+let flagState = [];
 const state = {};
 const clientRooms = {};
 app.use(express.static(publicPath));
@@ -49,7 +49,7 @@ flagState = ""
 }
 function subFlagCardHandle(data){
   console.log("subFlagData", data)
-  flagState = data
+  flagState.push(data)
   client.emit('subFlagData', data);
   client.broadcast.emit('subFlagData', data);
 }
