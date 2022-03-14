@@ -163,33 +163,16 @@ client.emit('ppperks', pp)
 
 
 
-  // function handleKeydown(keyCode) {
-  //   // const roomName = clientRooms[client.id];
-  //   // if (!roomName) {
-  //   //   return;
-  //   // }
-  //   // try {
-  //   //   keyCode = parseInt(keyCode);
-  //   // } catch(e) {
-  //   //   console.error(e);
-  //   //   return;
-  //   // }
-  //   //
-  //   // const vel = getUpdatedVelocity(keyCode);
-  //   //
-  //   // if (vel) {
-  //   //   state[roomName].players[client.number - 1].vel = vel;
-  //   // }
+  client.on('disconnect', () => {
+    if (client.rooms.size === 0){
+      flagState = ""
+      console.log('roomName', roomName)
+    }
+    console.log('client.rooms', client.rooms); // the Set contains at least the socket ID
+  });
 
 });
 
-io.on('disconnecting', client => {
-  if (client.rooms.size === 0){
-    flagState = ""
-    console.log('roomName', roomName)
-  }
-  console.log('client.rooms', client.rooms); // the Set contains at least the socket ID
-});
 // function startGameInterval(roomName) {
 //   const intervalId = setInterval(() => {
 //     const winner = gameLoop(state[roomName]);

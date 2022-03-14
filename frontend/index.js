@@ -309,6 +309,16 @@ function handleTooManyPlayers() {
 }
 
 
+socket.on('disconnect', () => {
+  if (client.rooms.size === 0){
+    flagState = ""
+    console.log('roomName', roomName)
+  }
+  console.log('client.rooms', client.rooms); // the Set contains at least the socket ID
+});
+
+
+
 function reset() {
   playerNumber = null;
   // $('.perk1, .perk2').html('');
