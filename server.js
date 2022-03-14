@@ -96,9 +96,8 @@ client.emit('perks', pp);
 }
 
 client.on('disconnect', ()=>{
-console.log('disconnect', clientRooms[client.id])
-clientRooms[client.id] = roomName
-client.leave(roomName)
+console.log('disconnect', clientRooms)
+console.log('disconnect', client.id)
 flagState = ""
 })
 
