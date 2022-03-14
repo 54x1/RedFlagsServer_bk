@@ -1,8 +1,7 @@
 
 // let socket = io();
 let pppperksss;
-let qperks = []
-let qqperk;
+let cards = []
 // const socket = io('https://flags-54x1.herokuapp.com/');
 const socket = io('https://red-flags-server.herokuapp.com/')
 // var perk1val = document.getElementsByClassName('perk3');
@@ -31,8 +30,13 @@ console.log("subFlagData", data)
 if(data == null){
   // data = "";
 }else{
-$('.public-flags').append("<div class='card-section text-center'>"+data+"</div>")
+  console.log("datalength", data.length)
+  // if ( data.length > 1){
+    $(data).each(function (i){
+      $('.public-flags').append("<div class='card-section text-center'>"+data[i]+"</div>")
+    })
 
+  // }
 }
 }
 
@@ -54,8 +58,14 @@ $(document).on('click', '.flags .card-section', function() {
   if (confirm('Submit this FLAG?') == true) {
     $('.home-section').show()
 $('.flag-section').hide()
-socket.emit('subFlagCard', $(this).html())
+cards.push($(this).text())
 // $('.home-section .public-flags').append("<div class='card-section text-center'>"+ $(this).html()+"</div>")
+ $('.flags .card-section').each(function (){
+
+})
+console.log(cards)
+socket.emit('subFlagCard', cards)
+
 // socket.emit('flag', $(this).html());
 $("#sign").bind('click', function(){ return false; });
 $("#sign").css( {"cursor":"not-allowed"});
