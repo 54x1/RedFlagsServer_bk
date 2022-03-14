@@ -114,6 +114,8 @@ function subFlagCardHandle(data){
   flagState.push(data)
   client.emit('subFlagData', data);
   client.broadcast.emit('subFlagData', data);
+  }else{
+    console.log('data === null')
   }
 }
   function handleUnknown(){
