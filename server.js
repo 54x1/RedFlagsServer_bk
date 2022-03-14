@@ -190,7 +190,6 @@ io.on('disconnecting', client => {
   }
   console.log('client.rooms', client.rooms); // the Set contains at least the socket ID
 });
-}
 // function startGameInterval(roomName) {
 //   const intervalId = setInterval(() => {
 //     const winner = gameLoop(state[roomName]);
