@@ -57,7 +57,7 @@ $('.flag-section').hide()
 socket.emit('subFlagCard', $(this).html())
 // $('.home-section .public-flags').append("<div class='card-section text-center'>"+ $(this).html()+"</div>")
 // socket.emit('flag', $(this).html());
-// $("#sign").bind('click', function(){ return false; });
+$("#sign").bind('click', function(){ return false; });
 $("#sign").css( {"cursor":"not-allowed"});
 $('#sign').html('<i class="text-secondary far fa-plus-square"></i>')
     $(this).remove()
