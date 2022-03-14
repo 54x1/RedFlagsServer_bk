@@ -8,11 +8,7 @@ const socket = io('https://red-flags-server.herokuapp.com/')
 
 
 socket.on('disconnect', () => {
-  if (socket.rooms.size === 0){
-    flagState = ""
-    console.log('roomName', roomName)
-  }
-  console.log('client.rooms', client.rooms); // the Set contains at least the socket ID
+  console.log('client.rooms', socket.rooms); // the Set contains at least the socket ID
 });
 
 

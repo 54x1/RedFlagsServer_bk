@@ -123,7 +123,6 @@ client.emit('flagData', data);
   }
 }
 
-  let pperkss;
 function handlePerks(){
   let data = jsonData;
     var randIn = Math.floor(Math.random() * (data.perks.length));
