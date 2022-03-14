@@ -19,7 +19,7 @@ let io = socketIO(server);
 
 let pp
 let flagState = [];
-const state = {};
+let pperkss;
 const clientRooms = {};
 app.use(express.static(publicPath));
 io.on('connection', client => {
