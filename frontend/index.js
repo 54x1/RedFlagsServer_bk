@@ -4,6 +4,18 @@ let pppperksss;
 let cards = []
 // const socket = io('https://flags-54x1.herokuapp.com/');
 const socket = io('https://red-flags-server.herokuapp.com/')
+
+
+
+socket.on('disconnect', () => {
+  if (socket.rooms.size === 0){
+    flagState = ""
+    console.log('roomName', roomName)
+  }
+  console.log('client.rooms', client.rooms); // the Set contains at least the socket ID
+});
+
+
 // var perk1val = document.getElementsByClassName('perk3');
 // var perk2val = document.getElementsByClassName('perk4');
 // // console.log(perk2val.value);
@@ -307,15 +319,6 @@ function handleTooManyPlayers() {
   reset();
   alert('This game has max players');
 }
-
-
-socket.on('disconnect', () => {
-  if (socket.rooms.size === 0){
-    flagState = ""
-    console.log('roomName', roomName)
-  }
-  console.log('client.rooms', client.rooms); // the Set contains at least the socket ID
-});
 
 
 
