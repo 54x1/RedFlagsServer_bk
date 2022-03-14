@@ -39,27 +39,28 @@ client.on('joinFlags', subFlagCardHandle)
 client.on('newJoinFlag', newJoinFlagHandle)
 
 function newJoinFlagHandle(){
-  if(flagState == null){
-flagState = ""
-  }
-  else{
+  if(flagState != null){
     console.log("flagState", flagState)
     client.emit('flagStateData', flagState);
   }
 }
 function subFlagCardHandle(data){
+  if (data != null){
   console.log("subFlagData", data)
   flagState.push(data)
   client.emit('subFlagData', data);
   client.broadcast.emit('subFlagData', data);
+  }
 }
   function handleUnknown(){
     client.emit('unknownData', {data: "True"});
   }
   function handleFlag(data){
+    if (data != null){
 console.log('flagdatabkend', data)
 client.emit('flagData', data);
   }
+}
 
   let pperkss;
 function handlePerks(){
@@ -110,6 +111,7 @@ client.emit('ppperks', pp)
     let allUsers;
     if (room) {
       allUsers = room.sockets;
+      console.log("allUsers", allUsers)
     }
 
     let numClients = 0;
@@ -179,6 +181,13 @@ client.emit('ppperks', pp)
   //   //   state[roomName].players[client.number - 1].vel = vel;
   //   // }
   // }
+
+  client.on("disconnecting", (roomName) => {
+    if (client.rooms.size === 0){
+      console.log(roomName)
+    }
+    console.log(client.rooms); // the Set contains at least the socket ID
+  });
 });
 
 // function startGameInterval(roomName) {
