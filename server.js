@@ -96,7 +96,10 @@ client.emit('perks', pp);
 }
 
 client.on('disconnect', ()=>{
-console.log('disconnect')
+console.log('disconnect', clientRooms[client.id])
+clientRooms[client.id] = roomName
+client.leave(roomName)
+flagState = ""
 })
 
 function newJoinFlagHandle(){
