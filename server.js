@@ -38,6 +38,67 @@ client.on('subFlagCard', subFlagCardHandle)
 client.on('joinFlags', subFlagCardHandle)
 client.on('newJoinFlag', newJoinFlagHandle)
 
+
+function handleJoinGame(roomName) {
+  const room = io.sockets.adapter.rooms[roomName];
+
+  let allUsers;
+  if (room) {
+    allUsers = room.sockets;
+    console.log("allUsers", allUsers)
+  }
+
+  let numClients = 0;
+  if (allUsers) {
+    console.log("users", Object.keys(allUsers).length)
+    numClients = Object.keys(allUsers).length;
+  }
+
+  if (numClients === 0) {
+    client.emit('unknownCode');
+    return;
+  } else if (numClients > 4) {
+    client.emit('tooManyPlayers');
+    return;
+  }
+
+  clientRooms[client.id] = roomName;
+
+  client.join(roomName);
+  client.number = 2;
+  client.emit('init', 2);
+
+  //  handlePerks()
+
+  // io.sockets.in(roomName).emit('handlePerks',  handlePerks());
+}
+
+
+function handleNewGame() {
+  
+
+
+  var length = 6;
+  let roomName = makeid(length);
+  clientRooms[client.id] = roomName;
+  client.emit('gameCode', roomName);
+
+  client.join(roomName);
+
+  client.number = 1;
+  client.emit('init', 1);
+  // client.emit('perk', perks())
+  handlePerks()
+  console.log("pp", pp)
+   
+// io.sockets.in(roomName).emit('perks', pp);
+client.emit('perks', pp);
+}
+
+client.on('disconnect', ()=>{
+console.log('disconnect')
+})
+
 function newJoinFlagHandle(){
   if(flagState != null){
     console.log("flagState", flagState)
@@ -105,92 +166,10 @@ console.log('pperkss', pp)
 client.emit('ppperks', pp)
 
  }
-  function handleJoinGame(roomName) {
-    const room = io.sockets.adapter.rooms[roomName];
 
-    let allUsers;
-    if (room) {
-      allUsers = room.sockets;
-      console.log("allUsers", allUsers)
-    }
-
-    let numClients = 0;
-    if (allUsers) {
-      console.log("users", Object.keys(allUsers).length)
-      numClients = Object.keys(allUsers).length;
-    }
-
-    if (numClients === 0) {
-      client.emit('unknownCode');
-      return;
-    } else if (numClients > 4) {
-      client.emit('tooManyPlayers');
-      return;
-    }
-
-    clientRooms[client.id] = roomName;
-
-    client.join(roomName);
-    client.number = 2;
-    client.emit('init', 2);
-
-    //  handlePerks()
-
-    // io.sockets.in(roomName).emit('handlePerks',  handlePerks());
-  }
-
-
-  function handleNewGame() {
-    
-
-
-    var length = 6;
-    let roomName = makeid(length);
-    clientRooms[client.id] = roomName;
-    client.emit('gameCode', roomName);
-
-    client.join(roomName);
-
-    client.number = 1;
-    client.emit('init', 1);
-    // client.emit('perk', perks())
-    handlePerks()
-    console.log("pp", pp)
-     
-  // io.sockets.in(roomName).emit('perks', pp);
-  client.emit('perks', pp);
-  }
-
-client.on('disconnect', ()=>{
-  console.log('disconnect')
-})
 
 });
 
-// function startGameInterval(roomName) {
-//   const intervalId = setInterval(() => {
-//     const winner = gameLoop(state[roomName]);
-
-//     if (!winner) {
-//       emitGameState(roomName, state[roomName])
-//     } else {
-//       emitGameOver(roomName, winner);
-//       state[roomName] = null;
-//       clearInterval(intervalId);
-//     }
-//   }, 1000 / FRAME_RATE);
-// }
-
-// function emitGameState(room, gameState) {
-//   // Send this event to everyone in the room.
-//   io.sockets.in(room)
-//     .emit('gameState', JSON.stringify(gameState));
-// }
-
-// function emitGameOver(room, winner) {
-//   io.sockets.in(room)
-//     .emit('gameOver', JSON.stringify({ winner }));
-// }
 
 server.listen(port, ()=>{
   console.log(`Server is up on port ${port}`);
