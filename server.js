@@ -18,7 +18,7 @@ let server = http.createServer(app);
 let io = socketIO(server);
 
 let pp
-
+let flagState = [];
 let pperkss;
 const clientRooms = {};
 app.use(express.static(publicPath));
@@ -38,7 +38,7 @@ client.on('subFlagCard', subFlagCardHandle)
 client.on('joinFlags', subFlagCardHandle)
 client.on('newJoinFlag', newJoinFlagHandle)
 
-let flagState = []
+
 function handleJoinGame(roomName) {
   const room = io.sockets.adapter.rooms[roomName];
 
@@ -110,7 +110,7 @@ function subFlagCardHandle(data){
   if (data != null){
   console.log("subFlagData", data)
   console.log("flagState", flagState)
-  flagState.push(data)
+  $(flagState).push(data)
   client.emit('subFlagData', data);
   client.broadcast.emit('subFlagData', data);
   }else{
