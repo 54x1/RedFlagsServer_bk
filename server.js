@@ -76,7 +76,7 @@ function handleJoinGame(roomName) {
 
 function handleNewGame() {
   
-
+  flagState = ""
 
   var length = 6;
   let roomName = makeid(length);
@@ -90,7 +90,7 @@ function handleNewGame() {
   // client.emit('perk', perks())
   handlePerks()
   console.log("pp", pp)
-   
+
 // io.sockets.in(roomName).emit('perks', pp);
 client.emit('perks', pp);
 }
@@ -99,8 +99,9 @@ client.emit('perks', pp);
 
 function newJoinFlagHandle(){
   if(flagState != null){
-    console.log("flagState", flagState)
-    client.emit('flagStateData', flagState);
+    let flagq =  flagState
+    console.log("flagState", flagq)
+    client.emit('flagStateData', flagq);
   }else{
     client.emit('newFlagData');
   }
