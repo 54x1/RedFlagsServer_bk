@@ -18,7 +18,7 @@ let server = http.createServer(app);
 let io = socketIO(server);
 
 let pp
-let flagState = [];
+let flagState;
 let pperkss;
 const clientRooms = {};
 app.use(express.static(publicPath));
@@ -108,9 +108,10 @@ function newJoinFlagHandle(){
 }
 function subFlagCardHandle(data){
   if (data != null){
+    flagState = []
   console.log("subFlagData", data)
   console.log("flagState", flagState)
-  $(flagState).push(data)
+  flagState.push(data)
   client.emit('subFlagData', data);
   client.broadcast.emit('subFlagData', data);
   }else{
