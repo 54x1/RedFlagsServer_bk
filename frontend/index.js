@@ -53,16 +53,20 @@ function subFlagData(data){
   catch{
     console.log("subFlagData", data)
   }
-if(data != null){
+if(data[0] != null){
 console.log("subFlagData", data)
-$('.public-flags').append("<div class='card-section text-center'>"+data.room[0].code[1].cards.cards+"</div>")
+$('.public-flags').append("<div class='card-section text-center'>"+data[0].room[0].code[1].cards.cards+"</div>")
+}
+else{
+  $('.public-flags').append("<div class='card-section text-center'>"+data.room[0].code[1].cards.cards+"</div>")
+}
 // $(data.room[1].cards).each(function (){
 //   console.log('insde each')
 //   $('.public-flags').append("<div class='card-section text-center'>"+data.room[1].cards.cards+"</div>")
 // })
 // }
 }
-}
+
 
 $(document).on('click', '.fa-plus-square', function() {
 $('.home-section').hide()
