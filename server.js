@@ -116,8 +116,8 @@ function subFlagCardHandle(data){
   console.log("subFlagData", data.room[1])
   console.log("flagState", flagState)
   flagState.push(data.room[1])
-  io.to(data.room[0]).emit('subFlagData', data);
-  io.to(data.room[0]).broadcast.emit('subFlagData', data);
+  io.to(data.room[0]).emit('subFlagData', data.room[1]);
+
   }else{
     console.log('data === null')
   }
