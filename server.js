@@ -35,8 +35,9 @@ console.log("connected")
   client.on('flag', handleFlag);
   client.on('unknown', handleUnknown);
 client.on('subFlagCard', subFlagCardHandle)
-client.on('joinFlags', subFlagCardHandle)
+client.on('FlagsCards', subFlagCardHandle)
 client.on('newJoinFlag', newJoinFlagHandle)
+client.on('newJoinFlagData', newJoinFlagDataHandle)
 
 
 function handleJoinGame(roomName) {
@@ -100,6 +101,10 @@ io.in(roomName).clients((err , clients) => {
 
 }
 
+function newJoinFlagDataHandle(data){
+  console.log("newflagdata", data)
+      // client.emit('newFlagData');
+}
 
 function newJoinFlagHandle(){
   console.log("newflagdata")

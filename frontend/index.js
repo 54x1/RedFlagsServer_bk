@@ -84,9 +84,7 @@ cards.push($(this).text())
 // $('.home-section .public-flags').append("<div class='card-section text-center'>"+ $(this).html()+"</div>")
 console.log("cards", cards)
 let code = gameCodeDisplay.innerText
-socket.emit('subFlagCard', {room:[{code},{cards}]})
-// socket.emit('joinFlags')
-// socket.emit('flag', $(this).html());
+socket.emit('FlagCards', {room:[{code},{cards}]})
 $("#sign").bind('click', function(){ return false; });
 $("#sign").css( {"cursor":"not-allowed"});
 $('#sign').html('<i class="text-secondary far fa-plus-square"></i>')
@@ -178,7 +176,7 @@ $(joinGameBtn).on('click', function(){
   socket.emit()
   if($('.public-flags .card-section').length){
     console.log('text', $('.red-flag-section .card-section').html())
-    socket.emit('joinFlags', $('.red-flag-section .card-section').html())
+    socket.emit('newJoinFlagData', $('.red-flag-section .card-section').html())
     }else{
       socket.emit('newJoinFlag')
     }
