@@ -45,7 +45,7 @@ function newFlagData(){
 }
 function subFlagData(data){
   console.log("subFlagData", data)
-console.log("subFlagData", data[0].cards[0])
+console.log("subFlagData", data.cards[0])
 if(data == null){
 socket.emit('newJoinFlag')
 }else{
