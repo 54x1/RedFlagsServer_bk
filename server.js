@@ -101,6 +101,8 @@ function newJoinFlagDataHandle(cards){
 
 function newJoinFlagHandle(){
   console.log("newJoinFlagHandle", flagState)
+  console.log("newJoinFlagHandledatae",  flagState [0].room[0].code[1].cards.card)
+
     if(flagState != null){
       // flagState[0].room[0].code[0].code.code
       codeStr = String(flagState[0].room[0].code[0].code.code)
