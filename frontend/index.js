@@ -59,11 +59,15 @@ $(data).each(function (i){
   d.push(data[i].room[i])
 
 
-  d.filter(c => console.log(c))
-  dd.filter(cc => cc === gameCodeDisplay.innerText).map(ddd => console.log("d", ddd))
-  ddd.filter(ccc => console.log(ccc))
+  let df = d.filter(c => console.log(c))
+let ddf = dd.filter(cc => cc === gameCodeDisplay.innerText)
+  let dddf = ddd.filter(ccc => console.log(ccc))
 
-  console.log('insde each here', gameCodeDisplay.innerText)
+  console.log("df", df)
+  console.log("ddf", ddf)
+  console.log("dddf", dddf)
+
+  console.log('gameCodeDisplay.innerText)', gameCodeDisplay.innerText)
   console.log("String(data[i].room[0].code[0].code.code)", String(data[i].room[i].code[0].code.code))
   $('.public-flags').append("<div class='card-section text-center'>"+data[i].room[i].code[0].cards+"</div>")
   // if (ddd){
