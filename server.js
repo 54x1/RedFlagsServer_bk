@@ -116,6 +116,7 @@ function newJoinFlagHandle(flagState){
 
 function FlagCardsHandle(data){
   if (data != null){
+    flagState = []
     flagState.push({room:[{code},{cards}]})
     console.log("flagState2", flagState)
     console.log("datazz", data.room[0].code)
