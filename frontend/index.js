@@ -98,7 +98,7 @@ console.log("subFlagData3", data.cards[0])
     console.log("subFlagData", data)
   }
 if(data != null){
-console.log("subFlagData", data.room[1].cards.length)
+console.log("subFlagData", data.room[1].cards.cards.length)
 
 // $('.public-flags').append("<div class='card-section text-center'>"+data.cards[0]+"</div>")
 $(data.room[1].cards).each(function (){
