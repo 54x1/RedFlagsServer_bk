@@ -58,13 +58,13 @@ if(data[0] == null){
   
 // socket.emit('newJoinFlag')
 console.log("subFlagData", data.length)
-$(data.cards[0]).each(function (){
+$(data).each(function (){
   $('.public-flags').append("<div class='card-section text-center'>"+data.cards[0]+"</div>")
 })
 }else{
   console.log("datalength", data[0].length)
   // if ( data.length > 1){
-    $(data[0]).each(function (i){
+    $(data).each(function (i){
       $('.public-flags').append("<div class='card-section text-center'>"+data[i].cards[0]+"</div>")
     })
 
