@@ -35,7 +35,7 @@ console.log("connected")
   client.on('flag', handleFlag);
   client.on('unknown', handleUnknown);
 client.on('subFlagCard', subFlagCardHandle)
-client.on('FlagCards', subFlagCardHandle)
+client.on('FlagCards', FlagCardsHandle)
 client.on('newJoinFlag', newJoinFlagHandle)
 client.on('newJoinFlagData', newJoinFlagDataHandle)
 
@@ -117,6 +117,16 @@ function newJoinFlagHandle(){
   // }else{
   //   client.emit('newFlagData');
   // }
+}
+
+
+function FlagCardsHandle(data){
+  if (data != null){
+    console.log("subFlagData", data.room[1])
+    let code = data.room[0]
+    let cards = data.room[1]
+    client.emit('subFlagData', cards);
+  } 
 }
 function subFlagCardHandle(data){
   if (data != null){
