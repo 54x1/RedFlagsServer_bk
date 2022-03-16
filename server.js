@@ -127,8 +127,8 @@ function FlagCardsHandle(data){
     console.log("subFlagDataFCH", data)
     let code = data.room[0]
     let cards = data.room[1]
-    codeStr = String(code)
-    console.log("codeStr", codeStr)
+    codeStr = Object.keys(code)
+    console.log("codeStr", codeStr, Object.entries(code))
     // io.emit('subFlagData2', {room:[{code},{cards}]});
     // console.log(client.emit('subFlagData', cards))
     // console.log(client.broadcast.to(code).emit('subFlagData', cards))
