@@ -107,7 +107,7 @@ function newJoinFlagDataHandle(cards){
 }
 
 function newJoinFlagHandle(cards){
- let cards = getFlags(cards)
+ cards = getFlags(cards)
   console.log("newJoinFlagHandle", cards)
   client.emit('newFlagData', cards);
       // client.emit('newFlagData', );
