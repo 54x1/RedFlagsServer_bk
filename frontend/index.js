@@ -47,12 +47,7 @@ function newFlagData(data){
   $('.public-flags').append("<div class='card-section text-center'>"+data[0].room[0].code[1].cards.cards+"</div>")
 }
 function subFlagData(data){
-  try{
   console.log("subFlagData1", data)
-  }
-  catch{
-    console.log("subFlagData", data)
-  }
 if(data[0] != null){
 console.log("subFlagData", data)
 $('.public-flags').append("<div class='card-section text-center'>"+data[0].room[0].code[1].cards.cards+"</div>")
