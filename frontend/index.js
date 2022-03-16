@@ -82,8 +82,8 @@ cards.push($(this).text())
 
 })
 console.log(cards)
- gameCodeDisplay.innerText = gamecode
-socket.emit('subFlagCard', {room:[{gamecode:cards}]})
+code = gameCodeDisplay.innerText
+socket.emit('subFlagCard', {room:[{code:cards}]})
 
 // socket.emit('flag', $(this).html());
 $("#sign").bind('click', function(){ return false; });
