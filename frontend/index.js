@@ -50,7 +50,7 @@ function subFlagData(data){
   console.log("subFlagData1", data)
 if(data[0] != null){
 console.log("subFlagData", data)
-$(data).map(o => console.log('o', o))
+$(data).map(o => $(data[o].room).map(r => console.log(r)))
 // $(data).map(o => $(o.data[o].room).each(function (i){
 //   ddd = []
 //   dd = []
