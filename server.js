@@ -102,14 +102,16 @@ io.in(roomName).clients((err , clients) => {
 
 
 function newJoinFlagHandle(){
-  if(flagState != null || flagState != ""){
-    let flagq =  flagState
-    console.log("flagState1", flagq)
-    client.emit('newFlagData', flagq);
-    // io.to(flagq.room[0].code).emit('subFlagData', flagq);
-  }else{
-    client.emit('newFlagData');
-  }
+  console.log("newflagdata")
+      client.emit('newFlagData');
+  // if(flagState != null || flagState != ""){
+  //   let flagq =  flagState
+  //   console.log("flagState1", flagq)
+  //   client.emit('newFlagData', flagq);
+  //   // io.to(flagq.room[0].code).emit('subFlagData', flagq);
+  // }else{
+  //   client.emit('newFlagData');
+  // }
 }
 function subFlagCardHandle(data){
   if (data != null){
