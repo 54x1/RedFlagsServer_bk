@@ -54,7 +54,7 @@ $(data).each(function (i){
   ddd = []
   dd = []
   d = []
-  ddd.push(data[i].room[i].code[0].cards)
+  ddd.push(data[i].room[i].code[1].cards)
   dd.push(data[i].room[i].code[0].code.code)
   d.push(data[i].room[i])
 
