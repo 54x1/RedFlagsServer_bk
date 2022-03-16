@@ -54,7 +54,7 @@ $(data).each(function (i){
   ddd = []
   dd = []
   d = []
-  ddd.push(data[i].room[i].code[1].cards.cards)
+  ddd.push(data[i].room[i].code[o].cards.cards)
   dd.push(data[i].room[i].code[0].code.code)
   d.push(data[i].room[i])
 
@@ -65,7 +65,7 @@ $(data).each(function (i){
 
   console.log('insde each here', gameCodeDisplay.innerText)
   console.log("String(data[i].room[0].code[0].code.code)", String(data[i].room[i].code[0].code.code))
-  $('.public-flags').append("<div class='card-section text-center'>"+data[i].room[i].code[0].cards.cards+"</div>")
+  $('.public-flags').append("<div class='card-section text-center'>"+data[i].room[i].code[0].cards+"</div>")
   // if (ddd){
   // console.log('insde if here')
   // 
