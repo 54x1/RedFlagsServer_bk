@@ -94,7 +94,7 @@ function handleNewGame() {
 // io.sockets.in(roomName).emit('perks', pp);
 client.emit('perks', pp);
 io.in(roomName).clients((err , clients) => {
-  console.log(clients);
+  console.log("clients", clients);
   // clients will be array of socket ids , currently available in given room
 });
 
@@ -114,8 +114,9 @@ function subFlagCardHandle(data){
   if (data != null){
     flagState = []
   console.log("subFlagData", data.room[1])
-  console.log("flagState", flagState)
+
   flagState.push(data.room[1])
+  console.log("flagState", flagState)
   client.emit('subFlagData', data.room[1]);
   io.to(data.room[0]).emit('subFlagData', data.room[1]);
 
