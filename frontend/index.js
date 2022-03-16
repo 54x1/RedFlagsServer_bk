@@ -54,10 +54,32 @@ $(data).each(function (i){
   ddd = []
   dd = []
   d = []
-  ddd.push(data[i].room[i].code[1].cards.cards)
+  ddd.push(data[i].room[i].code[1].cards.cards[0])
   dd.push(data[i].room[i].code[0].code.code)
   d.push(data[i].room[i])
 
+  data = {
+    room:[
+      {
+        code:[
+          {
+            dd
+          }
+      ]
+    },
+    {
+      cards: [
+        {
+          ddd
+        },
+        {
+          cards
+        }
+      ]
+    }
+    ]
+    }
+socket.emit('subFlagCard', data)
 
   let df = d.filter(c => console.log(c))
 let ddf = dd.filter(cc => cc === gameCodeDisplay.innerText)

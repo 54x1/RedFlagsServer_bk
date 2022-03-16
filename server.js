@@ -35,7 +35,7 @@ console.log("connected")
   client.on('newPerks', newPerksHandle);
   client.on('flag', handleFlag);
   client.on('unknown', handleUnknown);
-// client.on('subFlagCard', subFlagCardHandle)
+client.on('subFlagCard', subFlagCardHandle)
 client.on('FlagCards', FlagCardsHandle)
 client.on('newJoinFlag', newJoinFlagHandle)
 client.on('newJoinFlagData', newJoinFlagDataHandle)
@@ -140,23 +140,21 @@ function FlagCardsHandle(data){
     client.broadcast.to(codeStr).emit('subFlagData', {room:[{code:[{code},{cards}]}]})
 }
 }
-// function subFlagCardHandle(data){
-//   if (data != null){
-//   console.log("subFlagDataH", data.room[1])
-//     let code = data.room[0]
-//     let cards = data.room[1]
-//   flagState.push(
-//     {room:[{code:[{code},{cards}]}]})
-//   console.log("flagState2", flagState)
-//   client.emit('subFlagData', {room:[{code:[{code},{cards}]}]})
-// // client.emit('subFlagData', data.room[1]);
-//   // client.broadcast.to(data.room[0]).emit('subFlagData', cards);
-// //  i o.to(data.room[0]).emit('subFlagData', data.room[1]);
-
-//   }else{
-//     console.log('data === null')
-//   }
-// }
+function subFlagCardHandle(data){
+  if (data != null){
+    if (data != null){
+      flagState = []
+      console.log("subFlagDataH", data.room.code)
+      let code = data.room.code
+        let cards = data.room.cards
+  
+      flagState.push({room:[{code:[{code},{cards}]}]})
+      console.log("flagState2", flagState)
+  }else{
+    console.log('data === null')
+  }
+}
+}
   function handleUnknown(){
     client.emit('unknownData', {data: "True"});
   }
