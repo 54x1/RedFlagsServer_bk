@@ -4,14 +4,19 @@ let pppperksss;
 let cards = []
 // const socket = io('https://flags-54x1.herokuapp.com/');
 const socket = io('https://red-flags-server.herokuapp.com/')
-
-
-
-socket.on('disconnect', () => {
-  console.log('client.rooms'); // the Set contains at least the socket ID
-});
-
-
+const gameScreen = document.getElementById('gameScreen');
+const initialScreen = document.getElementById('initialScreen');
+const newGameBtn = document.getElementById('newGameButton');
+const joinGameBtn = document.getElementById('joinGameButton');
+const gameCodeInput = document.getElementById('gameCodeInput');
+const newPerks = document.getElementById('new-red-flags');
+const gamePerk1 = document.getElementById('perk1');
+const gameCodeDisplay = document.getElementById('gameCodeDisplay');
+const perk1 = document.getElementById('perk1');
+const perk2 = document.getElementById('perk2');
+newGameBtn.addEventListener('click', newGame);
+newPerks.addEventListener('click', newPerksFunc);
+// joinGameBtn.addEventListener('click', joinGame);
 // var perk1val = document.getElementsByClassName('perk3');
 // var perk2val = document.getElementsByClassName('perk4');
 // // console.log(perk2val.value);
@@ -77,7 +82,8 @@ cards.push($(this).text())
 
 })
 console.log(cards)
-socket.emit('subFlagCard', cards)
+ gameCodeDisplay.innerText = gamecode
+socket.emit('subFlagCard', {room:[{gamecode:cards}]})
 
 // socket.emit('flag', $(this).html());
 $("#sign").bind('click', function(){ return false; });
@@ -125,19 +131,6 @@ function flagData(data){
 }
 
 
-const gameScreen = document.getElementById('gameScreen');
-const initialScreen = document.getElementById('initialScreen');
-const newGameBtn = document.getElementById('newGameButton');
-const joinGameBtn = document.getElementById('joinGameButton');
-const gameCodeInput = document.getElementById('gameCodeInput');
-const newPerks = document.getElementById('new-red-flags');
-const gamePerk1 = document.getElementById('perk1');
-const gameCodeDisplay = document.getElementById('gameCodeDisplay');
-const perk1 = document.getElementById('perk1');
-const perk2 = document.getElementById('perk2');
-newGameBtn.addEventListener('click', newGame);
-newPerks.addEventListener('click', newPerksFunc);
-// joinGameBtn.addEventListener('click', joinGame);
 
 function handleNewPerks(data){
   console.log("data", data)
@@ -181,6 +174,7 @@ $(joinGameBtn).on('click', function(){
   socket.emit('perks');
   const code = gameCodeInput.value;
   socket.emit('joinGame', code);
+  socket.emit()
   if($('.public-flags .card-section').length){
     console.log('text', $('.red-flag-section .card-section').html())
     socket.emit('joinFlags', $('.red-flag-section .card-section').html())
