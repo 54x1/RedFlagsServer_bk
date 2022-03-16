@@ -50,7 +50,7 @@ function subFlagData(data){
   console.log("subFlagData1", data)
 if(data[0] != null){
 console.log("subFlagData", data)
-$(data).each(function (){
+$(data).each(function (i){
   console.log('insde each')
   $('.public-flags').append("<div class='card-section text-center'>"+data[i].room[0].code[1].cards.cards+"</div>")
 })
