@@ -93,7 +93,7 @@ let ddf = dd.filter(cc => cc === gameCodeDisplay.innerText)
   console.log("ddd", ddd)
 
   console.log('gameCodeDisplay.innerText)', gameCodeDisplay.innerText)
-  console.log("String(data[i].room[0].code[0].code.code)", String(data[i].room[i].code[0].code.code))
+  // console.log("String", String(data[i].room[i].code[0].code.code))
   $('.public-flags').append("<div class='card-section text-center'>"+data[i].room[i].code[1].cards.cards+"</div>")
   // if (ddd){
   // console.log('insde if here')
