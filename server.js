@@ -97,12 +97,18 @@ client.emit('perks', pp);
 
 }
 
+function getFlags(cards){
+  console.log(cards)
+return cards;
+}
+
 function newJoinFlagDataHandle(cards){
   console.log("newJoinFlagDataHandle", cards)
 }
 
-function newJoinFlagHandle(){
-  console.log("newJoinFlagHandle")
+function newJoinFlagHandle(cards){
+ let cards = getFlags(cards)
+  console.log("newJoinFlagHandle", cards)
   client.emit('newFlagData', cards);
       // client.emit('newFlagData', );
   // if(flagState != null || flagState != ""){
@@ -138,7 +144,7 @@ function subFlagCardHandle(data){
   flagState.push({room:[{code},{cards}]})
   console.log("flagState2", flagState)
   // client.emit('subFlagData', cards)
-  newJoinFlagDataHandle(cards)
+  getFlags(cards)
 // client.emit('subFlagData', data.room[1]);
   client.broadcast.to(data.room[0]).emit('subFlagData', cards);
 //   io.to(data.room[0]).emit('subFlagData', data.room[1]);
