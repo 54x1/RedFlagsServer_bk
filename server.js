@@ -102,7 +102,7 @@ io.in(roomName).clients((err , clients) => {
 
 
 function newJoinFlagHandle(){
-  if(flagState != null){
+  if(flagState != null || flagState != ""){
     let flagq =  flagState
     console.log("flagState", flagq)
     client.emit('flagStateData', flagq);
