@@ -53,12 +53,12 @@ console.log("subFlagData", data)
 $(data).each(function (i){
   ddd = []
   dd = []
-  ddd.push(data[i].room[0].code[1].cards.cards)
-  dd.push(data[i].room[0].code[0].code.code)
-  dd.filter(c => c === gameCodeDisplay.innerText).map(d => console.log("d", d))
+  ddd.push(data[i].room[i].code[1].cards.cards)
+  dd.push(data[i].room[i].code[0].code.code)
+  dd.filter(c => c === gameCodeDisplay.innerText).map(ddd => console.log("d", ddd))
   // $('.public-flags').append("<div class='card-section text-center'>"+d[i].room[0].code[1].cards.cards+"</div>")
   console.log('insde each here', gameCodeDisplay.innerText)
-  console.log("String(data[i].room[0].code[0].code.code", String(data[i].room[0].code[0].code.code))
+  console.log("String(data[i].room[0].code[0].code.code)", String(data[i].room[0].code[0].code.code))
   // if (ddd){
   // console.log('insde if here')
   // 
