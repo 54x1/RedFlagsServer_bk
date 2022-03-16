@@ -94,10 +94,6 @@ function handleNewGame() {
 
 // io.sockets.in(roomName).emit('perks', pp);
 client.emit('perks', pp);
-io.in(roomName).clients((err , clients) => {
-  console.log("clients", clients);
-  // clients will be array of socket ids , currently available in given room
-});
 
 }
 
@@ -128,8 +124,8 @@ function FlagCardsHandle(data){
     console.log(code)
     // console.log(client.emit('subFlagData', cards))
     // console.log(client.broadcast.to(code).emit('subFlagData', cards))
-    // client.emit('subFlagData', cards)
-    client.broadcast.to(code).emit('subFlagData', cards);
+    client.emit('subFlagData', cards)
+    // client.broadcast.to(code).emit('subFlagData', cards);
   } 
 }
 function subFlagCardHandle(data){
