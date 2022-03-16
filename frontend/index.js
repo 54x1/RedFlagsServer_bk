@@ -44,8 +44,12 @@ socket.on("disconnecting", () => {
 function newFlagData(data){
   console.log('newFlagData', data)
   // if (data.room[0].code.code)
-
-  // $('.public-flags').append("<div class='card-section text-center'>"+data.room[0].code[1].cards.cards+"</div>")
+$(data).each(function (){
+  console.log('insde each')
+  $('.public-flags').append("<div class='card-section text-center'>"+data.room[1].cards.cards+"</div>")
+})
+}
+  $('.public-flags').append("<div class='card-section text-center'>"+data[0].room[0].code[1].cards.cards+"</div>")
 }
 function subFlagData(data){
   try{
