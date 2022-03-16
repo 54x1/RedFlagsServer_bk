@@ -122,11 +122,13 @@ function newJoinFlagHandle(){
 
 function FlagCardsHandle(data){
   if (data != null){
-    console.log("subFlagData", data.room[1])
+    console.log("subFlagDataFCH", data.room[1])
     let code = data.room[0]
     let cards = data.room[1]
-    // client.emit('subFlagData', cards);
-    client.to(code).emit('subFlagData', cards)
+    client.emit('subFlagData', cards);
+    // client.to(code).emit('subFlagData', cards)
+    io.to(code).emit('subFlagData', cards);
+
   } 
 }
 function subFlagCardHandle(data){
