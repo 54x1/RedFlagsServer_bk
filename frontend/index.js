@@ -97,8 +97,8 @@ cards.push($(this).text())
 })
 console.log(cards)
 let code = gameCodeDisplay.innerText
-socket.emit('subFlagCard', {room:[{code},{cards}]})
-io.to(code).emit('subFlagCard', {room:[{code},{cards}]});
+// socket.emit('subFlagCard', {room:[{code},{cards}]})
+socket.to(code).emit('subFlagCard', {room:[{code},{cards}]});
 // socket.emit('flag', $(this).html());
 $("#sign").bind('click', function(){ return false; });
 $("#sign").css( {"cursor":"not-allowed"});
