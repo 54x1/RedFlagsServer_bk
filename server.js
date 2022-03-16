@@ -102,13 +102,13 @@ io.in(roomName).clients((err , clients) => {
 }
 
 function newJoinFlagDataHandle(data){
-  console.log("newflagdata", data)
+  console.log("newJoinFlagDataHandle", data)
       // client.emit('newFlagData');
 }
 
 function newJoinFlagHandle(){
-  console.log("newflagdata")
-      client.emit('newFlagData', );
+  console.log("newJoinFlagHandle")
+      // client.emit('newFlagData', );
   // if(flagState != null || flagState != ""){
   //   let flagq =  flagState
   //   console.log("flagState1", flagq)
