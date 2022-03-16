@@ -100,9 +100,8 @@ function newJoinFlagDataHandle(cards){
 }
 
 function newJoinFlagHandle(flagState){
-  flagStateData = flagState
-  console.log("newJoinFlagHandle", flagStateData)
-  client.emit('newFlagData', flagStateData);
+  console.log("newJoinFlagHandle", flagState)
+  client.emit('newFlagData', flagState);
       // client.emit('newFlagData', );
   // if(flagState != null || flagState != ""){
   //   let flagq =  flagState
@@ -125,8 +124,6 @@ function FlagCardsHandle(data){
 }
 function subFlagCardHandle(data){
   if (data != null){
-    flagState = []
-
   console.log("subFlagData", data.room[1])
     let code = data.room[0]
     let cards = data.room[1]
