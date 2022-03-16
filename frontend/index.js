@@ -57,8 +57,8 @@ console.log("subFlagData3", data.cards[0])
 if(data[0] == null){
   
 // socket.emit('newJoinFlag')
-console.log("subFlagData", data.length)
-$(data).each(function (){
+console.log("subFlagData", data.cards[0].length)
+$(data.cards[0]).each(function (){
   $('.public-flags').append("<div class='card-section text-center'>"+data.cards[0]+"</div>")
 })
 }else{
