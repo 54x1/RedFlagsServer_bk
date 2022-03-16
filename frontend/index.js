@@ -55,20 +55,10 @@ console.log("subFlagData3", data.cards[0])
     console.log("subFlagData", data)
   }
 if(data != null){
-  
-// socket.emit('newJoinFlag')
 console.log("subFlagData", data.length)
 $(data).each(function (){
   $('.public-flags').append("<div class='card-section text-center'>"+data.cards[0]+"</div>")
 })
-}else{
-  console.log("datalength", data[0].length)
-  // if ( data.length > 1){
-    $(data).each(function (i){
-      $('.public-flags').append("<div class='card-section text-center'>"+data[i].room[1].cards.cards[0]+"</div>")
-    })
-
-  // }
 }
 }
 
