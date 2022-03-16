@@ -83,7 +83,7 @@ function handleNewGame() {
   let roomName = makeid(length);
   clientRooms[client.id] = roomName;
   client.emit('gameCode', roomName);
-
+  console.log("roomName", clientRooms[client.id],[roomName])
   client.join(roomName);
 
   client.number = 1;
