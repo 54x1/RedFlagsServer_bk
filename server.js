@@ -6,6 +6,7 @@ const path = require('path');
 const http = require('http');
 const express = require('express');
 const socketIO = require('socket.io');
+const { flags } = require('socket.io/lib/namespace');
 
 const publicPath = path.join(__dirname, '/frontend/');
 
@@ -106,10 +107,10 @@ function newJoinFlagDataHandle(cards){
   console.log("newJoinFlagDataHandle", cards)
 }
 
-function newJoinFlagHandle(cards){
- cards = getFlags(cards)
-  console.log("newJoinFlagHandle", cards)
-  client.emit('newFlagData', cards);
+function newJoinFlagHandle(flagState){
+  flagStateData = flagState
+  console.log("newJoinFlagHandle", flagStateData)
+  client.emit('newFlagData', flagStateData);
       // client.emit('newFlagData', );
   // if(flagState != null || flagState != ""){
   //   let flagq =  flagState
@@ -124,18 +125,14 @@ function newJoinFlagHandle(cards){
 
 function FlagCardsHandle(data){
   if (data != null){
+    flagState = []
+    flagState = data
     console.log("subFlagDataFCH", data)
     let code = data.room[0]
     let cards = data.room[1]
     codeStr = String(Object.values(code))
     console.log("codeStr", codeStr)
-    // io.emit('subFlagData2', {room:[{code},{cards}]});
-    // console.log(client.emit('subFlagData', cards))
-    // console.log(client.broadcast.to(code).emit('subFlagData', cards))
-    // client.to(codeStr).emit('subFlagData1', {room:[{code},{cards}]})
-    // client.to(codeStr).emit('subFlagData2', {room:[{code},{cards}]});
-    io.in(codeStr).emit('subFlagData2', {room:[{code},{cards}]});
-    // io.of(code).emit('subFlagData4', {room:[{code},{cards}]});
+    io.in(codeStr).emit('subFlagData', {room:[{code:[{cards}]}]})
 
   } 
 }

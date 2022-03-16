@@ -47,13 +47,13 @@ socket.on("disconnecting", () => {
 });
 function newFlagData(data){
   console.log('newFlagData', data)
+  // if (data.room[0].code.code)
+
   $('.public-flags').append("<div class='card-section text-center'>"+data+"</div>")
 }
 function subFlagData(data){
   try{
   console.log("subFlagData1", data)
-console.log("subFlagData2", data[0].cards[0])
-console.log("subFlagData3", data.cards[0])
   }
   catch{
     console.log("subFlagData", data)
@@ -62,10 +62,10 @@ if(data != null){
 console.log("subFlagData", data)
 
 // $('.public-flags').append("<div class='card-section text-center'>"+data.cards[0]+"</div>")
-$(data.room[1].cards.cards).each(function (i){
-  console.log('insde each')
-  $('.public-flags').append("<div class='card-section text-center'>"+data.room[1].cards.cards[i]+"</div>")
-})
+// $(data.room[1].cards.cards).each(function (i){
+//   console.log('insde each')
+//   $('.public-flags').append("<div class='card-section text-center'>"+data.room[1].cards.cards[i]+"</div>")
+// })
 }
 }
 
@@ -91,8 +91,6 @@ $(data.room[1].cards).each(function (){
 function subFlagData2(data){
   try{
   console.log("subFlagData222", data)
-console.log("subFlagData2", data[0].cards[0])
-console.log("subFlagData3", data.cards[0])
   }
   catch{
     console.log("subFlagData", data)
