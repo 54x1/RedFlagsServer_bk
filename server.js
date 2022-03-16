@@ -77,7 +77,6 @@ function handleJoinGame(roomName) {
 
 
 function handleNewGame() {
-  flagState = ""
   var length = 6;
   let roomName = makeid(length);
   clientRooms[client.id] = roomName;
