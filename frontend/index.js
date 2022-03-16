@@ -54,15 +54,15 @@ console.log("subFlagData3", data.cards[0])
   catch{
     console.log("subFlagData", data)
   }
-// if(data != null){
-// console.log("subFlagData", data.length)
+if(data != null){
+console.log("subFlagData", data.room[1].cards.length)
 
-// // $('.public-flags').append("<div class='card-section text-center'>"+data.cards[0]+"</div>")
-// $(data).each(function (){
-//   console.log('insde each')
-//   $('.public-flags').append("<div class='card-section text-center'>"+data.cards[0]+"</div>")
-// })
-// }
+// $('.public-flags').append("<div class='card-section text-center'>"+data.cards[0]+"</div>")
+$(data.room[1].cards).each(function (){
+  console.log('insde each')
+  $('.public-flags').append("<div class='card-section text-center'>"+data.data.room[1].cards+"</div>")
+})
+}
 }
 
 $(document).on('click', '.fa-plus-square', function() {
