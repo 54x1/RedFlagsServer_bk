@@ -52,7 +52,7 @@ if(data[0] != null){
 console.log("subFlagData", data)
 $(data).each(function (i){
   console.log('insde each here')
-  if (data[i].room[0].code[0].code.code == gameCodeDisplay.value){
+  if (String(data[i].room[0].code[0].code.code) == gameCodeDisplay.value){
   console.log('insde if here')
   $('.public-flags').append("<div class='card-section text-center'>"+data[i].room[0].code[1].cards.cards+"</div>")
   }else{
