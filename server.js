@@ -127,7 +127,7 @@ function FlagCardsHandle(data){
     let cards = data.room[1]
     client.emit('subFlagData', cards);
     // client.to(code).emit('subFlagData', cards)
-    io.to(code).emit('subFlagData', cards);
+    client.to(code).emit('subFlagData', cards);
 
   } 
 }
