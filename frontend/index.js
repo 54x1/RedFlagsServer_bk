@@ -54,7 +54,7 @@ console.log("subFlagData3", data.cards[0])
   catch{
     console.log("subFlagData", data)
   }
-if(data == null){
+if(data != null){
   
 // socket.emit('newJoinFlag')
 console.log("subFlagData", data.length)
