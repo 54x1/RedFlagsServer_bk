@@ -105,7 +105,7 @@ function newJoinFlagHandle(){
       // flagState[0].room[0].code[0].code.code
       codeStr = String(flagState[0].room[0].code[0].code.code)
       console.log(codeStr)
-      client.to(codeStr).emit('subFlagData', flagState)
+      io.in(codeStr).emit('subFlagData', flagState)
     }
 }
       // client.emit('newFlagData', );
@@ -131,7 +131,7 @@ function FlagCardsHandle(data){
     // client.emit('subFlagData', {room:[{code:[{code},{cards}]}]})
     codeStr = String(Object.values(code))
     console.log("codeStr", codeStr)
-    client.to(codeStr).emit('subFlagData', {room:[{code:[{code},{cards}]}]})
+    client.broadcast.to(codeStr).emit('subFlagData', {room:[{code:[{code},{cards}]}]})
 }
 }
 function subFlagCardHandle(data){
