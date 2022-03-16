@@ -106,7 +106,7 @@ function newJoinFlagHandle(){
     let flagq =  flagState
     console.log("flagState1", flagq)
     client.emit('newFlagData', flagq);
-    io.to(flagq.room[0].code).emit('subFlagData', flagq);
+    // io.to(flagq.room[0].code).emit('subFlagData', flagq);
   }else{
     client.emit('newFlagData');
   }
