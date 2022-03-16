@@ -127,7 +127,7 @@ function newJoinFlagHandle(){
 function FlagCardsHandle(data){
   if (data != null){
     flagState = []
-    console.log("subFlagDataH", data.room[1])
+    console.log("subFlagDataHDCH", data.room[1])
       let code = data.room[0]
       let cards = data.room[1]
 
@@ -142,7 +142,7 @@ function FlagCardsHandle(data){
 }
 function subFlagCardHandle(data){
     if (data != null){
-      console.log("subFlagDataH", data.room.cards)
+      console.log("subFlagDataSFCH", data.room.cards)
       let code = data.room.code
         let cards = data.room.cards
   
