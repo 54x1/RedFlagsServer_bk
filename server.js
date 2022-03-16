@@ -141,10 +141,8 @@ function FlagCardsHandle(data){
 }
 }
 function subFlagCardHandle(data){
-  if (data != null){
     if (data != null){
-      flagState = []
-      console.log("subFlagDataH", data.room.code)
+      console.log("subFlagDataH", data.room.cards)
       let code = data.room.code
         let cards = data.room.cards
   
@@ -153,7 +151,6 @@ function subFlagCardHandle(data){
   }else{
     console.log('data === null')
   }
-}
 }
   function handleUnknown(){
     client.emit('unknownData', {data: "True"});
