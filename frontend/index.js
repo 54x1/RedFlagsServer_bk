@@ -65,7 +65,7 @@ $(data).each(function (){
   console.log("datalength", data[0].length)
   // if ( data.length > 1){
     $(data).each(function (i){
-      $('.public-flags').append("<div class='card-section text-center'>"+data[i].cards[0]+"</div>")
+      $('.public-flags').append("<div class='card-section text-center'>"+data[i].room[1].cards.cards[0]+"</div>")
     })
 
   // }
