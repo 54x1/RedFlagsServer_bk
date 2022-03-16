@@ -124,14 +124,15 @@ function FlagCardsHandle(data){
     flagState.push({room:[{code},{cards}]})
     console.log("flagState2", flagState)
     client.emit('subFlagData', {room:[{code},{cards}]})
-  } 
+}
 }
 function subFlagCardHandle(data){
   if (data != null){
   console.log("subFlagDataH", data.room[1])
     let code = data.room[0]
     let cards = data.room[1]
-  flagState.push({room:[{code},{cards}]})
+  flagState.push(
+    {room:[{code},{cards}]})
   console.log("flagState2", flagState)
   client.emit('subFlagData', {room:[{code},{cards}]})
 // client.emit('subFlagData', data.room[1]);
