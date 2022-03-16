@@ -50,49 +50,49 @@ function subFlagData(data){
   console.log("subFlagData1", data)
 if(data[0] != null){
 console.log("subFlagData", data)
-$(data).map(o => $(data[o].room).map(r => console.log(r)))
-// $(data).map(o => $(o.data[o].room).each(function (i){
-//   ddd = []
-//   dd = []
-//   d = []
-//   ddd.push(data[o].room[i].code[1].cards.cards[0])
-//   dd.push(data[o].room[i].code[0].code.code)
-//   d.push(data[o].room[i])
+$(data).map(o => $(data[o].room).each(function (){
+  ddd = []
+  dd = []
+  d = []
+  ddd.push(data[o].room[i].code[1].cards.cards[0])
+  dd.push(data[o].room[i].code[0].code.code)
+  d.push(data[o].room[i])
 
-//   data = {
-//     room:[
-//       {
-//         code:[
-//           {
-//             dd
-//           }
-//       ]
-//     },
-//     {
-//       cards: [
-//         {
-//           ddd
-//         },
-//         {
-//           cards
-//         }
-//       ]
-//     }
-//     ]
-//     }
-//     console.log('data', data)
-// socket.emit('subFlagCard', data)
+  data = {
+    room:[
+      {
+        code:[
+          {
+            dd
+          }
+      ]
+    },
+    {
+      cards: [
+        {
+          ddd
+        },
+        {
+          cards
+        }
+      ]
+    }
+    ]
+    }
+    console.log('data', data)
+socket.emit('subFlagCard', data)
 
-//   let df = d.filter(c => console.log(c))
-// let ddf = dd.filter(cc => cc === gameCodeDisplay.innerText)
-//   let dddf = ddd.filter(ccc => console.log(ccc))
+  let df = d.filter(c => console.log(c))
+let ddf = dd.filter(cc => cc === gameCodeDisplay.innerText)
+  let dddf = ddd.filter(ccc => console.log(ccc))
 
-//   console.log("df", df)
-//   console.log("ddf", ddf)
-//   console.log("dddf", dddf)
-//   console.log("d", d)
-//   console.log("dd", dd)
-//   console.log("ddd", ddd)
+  console.log("df", df)
+  console.log("ddf", ddf)
+  console.log("dddf", dddf)
+  console.log("d", d)
+  console.log("dd", dd)
+  console.log("ddd", ddd)
+
 
   
 //   console.log('gameCodeDisplay.innerText)', gameCodeDisplay.innerText)
@@ -105,6 +105,8 @@ $(data).map(o => $(data[o].room).map(r => console.log(r)))
 //   //   console.log(data[i].room[0].code[1].cards.cards)
 //   // }
 // })
+})
+)
 }
 else{
   console.log("herezz")
