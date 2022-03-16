@@ -54,7 +54,7 @@ $(data).each(function (i){
   ddd = []
   dd = []
   d = []
-  ddd.push(data[i].room[i].code[1].cards)
+  ddd.push(data[i].room[i].code[1].cards.cards)
   dd.push(data[i].room[i].code[0].code.code)
   d.push(data[i].room[i])
 
@@ -72,7 +72,7 @@ let ddf = dd.filter(cc => cc === gameCodeDisplay.innerText)
 
   console.log('gameCodeDisplay.innerText)', gameCodeDisplay.innerText)
   console.log("String(data[i].room[0].code[0].code.code)", String(data[i].room[i].code[0].code.code))
-  $('.public-flags').append("<div class='card-section text-center'>"+data[i].room[i].code[1].cards+"</div>")
+  $('.public-flags').append("<div class='card-section text-center'>"+data[i].room[i].code[1].cards.cards+"</div>")
   // if (ddd){
   // console.log('insde if here')
   // 
