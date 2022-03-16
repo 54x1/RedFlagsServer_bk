@@ -101,9 +101,11 @@ function newJoinFlagDataHandle(cards){
 
 function newJoinFlagHandle(){
   console.log("newJoinFlagHandle", flagState)
+    if(flagState != null){
   client.emit('newFlagData', flagState);
+}
       // client.emit('newFlagData', );
-  // if(flagState != null || flagState != ""){
+
   //   let flagq =  flagState
   //   console.log("flagState1", flagq)
   //   client.emit('newFlagData', flagq);
