@@ -117,7 +117,7 @@ function newJoinFlagHandle(flagState){
 function FlagCardsHandle(data){
   if (data != null){
 
-    console.log("data", data.room[0].code)
+    console.log("datazz", data.room[0].code)
     io.in(data.room[0].code).emit('subFlagData', data)
 
   } 
@@ -176,7 +176,7 @@ function handlePerks(){
   client.emit('newPerks', pp);
 }
 function newpperksHandle(data){
-console.log("data", data)
+console.log("dataNPH", data)
 }
 
 function pperksHandle(data){

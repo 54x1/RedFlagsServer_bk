@@ -35,10 +35,6 @@ socket.on('unknownCode', handleUnknownCode);
 socket.on('tooManyPlayers', handleTooManyPlayers);
 socket.on('flagData', flagData);
 socket.on('subFlagData', subFlagData);
-socket.on('subFlagData1', subFlagData1);
-socket.on('subFlagData2', subFlagData2);
-socket.on('subFlagData3', subFlagData3);
-socket.on('subFlagData4', subFlagData4);
 socket.on("unknownData", unknownData)
 socket.on("flagStateData", subFlagData)
 socket.on("newFlagData", newFlagData)
