@@ -64,6 +64,7 @@ $('.public-flags').append("<div class='card-section text-center'>"+data[0].room[
 // })
 // }
 }
+}
 
 $(document).on('click', '.fa-plus-square', function() {
 $('.home-section').hide()
