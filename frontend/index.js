@@ -56,7 +56,7 @@ $(data).each(function (i){
   dd.filter(c => console.log("c", c))
   // map(d => console.log("d", d), $('.public-flags').append("<div class='card-section text-center'>"+d[i].room[0].code[1].cards.cards+"</div>"))
   console.log('insde each here', gameCodeDisplay.value)
-  console.log("String(data[i].room[0].code[0].code.code", String(data[i].room[0].code[0].code.code)
+  console.log("String(data[i].room[0].code[0].code.code", String(data[i].room[0].code[0].code.code))
   // if (ddd){
   // console.log('insde if here')
   // 
