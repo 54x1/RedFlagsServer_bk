@@ -64,7 +64,7 @@ $(data.cards[0]).each(function (){
 }else{
   console.log("datalength", data[0].length)
   // if ( data.length > 1){
-    $(data[0]).each(function (){
+    $(data[0]).each(function (i){
       $('.public-flags').append("<div class='card-section text-center'>"+data[i].cards[0]+"</div>")
     })
 
