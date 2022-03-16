@@ -128,13 +128,14 @@ function FlagCardsHandle(data){
     let code = data.room[0]
     let cards = data.room[1]
     console.log(code)
+    io.emit('subFlagData2', {room:[{code},{cards}]});
     // console.log(client.emit('subFlagData', cards))
     // console.log(client.broadcast.to(code).emit('subFlagData', cards))
     client.broadcast.to(code).emit('subFlagData1', {room:[{code},{cards}]})
     client.to(code).emit('subFlagData', cards);
     io.in(code).emit('subFlagData3', cards);
     io.of(code).emit('subFlagData4', cards);
-    io.emit('subFlagData2', cards);
+
   } 
 }
 function subFlagCardHandle(data){

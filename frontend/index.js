@@ -62,9 +62,9 @@ if(data != null){
 console.log("subFlagData", data)
 
 // $('.public-flags').append("<div class='card-section text-center'>"+data.cards[0]+"</div>")
-$(data.cards).each(function (i){
+$(data.room[1].cards.cards).each(function (i){
   console.log('insde each')
-  $('.public-flags').append("<div class='card-section text-center'>"+data.cards[i]+"</div>")
+  $('.public-flags').append("<div class='card-section text-center'>"+data.room[1].cards.cards[i]+"</div>")
 })
 }
 }
