@@ -116,7 +116,8 @@ function newJoinFlagHandle(flagState){
 
 function FlagCardsHandle(data){
   if (data != null){
-
+    flagState.push({room:[{code},{cards}]})
+    console.log("flagState2", flagState)
     console.log("datazz", data.room[0].code)
     io.in(data.room[0].code).emit('subFlagData', data)
 
@@ -124,7 +125,7 @@ function FlagCardsHandle(data){
 }
 function subFlagCardHandle(data){
   if (data != null){
-  console.log("subFlagData", data.room[1])
+  console.log("subFlagDataH", data.room[1])
     let code = data.room[0]
     let cards = data.room[1]
   flagState.push({room:[{code},{cards}]})
