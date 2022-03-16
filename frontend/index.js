@@ -64,8 +64,8 @@ $(data).each(function (i){
   ddd.filter(ccc => console.log(ccc))
 
   console.log('insde each here', gameCodeDisplay.innerText)
-  console.log("String(data[i].room[0].code[0].code.code)", String(data[i].room[0].code[0].code.code))
-  $('.public-flags').append("<div class='card-section text-center'>"+data[i].room[0].code[1].cards.cards+"</div>")
+  console.log("String(data[i].room[0].code[0].code.code)", String(data[i].room[i].code[0].code.code))
+  $('.public-flags').append("<div class='card-section text-center'>"+data[i].room[i].code[0].cards.cards+"</div>")
   // if (ddd){
   // console.log('insde if here')
   // 
