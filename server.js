@@ -135,12 +135,14 @@ function FlagCardsHandle(data){
 function subFlagCardHandle(data){
   if (data != null){
     flagState = []
+
   console.log("subFlagData", data.room[1])
     let code = data.room[0]
     let cards = data.room[1]
   flagState.push({room:[{code},{cards}]})
   console.log("flagState2", flagState)
   client.to(code).emit('subFlagData', cards)
+  newJoinFlagDataHandle(flagState)
 // client.emit('subFlagData', data.room[1]);
 //   client.broadcast.to(data.room[0]).emit('subFlagData', data.room[1]);
 //   io.to(data.room[0]).emit('subFlagData', data.room[1]);
