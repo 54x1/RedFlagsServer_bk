@@ -51,13 +51,14 @@ function subFlagData(data){
 if(data[0] != null){
 console.log("subFlagData", data)
 $(data).each(function (i){
+  data[i].room[0].code[0].code.code.filter(c => c.includes(gameCodeDisplay.value)).map(d => console.log("d", d), $('.public-flags').append("<div class='card-section text-center'>"+d[i].room[0].code[1].cards.cards+"</div>"))
   console.log('insde each here', String(data[i].room[0].code[0].code.code, gameCodeDisplay.value))
-  if (String(data[i].room[0].code[0].code.code) === gameCodeDisplay.value){
-  console.log('insde if here')
-  $('.public-flags').append("<div class='card-section text-center'>"+data[i].room[0].code[1].cards.cards+"</div>")
-  }else{
-    console.log(data[i].room[0].code[1].cards.cards)
-  }
+  // if (ddd){
+  // console.log('insde if here')
+  // 
+  // }else{
+  //   console.log(data[i].room[0].code[1].cards.cards)
+  // }
 })
 
 }
