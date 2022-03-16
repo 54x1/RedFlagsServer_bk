@@ -44,6 +44,7 @@ socket.on("disconnecting", () => {
 });
 function newFlagData(data){
   console.log('newFlagData', data)
+  $('.public-flags').append("<div class='card-section text-center'>"+data+"</div>")
 }
 function subFlagData(data){
   try{

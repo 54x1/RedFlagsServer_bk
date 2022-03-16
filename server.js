@@ -101,9 +101,9 @@ io.in(roomName).clients((err , clients) => {
 
 }
 
-function newJoinFlagDataHandle(data){
-  console.log("newJoinFlagDataHandle", data)
-      // client.emit('newFlagData');
+function newJoinFlagDataHandle(cards){
+  console.log("newJoinFlagDataHandle", cards)
+  client.emit('newFlagData', cards);
 }
 
 function newJoinFlagHandle(){
@@ -142,7 +142,7 @@ function subFlagCardHandle(data){
   flagState.push({room:[{code},{cards}]})
   console.log("flagState2", flagState)
   client.to(code).emit('subFlagData', cards)
-  newJoinFlagDataHandle(flagState)
+  newJoinFlagDataHandle(cards)
 // client.emit('subFlagData', data.room[1]);
 //   client.broadcast.to(data.room[0]).emit('subFlagData', data.room[1]);
 //   io.to(data.room[0]).emit('subFlagData', data.room[1]);
