@@ -132,7 +132,7 @@ function FlagCardsHandle(data){
     let cards = data.room[1]
     codeStr = String(Object.values(code))
     console.log("codeStr", codeStr)
-    io.in(codeStr).emit('subFlagData', {room:[{code:[{cards}]}]})
+    io.in(codeStr).emit('subFlagData', {room:[{code:code[{cards}]}]})
 
   } 
 }
