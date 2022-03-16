@@ -99,7 +99,7 @@ function newJoinFlagDataHandle(cards){
   console.log("newJoinFlagDataHandle", cards)
 }
 
-function newJoinFlagHandle(flagState){
+function newJoinFlagHandle(){
   console.log("newJoinFlagHandle", flagState)
   client.emit('newFlagData', flagState);
       // client.emit('newFlagData', );
