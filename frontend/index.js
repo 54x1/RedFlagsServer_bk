@@ -42,10 +42,10 @@ socket.on("disconnecting", () => {
   console.log("socket.rooms", socket.rooms); // the Set contains at least the socket ID
 });
 function newFlagData(data){
-  console.log('newFlagData', data[0].room[1].cards.cards)
+  console.log('newFlagData', data.room[0].code[1].cards.cards)
   // if (data.room[0].code.code)
 
-  $('.public-flags').append("<div class='card-section text-center'>"+data[0].room[1].cards.cards+"</div>")
+  $('.public-flags').append("<div class='card-section text-center'>"+data.room[0].code[1].cards.cards+"</div>")
 }
 function subFlagData(data){
   try{
