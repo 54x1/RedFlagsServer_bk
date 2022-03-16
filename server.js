@@ -98,11 +98,6 @@ client.emit('perks', pp);
 
 }
 
-function getFlags(cards){
-  console.log(cards)
-return cards;
-}
-
 function newJoinFlagDataHandle(cards){
   console.log("newJoinFlagDataHandle", cards)
 }
@@ -126,8 +121,8 @@ function newJoinFlagHandle(flagState){
 function FlagCardsHandle(data){
   if (data != null){
 
-    console.log("codeStr", data)
-    io.in(codeStr).emit('subFlagData', {room:[{code:[{code},{cards}]}]})
+    console.log("data", data)
+    // io.in(codeStr).emit('subFlagData', {room:[{code:[{code},{cards}]}]})
 
   } 
 }
