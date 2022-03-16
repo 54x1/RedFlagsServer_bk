@@ -178,6 +178,8 @@ client.emit('ppperks', pp)
  client.on('disconnect', ()=>{
   console.log('disconnect', client.id)
   // flagState = ""
+
+  console.log('disconnect2',io.sockets.clients(client.id))
   })
 
 });
