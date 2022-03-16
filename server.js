@@ -125,9 +125,9 @@ function newJoinFlagHandle(cards){
 function FlagCardsHandle(data){
   if (data != null){
     console.log("subFlagDataFCH", data)
-    let code = JSON.stringify(data.room[0])
+    let code = data.room[0]
     let cards = data.room[1]
-    console.log(code)
+    console.log(JSON.stringify(code))
     // io.emit('subFlagData2', {room:[{code},{cards}]});
     // console.log(client.emit('subFlagData', cards))
     // console.log(client.broadcast.to(code).emit('subFlagData', cards))
