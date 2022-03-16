@@ -92,10 +92,7 @@ $(document).on('click', '.flags .card-section', function() {
 $('.flag-section').hide()
 cards.push($(this).text())
 // $('.home-section .public-flags').append("<div class='card-section text-center'>"+ $(this).html()+"</div>")
- $('.flags .card-section').each(function (){
-
-})
-console.log(cards)
+console.log("cards", cards)
 let code = gameCodeDisplay.innerText
 socket.emit('subFlagCard', {room:[{code},{cards}]})
 // socket.emit('joinFlags')
