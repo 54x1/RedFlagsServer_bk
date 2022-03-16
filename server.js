@@ -93,8 +93,12 @@ function handleNewGame() {
 
 // io.sockets.in(roomName).emit('perks', pp);
 client.emit('perks', pp);
-}
+io.in(roomName).clients((err , clients) => {
+  console.log(clients);
+  // clients will be array of socket ids , currently available in given room
+});
 
+}
 
 
 function newJoinFlagHandle(){
