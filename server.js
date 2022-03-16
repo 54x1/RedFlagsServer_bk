@@ -101,7 +101,7 @@ function newJoinFlagDataHandle(cards){
 
 function newJoinFlagHandle(){
   console.log("newJoinFlagHandle", flagState)
-  console.log("newJoinFlagHandledatae",  flagState[0].room[0].code[1].cards.card)
+  console.log("newJoinFlagHandledatae",  flagState[0].room[0].code[1].cards.cards)
 
     if(flagState != null){
       // flagState[0].room[0].code[0].code.code
