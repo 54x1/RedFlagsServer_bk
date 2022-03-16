@@ -132,7 +132,7 @@ function FlagCardsHandle(data){
     // console.log(client.emit('subFlagData', cards))
     // console.log(client.broadcast.to(code).emit('subFlagData', cards))
     // client.to('game').emit('subFlagData1', {room:[{code},{cards}]})
-    client.to(code).emit('subFlagData2', {room:[{code},{cards}]});
+    client.to(""+code+"").emit('subFlagData2', {room:[{code},{cards}]});
     // io.in(code).emit('subFlagData3', {room:[{code},{cards}]});
     // io.of(code).emit('subFlagData4', {room:[{code},{cards}]});
 
