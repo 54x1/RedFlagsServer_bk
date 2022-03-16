@@ -42,8 +42,8 @@ socket.on("newFlagData", newFlagData)
 socket.on("disconnecting", () => {
   console.log("socket.rooms", socket.rooms); // the Set contains at least the socket ID
 });
-function newFlagData(){
-  console.log('newFlagData')
+function newFlagData(data){
+  console.log('newFlagData', data)
 }
 function subFlagData(data){
   try{
@@ -54,7 +54,7 @@ console.log("subFlagData3", data.cards[0])
   catch{
     console.log("subFlagData", data)
   }
-if(data[0] == null){
+if(data == null){
   
 // socket.emit('newJoinFlag')
 console.log("subFlagData", data.length)
