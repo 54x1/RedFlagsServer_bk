@@ -175,13 +175,12 @@ $(joinGameBtn).on('click', function(){
   socket.emit('perks');
   const code = gameCodeInput.value;
   socket.emit('joinGame', code);
-  socket.emit()
-  if($('.public-flags .card-section').length){
-    console.log('text', $('.red-flag-section .card-section').html())
-    socket.emit('newJoinFlagData', $('.red-flag-section .card-section').html())
-    }else{
+  // if($('.public-flags .card-section').length){
+  //   console.log('text', $('.red-flag-section .card-section').html())
+  //   socket.emit('newJoinFlagData', $('.red-flag-section .card-section').html())
+  //   }else{
       socket.emit('newJoinFlag')
-    }
+    // }
 
   console.log('un', unknownData())
   // if (unknownData() == 'True'){
