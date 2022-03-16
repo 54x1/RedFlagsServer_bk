@@ -130,8 +130,10 @@ function FlagCardsHandle(data){
     console.log(code)
     // console.log(client.emit('subFlagData', cards))
     // console.log(client.broadcast.to(code).emit('subFlagData', cards))
-    client.emit('subFlagData', {room:[{code},{cards}]})
-    // client.broadcast.to(code).emit('subFlagData', cards);
+    client.emit('subFlagData1', {room:[{code},{cards}]})
+    client.broadcast.to(code).emit('subFlagData2', cards);
+    io.to(code).emit('subFlagData3', cards);
+    client.to(code).emit('subFlagData4', cards);
   } 
 }
 function subFlagCardHandle(data){
@@ -146,7 +148,7 @@ function subFlagCardHandle(data){
   client.emit('subFlagData', {room:[{code},{cards}]})
 // client.emit('subFlagData', data.room[1]);
   // client.broadcast.to(data.room[0]).emit('subFlagData', cards);
-//   io.to(data.room[0]).emit('subFlagData', data.room[1]);
+//  i o.to(data.room[0]).emit('subFlagData', data.room[1]);
 
   }else{
     console.log('data === null')

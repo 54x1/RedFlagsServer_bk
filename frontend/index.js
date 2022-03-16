@@ -35,6 +35,10 @@ socket.on('unknownCode', handleUnknownCode);
 socket.on('tooManyPlayers', handleTooManyPlayers);
 socket.on('flagData', flagData);
 socket.on('subFlagData', subFlagData);
+socket.on('subFlagData1', subFlagData1);
+socket.on('subFlagData2', subFlagData2);
+socket.on('subFlagData3', subFlagData3);
+socket.on('subFlagData4', subFlagData4);
 socket.on("unknownData", unknownData)
 socket.on("flagStateData", subFlagData)
 socket.on("newFlagData", newFlagData)
@@ -63,7 +67,83 @@ $(data.room[1].cards).each(function (){
   $('.public-flags').append("<div class='card-section text-center'>"+data.room[1].cards.cards+"</div>")
 })
 }
+}
 
+function subFlagData1(data){
+  try{
+  console.log("subFlagData111", data)
+console.log("subFlagData2", data[0].cards[0])
+console.log("subFlagData3", data.cards[0])
+  }
+  catch{
+    console.log("subFlagData", data)
+  }
+if(data != null){
+console.log("subFlagData", data.room[1].cards.length)
+
+// $('.public-flags').append("<div class='card-section text-center'>"+data.cards[0]+"</div>")
+$(data.room[1].cards).each(function (){
+  console.log('insde each')
+  $('.public-flags').append("<div class='card-section text-center'>"+data.room[1].cards.cards+"</div>")
+})
+}
+}
+function subFlagData2(data){
+  try{
+  console.log("subFlagData222", data)
+console.log("subFlagData2", data[0].cards[0])
+console.log("subFlagData3", data.cards[0])
+  }
+  catch{
+    console.log("subFlagData", data)
+  }
+if(data != null){
+console.log("subFlagData", data.room[1].cards.length)
+
+// $('.public-flags').append("<div class='card-section text-center'>"+data.cards[0]+"</div>")
+$(data.room[1].cards).each(function (){
+  console.log('insde each')
+  $('.public-flags').append("<div class='card-section text-center'>"+data.room[1].cards.cards+"</div>")
+})
+}
+}
+function subFlagData3(data){
+  try{
+  console.log("subFlagData333", data)
+console.log("subFlagData2", data[0].cards[0])
+console.log("subFlagData3", data.cards[0])
+  }
+  catch{
+    console.log("subFlagData", data)
+  }
+if(data != null){
+console.log("subFlagData", data.room[1].cards.length)
+
+// $('.public-flags').append("<div class='card-section text-center'>"+data.cards[0]+"</div>")
+$(data.room[1].cards).each(function (){
+  console.log('insde each')
+  $('.public-flags').append("<div class='card-section text-center'>"+data.room[1].cards.cards+"</div>")
+})
+}
+}
+function subFlagData4(data){
+  try{
+  console.log("subFlagData444", data)
+console.log("subFlagData2", data[0].cards[0])
+console.log("subFlagData3", data.cards[0])
+  }
+  catch{
+    console.log("subFlagData", data)
+  }
+if(data != null){
+console.log("subFlagData", data.room[1].cards.length)
+
+// $('.public-flags').append("<div class='card-section text-center'>"+data.cards[0]+"</div>")
+$(data.room[1].cards).each(function (){
+  console.log('insde each')
+  $('.public-flags').append("<div class='card-section text-center'>"+data.room[1].cards.cards+"</div>")
+})
+}
 }
 
 $(document).on('click', '.fa-plus-square', function() {
