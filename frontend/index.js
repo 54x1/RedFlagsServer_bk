@@ -50,13 +50,14 @@ function subFlagData(data){
   console.log("subFlagData1", data)
 if(data[0] != null){
 console.log("subFlagData", data)
-$(data[i].room).each(function (i){
+$(data).each(function (o){
+$(data[o].room).each(function (i){
   ddd = []
   dd = []
   d = []
-  ddd.push(data[i].room[i].code[1].cards.cards[0])
-  dd.push(data[i].room[i].code[0].code.code)
-  d.push(data[i].room[i])
+  ddd.push(data[o].room[i].code[1].cards.cards[0])
+  dd.push(data[o].room[i].code[0].code.code)
+  d.push(data[o].room[i])
 
   data = {
     room:[
@@ -104,7 +105,7 @@ let ddf = dd.filter(cc => cc === gameCodeDisplay.innerText)
   //   console.log(data[i].room[0].code[1].cards.cards)
   // }
 })
-
+})
 }
 else{
   $('.public-flags').append("<div class='card-section text-center'>"+data.room[0].code[1].cards.cards+"</div>")
