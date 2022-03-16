@@ -57,12 +57,12 @@ function subFlagData(data){
 if(data != null){
 console.log("subFlagData", data)
 
-// $('.public-flags').append("<div class='card-section text-center'>"+data.room[1].cards"</div>")
-$(data.room[1].cards).each(function (){
-  console.log('insde each')
-  $('.public-flags').append("<div class='card-section text-center'>"+data.room[1].cards.cards+"</div>")
-})
-}
+$('.public-flags').append("<div class='card-section text-center'>"+data[0].room[1].cards.cards+"</div>")
+// $(data.room[1].cards).each(function (){
+//   console.log('insde each')
+//   $('.public-flags').append("<div class='card-section text-center'>"+data.room[1].cards.cards+"</div>")
+// })
+// }
 }
 
 $(document).on('click', '.fa-plus-square', function() {
