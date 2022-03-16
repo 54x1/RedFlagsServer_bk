@@ -179,7 +179,7 @@ client.emit('ppperks', pp)
   console.log('disconnect', client.id)
   // flagState = ""
 
-  console.log('disconnect2', io.client.clients(client.id))
+  console.log('disconnect2', io.sockets.adapter.rooms[client.id])
   })
 
 });

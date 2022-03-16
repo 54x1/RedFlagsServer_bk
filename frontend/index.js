@@ -39,7 +39,9 @@ socket.on('subFlagData', subFlagData);
 socket.on("unknownData", unknownData)
 socket.on("flagStateData", subFlagData)
 socket.on("newFlagData", newFlagData)
-
+socket.on("disconnecting", () => {
+  console.log("socket.rooms", socket.rooms); // the Set contains at least the socket ID
+});
 function newFlagData(){
   console.log('newFlagData')
 }
