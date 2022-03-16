@@ -51,6 +51,7 @@ function subFlagData(data){
 if(data[0] != null){
 console.log("subFlagData", data)
 $(data).each(function (o){
+  console.log(data[o])
 $(data[o].room).each(function (i){
   ddd = []
   dd = []
