@@ -142,7 +142,7 @@ function FlagCardsHandle(data){
 }
 function subFlagCardHandle(data){
     if (data != null){
-      console.log("subFlagDataSFCH", data.room.cards)
+      console.log("subFlagDataSFCH", data)
       let code = data.room.code
         let cards = data.room.cards
   
