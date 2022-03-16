@@ -103,8 +103,12 @@ function newJoinFlagHandle(){
   console.log("newJoinFlagHandle", flagState)
 
 
-    if(flagState != null){
+    if(flagState[0] != null){
       codeStr = String(flagState[0].room[0].code[0].code.code)
+      console.log(codeStr)
+      client.emit('subFlagData', flagState)
+    }else{
+      codeStr = String(flagState.room[0].code[0].code.code)
       console.log(codeStr)
       client.emit('subFlagData', flagState)
     }
