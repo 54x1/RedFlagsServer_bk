@@ -44,14 +44,15 @@ function newFlagData(){
   console.log('newFlagData')
 }
 function subFlagData(data){
-console.log("subFlagData", data)
+  console.log("subFlagData", data)
+console.log("subFlagData", data[0].cards[0])
 if(data == null){
 socket.emit('newJoinFlag')
 }else{
   console.log("datalength", data.length)
   // if ( data.length > 1){
     $(data).each(function (i){
-      $('.public-flags').append("<div class='card-section text-center'>"+data[i]+"</div>")
+      $('.public-flags').append("<div class='card-section text-center'>"+data[i].cards[0]+"</div>")
     })
 
   // }
