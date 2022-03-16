@@ -136,6 +136,27 @@ cards.push($(this).text())
 console.log("cards", cards)
 let code = gameCodeDisplay.innerText
 socket.emit('FlagCards', {room:[{code},{cards}]})
+
+data = {
+  room:[
+    {
+      code:[
+        {
+          code
+        }
+    ]
+  },
+  {
+    cards: [
+      {
+        cards
+      }
+    ]
+  }
+  ]
+  }
+  console.log('data', data)
+socket.emit('subFlagCard', data)
 $("#sign").bind('click', function(){ return false; });
 $("#sign").css( {"cursor":"not-allowed"});
 $('#sign').html('<i class="text-secondary far fa-plus-square"></i>')
