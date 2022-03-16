@@ -119,7 +119,7 @@ function subFlagCardHandle(data){
     let cards = data.room[1]
   flagState.push({room:[{code},{cards}]})
   console.log("flagState2", flagState)
-  io.in(data.room[0]).emit('subFlagData', data.room[1])
+  client.to(code).emit('subFlagData', cards)
 // client.emit('subFlagData', data.room[1]);
 //   client.broadcast.to(data.room[0]).emit('subFlagData', data.room[1]);
 //   io.to(data.room[0]).emit('subFlagData', data.room[1]);
