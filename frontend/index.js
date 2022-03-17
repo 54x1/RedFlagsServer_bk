@@ -1,8 +1,8 @@
 
-// let socket = io();
+let socket = io();
 let pppperksss;
 let cards = []
-const socket = io('https://red-flags-server.herokuapp.com/')
+// const socket = io('https://red-flags-server.herokuapp.com/')
 const gameScreen = document.getElementById('gameScreen');
 const initialScreen = document.getElementById('initialScreen');
 const newGameBtn = document.getElementById('newGameButton');
