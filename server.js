@@ -25,7 +25,7 @@ const clientRooms = {};
 app.use(express.static(publicPath));
 io.on('connection', client => {
 
-console.log("connected")
+console.log("connected", client.id)
   // client.on('keydown', handleKeydown);
   client.on('newGame', handleNewGame);
   client.on('joinGame', handleJoinGame);
