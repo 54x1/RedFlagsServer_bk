@@ -1,8 +1,8 @@
 
-let socket = io();
+// let socket = io();
 let pppperksss;
 let cards = []
-// const socket = io('https://red-flags-server.herokuapp.com/')
+const socket = io('https://red-flags-server.herokuapp.com/')
 const gameScreen = document.getElementById('gameScreen');
 const initialScreen = document.getElementById('initialScreen');
 const newGameBtn = document.getElementById('newGameButton');
@@ -23,6 +23,11 @@ newPerks.addEventListener('click', newPerksFunc);
 //        perk1: perk1val.value,
 //        perk2s: perk2val.value
 //    });
+socket.on('socketio', socketio)
+
+function socketio(data){
+console.log('socket.io', data)
+}
 socket.on('init', handleInit);
 socket.on('gameState', handleGameState);
 socket.on('gameOver', handleGameOver);
