@@ -1,8 +1,8 @@
 
-// let socket = io();
+let socket = io();
 let pppperksss;
 let cards = []
-const socket = io('https://red-flags-server.herokuapp.com/')
+// const socket = io('https://red-flags-server.herokuapp.com/')
 const gameScreen = document.getElementById('gameScreen');
 const initialScreen = document.getElementById('initialScreen');
 const newGameBtn = document.getElementById('newGameButton');
@@ -47,66 +47,68 @@ function newFlagData(data){
   $('.public-flags').append("<div class='card-section text-center'>"+data[0].room[0].code[1].cards.cards+"</div>")
 }
 function subFlagData(data){
-  console.log("subFlagData1", data)
 if(data[0] != null){
-console.log("subFlagData", data)
-$(data).map(o => $(data[o].room[o]).each(function (i){
-  ddd = []
-  dd = []
-  d = []
-  ddd.push(data[o].room[i].code[1].cards.cards[0])
-  dd.push(data[o].room[i].code[0].code.code)
-  d.push(data[o].room[i])
+console.log("subFlagData1", data)
+$(data).each(function (i, o){
+console.log(data[i].room[o])
+})
+// $(data).map(o => $(data[o].room[o]).each(function (i){
+//   ddd = []
+//   dd = []
+//   d = []
+//   ddd.push(data[o].room[i].code[1].cards.cards[0])
+//   dd.push(data[o].room[i].code[0].code.code)
+//   d.push(data[o].room[i])
 
-  data = {
-    room:[
-      {
-        code:[
-          {
-            dd
-          }
-      ]
-    },
-    {
-      cards: [
-        {
-          ddd
-        },
-        {
-          cards
-        }
-      ]
-    }
-    ]
-    }
-    console.log('data', data)
-socket.emit('subFlagCard', data)
+//   data = {
+//     room:[
+//       {
+//         code:[
+//           {
+//             dd
+//           }
+//       ]
+//     },
+//     {
+//       cards: [
+//         {
+//           ddd
+//         },
+//         {
+//           cards
+//         }
+//       ]
+//     }
+//     ]
+//     }
+//     console.log('data', data)
+// socket.emit('subFlagCard', data)
 
-  let df = d.filter(c => console.log(c))
-let ddf = dd.filter(cc => cc === gameCodeDisplay.innerText)
-  let dddf = ddd.filter(ccc => console.log(ccc))
+//   let df = d.filter(c => console.log(c))
+// let ddf = dd.filter(cc => cc === gameCodeDisplay.innerText)
+//   let dddf = ddd.filter(ccc => console.log(ccc))
 
-  console.log("df", df)
-  console.log("ddf", ddf)
-  console.log("dddf", dddf)
-  console.log("d", d)
-  console.log("dd", dd)
-  console.log("ddd", ddd)
+//   console.log("df", df)
+//   console.log("ddf", ddf)
+//   console.log("dddf", dddf)
+//   console.log("d", d)
+//   console.log("dd", dd)
+//   console.log("ddd", ddd)
 
 
   
-//   console.log('gameCodeDisplay.innerText)', gameCodeDisplay.innerText)
-//   // console.log("String", String(data[i].room[i].code[0].code.code))
-//   $('.public-flags').append("<div class='card-section text-center'>"+ddd+"</div>")
-//   // if (ddd){
-//   // console.log('insde if here')
-//   // 
-//   // }else{
-//   //   console.log(data[i].room[0].code[1].cards.cards)
-//   // }
+// //   console.log('gameCodeDisplay.innerText)', gameCodeDisplay.innerText)
+// //   // console.log("String", String(data[i].room[i].code[0].code.code))
+// //   $('.public-flags').append("<div class='card-section text-center'>"+ddd+"</div>")
+// //   // if (ddd){
+// //   // console.log('insde if here')
+// //   // 
+// //   // }else{
+// //   //   console.log(data[i].room[0].code[1].cards.cards)
+// //   // }
+// // })
 // })
-})
-)
+// )
 }
 else{
   console.log("herezz")
