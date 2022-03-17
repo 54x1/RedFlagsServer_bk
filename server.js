@@ -101,7 +101,7 @@ function newJoinFlagDataHandle(cards){
 
 function newJoinFlagHandle(){
   console.log("newJoinFlagHandle", flagState)
-
+console.log('call')
 
     if(flagState[0] != null){
       codeStr = String(flagState[0].room[0].code[0].code.code)
@@ -109,7 +109,7 @@ function newJoinFlagHandle(){
       client.emit('subFlagData', flagState)
     }else if (flagState != null){
       // codeStr = String(flagState.room[0].code[0].code.code)
-      console.log("codeStr")
+      console.log("codeStrz")
       // client.emit('subFlagData', flagState)
     }
 }
@@ -125,9 +125,8 @@ function newJoinFlagHandle(){
 
 
 function FlagCardsHandle(data){
+  console.log("subFlagDataHDCH", data)
   if (data != null){
-    flagState = []
-    console.log("subFlagDataHDCH", data.room[1])
       let code = data.room[0]
       let cards = data.room[1]
 
@@ -141,13 +140,14 @@ function FlagCardsHandle(data){
 }
 }
 function subFlagCardHandle(data){
+  console.log("subFlagDataSFCH", data)
     if (data != null){
-      console.log("subFlagDataSFCH", data)
       let code = data.room.code
         let cards = data.room.cards
   
       flagState.push({room:[{code:[{code},{cards}]}]})
-      console.log("flagState2", flagState)
+      console.log("flagStatezz", flagState)
+      // client.emit('subFlagData', flagState)
   }else{
     console.log('data === null')
   }

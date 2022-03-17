@@ -1,8 +1,8 @@
 
-let socket = io();
+// let socket = io();
 let pppperksss;
 let cards = []
-// const socket = io('https://red-flags-server.herokuapp.com/')
+const socket = io('https://red-flags-server.herokuapp.com/')
 const gameScreen = document.getElementById('gameScreen');
 const initialScreen = document.getElementById('initialScreen');
 const newGameBtn = document.getElementById('newGameButton');
@@ -47,11 +47,82 @@ function newFlagData(data){
   $('.public-flags').append("<div class='card-section text-center'>"+data[0].room[0].code[1].cards.cards+"</div>")
 }
 function subFlagData(data){
-if(data[0] != null){
-console.log("subFlagData1", data)
-$(data).each(function (i, o){
-console.log(data[i].room[o])
-})
+  console.log('subFlagDatam', data)
+  console.log("called")
+  console.log("data.length", data.length)
+if (data.length == null || data.length == 0){
+  console.log('subFlagDatam.length', data)
+
+    if (data.room[0].code[0].code.code === gameCodeDisplay.innerText){
+
+  $('.public-flags').append("<div class='card-section text-center'>"+data.room[0].code[1].cards.cards[0]+"</div>")
+//        )
+
+    }
+  
+  // })
+  // data.filter(cc =>  cc.room[0].code[0].code.code === gameCodeDisplay.innerText ).map(
+  //   m => $('.public-flags').append("<div class='card-section text-center'>"+m.room[0].code[1].cards.cards[0]+"</div>")
+  //   )
+}
+else{
+ data.filter(cc =>  cc.room[0].code[0].code.code === gameCodeDisplay.innerText ).map(
+         m => $('.public-flags').append("<div class='card-section text-center'>"+m.room[0].code[1].cards.cards[0]+"</div>")
+         )
+    console.log("data", data)
+    // if (data[i].room[0].code[0].code.code){
+
+
+    // }
+  
+  // })
+}
+}
+// $(data).each(function (i) {
+  // console.log("data[i].length", data[i])
+  // if (data[i] == 0){
+  //   console.log(data)
+  //   if(data[i].room[0].code[0].code.code != null){
+  //     console.log('subFlagDatam2', data)
+  //     console.log('data[i]', data[i].room[0].code[0].code.code)
+  //     if (data[i].room[0].code[0].code.code == gameCodeDisplay.innerText){
+      
+  //       socket.emit('subFlagCard', {
+  //         room: [
+  //           {
+  //           code: data[i].room[0].code[0].code.code
+  //           },
+  //           {
+  //             cards: data[i].room[0].code[1].cards.cards
+  //           }
+  //         ]
+  //       })
+  //     }
+  //       }
+  // }else{
+  //   if(data.room[0].code[0].code.code != null){
+  //     console.log('subFlagDatam2', data)
+  //     console.log('data[i]', data.room[0].code[0].code.code)
+  //     if (data.room[0].code[0].code.code == gameCodeDisplay.innerText){
+      
+  //       socket.emit('subFlagCard', {
+  //         room: [
+  //           {
+  //           code: data.room[0].code[0].code.code
+  //           },
+  //           {
+  //             cards: data.room[0].code[1].cards.cards
+  //           }
+  //         ]
+  //       })
+  //     }
+  //       }
+  // }
+
+// })
+// }
+
+
 // $(data).map(o => $(data[o].room[o]).each(function (i){
 //   ddd = []
 //   dd = []
@@ -109,13 +180,7 @@ console.log(data[i].room[o])
 // // })
 // })
 // )
-}
-else{
-  console.log("herezz")
-  $('.public-flags').append("<div class='card-section text-center'>"+data.room[0].code[1].cards.cards+"</div>")
-}
 
-}
 
 
 $(document).on('click', '.fa-plus-square', function() {
@@ -160,8 +225,8 @@ data = {
   }
   ]
   }
-  console.log('data', data)
-socket.emit('subFlagCard', data)
+  console.log('dataz', data)
+// socket.emit('subFlagCard', data)
 $("#sign").bind('click', function(){ return false; });
 $("#sign").css( {"cursor":"not-allowed"});
 $('#sign').html('<i class="text-secondary far fa-plus-square"></i>')
