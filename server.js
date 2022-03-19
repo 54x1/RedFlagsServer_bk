@@ -1,7 +1,5 @@
 // const io = require('socket.io')();
 const { makeid } = require('./utils');
-
-
 const path = require('path');
 const http = require('http');
 const express = require('express');
@@ -187,7 +185,7 @@ if (s == null){
     startv = s
 }
 
-
+startv--
     console.log("astartv", startv)
     console.log("gameuser", gameuser[startv].socketId, gameuser[startv] )
     io.to(gameuser[startv].socketId).emit('startVote');
