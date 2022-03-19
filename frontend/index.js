@@ -82,7 +82,7 @@ $(document).on('click', '.public-flags .card-section', function() {
 
   socket.emit('removeCard', remCard)
 $('.public-flags .card-section').css({"background-color":"white", "color":"black"})
-$('.public-flags .text-danger').html("FLAGS")
+$('.public-flags .text-danger').html("Winner FLAG")
 })
 }
 usernameGen()
