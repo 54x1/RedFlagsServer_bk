@@ -9,7 +9,8 @@
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <style>
-    #gameScreen {
+    #gameScreen,
+    #initialScreen {
       display: none;
     }
 
@@ -46,6 +47,17 @@
       border-radius: 0.25rem;
       margin: 15px 0 0 0;
       padding: 0px 6px;
+    }
+
+    .public-flags {
+      display: flex;
+      align-content: space-between;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .public-flags .text-danger {
+      flex: 1 1 100%;
     }
 
     .game-section,
@@ -138,9 +150,9 @@
 
     .flags {
       display: flex;
-    align-content: space-between;
-    flex-wrap: wrap;
-    margin: 15px 0 0 0;
+      align-content: space-between;
+      flex-wrap: wrap;
+      margin: 15px 0 0 0;
     }
 
 
@@ -163,90 +175,101 @@
       flex-direction: column;
     }
 
-    .flag-section{
+    .flag-section {
       width: 100%;
       display: none;
     }
+    .user{
+      border: 3px solid #dae0e5;
+    border-radius: 0.25rem;
+    text-align: center;
+    }
+    
   </style>
 </head>
 
 <body>
+  <section id="login-section" class="container login-section">
+    <form class="loginForm">
+      <div class="user"><span></span></div>
+      <button type="submit" class="btn btn-danger" id="genNewUser">
+        Generate New Username
+      </button>
 
-  <section class="container home-section">
+      <button type="submit" class="btn btn-danger" id="loginGameButton">
+        Play Game
+      </button>
+    </form>
+  </section>
+  <section id="initialScreen" class="container home-section">
     <div class="h-100">
-
-      <div id="initialScreen" class="h-100">
-        <div class="d-flex flex-column align-items-center justify-content-center h-100">
-          <h1>Red Flags Game</h1>
-          <button type="submit" class="btn btn-danger" id="newGameButton">
-            Create New Game
-          </button>
-          <div>OR</div>
-          <div class="form-group">
-            <input type="text" placeholder="Enter Game Code" id="gameCodeInput" />
-          </div>
-          <button type="submit" class="btn btn-danger" id="joinGameButton">
-            Join Game
-          </button>
+      <div class="d-flex flex-column align-items-center justify-content-center h-100">
+        <h1>Red Flags Game</h1>
+        <button type="submit" class="btn btn-danger" id="newGameButton">
+          Create New Game
+        </button>
+        <div>OR</div>
+        <div class="form-group">
+          <input type="text" placeholder="Enter Game Code" id="gameCodeInput" />
         </div>
+        <button type="submit" class="btn btn-danger" id="joinGameButton">
+          Join Game
+        </button>
       </div>
-
-      <div id="gameScreen" class="h-100">
-        <div class="d-flex flex-column align-items-center justify-content-center h-100">
-
-          <h1>Your game code is: <span id="gameCodeDisplay"></span></h1>
-
-          <div class="col-sx-6 col-md-12 col-centered">
-
-
-            <div id="new-red-flags" class="btn btn-danger">
-              <i class="fas fa-redo left"></i>
-              <i class="fas fa-flag right"></i>
-              <span class="title">Red Flags</span>
-            </div>
-            <div class="game-section vcenter">
-
-              <div class="game-content">
-
-                <p>Would you rather date someone who: </p>
-                <p id="perk1" class="perk1 text-center">
-
-                </p>
-                <p class="h4 text-center text-primary">
-                  AND
-                </p>
-                <p id="perk2" class="perk2 text-center">
-
-                </p>
-                <p class="h4 text-center text-danger">
-                  BUT
-                </p>
-              </div>
-            </div>
-            <div class="public-flags">
-              <p class="text-danger">
-                FLAGS
-              </p>
-            </div>
-            <div class="red-flag-section text-danger text-center">
-              <p>
-                FLAG CARDS
-              </p>
-              <p id="sign">
-                <i class="text-danger far fa-plus-square"></i>
-                        
-
-
-        </div>
-        <!-- modal end -->
-              </p>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
     </div>
+  </section>
+<section class="game-container" >
+  <div id="gameScreen" class="h-100">
+    <div class="d-flex flex-column align-items-center justify-content-center h-100">
+
+      <h1>Your game code is: <span id="gameCodeDisplay"></span></h1>
+
+      <div class="col-sx-6 col-md-12 col-centered">
+
+
+        <div id="new-red-flags" class="btn btn-danger">
+          <i class="fas fa-redo left"></i>
+          <i class="fas fa-flag right"></i>
+          <span class="title">Red Flags</span>
+        </div>
+        <div class="game-section vcenter">
+
+          <div class="game-content">
+
+            <p>Would you rather date someone who: </p>
+            <p id="perk1" class="perk1 text-center">
+
+            </p>
+            <p class="h4 text-center text-primary">
+              AND
+            </p>
+            <p id="perk2" class="perk2 text-center">
+
+            </p>
+            <p class="h4 text-center text-danger">
+              BUT
+            </p>
+          </div>
+        </div>
+        <div class="public-flags">
+          <p class="text-danger">
+            FLAGS
+          </p>
+        </div>
+        <div class="red-flag-section text-danger text-center">
+          <p>
+            FLAG CARDS
+          </p>
+          <p id="sign">
+            <i class="text-danger far fa-plus-square"></i>
+
+
+
+        </div>
+      </div>
+    </div>
+
+  </div>
   </section>
   <section class="container flag-section">
     <div class="game-section vcenter">

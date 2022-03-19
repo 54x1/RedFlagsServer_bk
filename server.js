@@ -7,25 +7,35 @@ const http = require('http');
 const express = require('express');
 const socketIO = require('socket.io');
 const { flags } = require('socket.io/lib/namespace');
+const cli = require('nodemon/lib/cli');
 
 const publicPath = path.join(__dirname, '/frontend/');
 
 let jsonData = require(path.join(__dirname, '/frontend/perks.json'));
 
-console.log(jsonData);
+// console.log(jsonData);
 const port = process.env.PORT || 3000
 let app = express();
 let server = http.createServer(app);
 let io = socketIO(server);
 
+const users = {}
+
 let pp
 let flagState = [];
 let pperkss;
+let gameData = []
+let game = []
+
 const clientRooms = {};
 app.use(express.static(publicPath));
 io.on('connection', client => {
+  
 
-console.log("connected", client)
+  client.emit('socketio', client.id)
+  client.on('removeCard', removeCardHandle)
+  client.on('newUser', newUserHandle)
+  client.on('userLeft', userLeftHandle)
   // client.on('keydown', handleKeydown);
   client.on('newGame', handleNewGame);
   client.on('joinGame', handleJoinGame);
@@ -35,14 +45,23 @@ console.log("connected", client)
   client.on('newPerks', newPerksHandle);
   client.on('flag', handleFlag);
   client.on('unknown', handleUnknown);
-client.on('subFlagCard', subFlagCardHandle)
+// client.on('subFlagCard', subFlagCardHandle)
 client.on('FlagCards', FlagCardsHandle)
 client.on('newJoinFlag', newJoinFlagHandle)
 client.on('newJoinFlagData', newJoinFlagDataHandle)
+client.on('countFlags', countFlagsData)
+client.on('player', playerData)
 
 
 function handleJoinGame(roomName) {
+
+  console.log("clientSocket", users)
   const room = io.sockets.adapter.rooms[roomName];
+console.log('room', room)
+
+// console.log('data222', client.rooms)
+// console.log('datazzz222', io.nsps['/'].adapter.rooms[roomName])
+
 
   let allUsers;
   if (room) {
@@ -52,8 +71,8 @@ function handleJoinGame(roomName) {
 
   let numClients = 0;
   if (allUsers) {
-    console.log("users", Object.keys(allUsers).length)
     numClients = Object.keys(allUsers).length;
+    console.log(numClients)
   }
 
   if (numClients === 0) {
@@ -66,32 +85,91 @@ function handleJoinGame(roomName) {
 
   clientRooms[client.id] = roomName;
 
+  console.log('client', clientRooms[client.id])
+
   client.join(roomName);
+
+
   client.number = 2;
   client.emit('init', 2);
 
-  //  handlePerks()
-
-  // io.sockets.in(roomName).emit('handlePerks',  handlePerks());
 }
 
+
+
+function userLeftHandle(data){
+console.log("datazzz", data)
+}
 
 function handleNewGame() {
   var length = 6;
   let roomName = makeid(length);
   clientRooms[client.id] = roomName;
   client.emit('gameCode', roomName);
-  console.log("roomNamez", clientRooms[client.id],[roomName])
+  console.log("roomNamez", clientRooms[client.id])
   client.join(roomName);
+  handlePerks()
+  console.log("pp", pp)
+  client.emit('perks', pp);
+
 
   client.number = 1;
   client.emit('init', 1);
   // client.emit('perk', perks())
-  handlePerks()
-  console.log("pp", pp)
+  // const clients = io.sockets.adapter.rooms[roomName].sockets;   
 
-// io.sockets.in(roomName).emit('perks', pp);
-client.emit('perks', pp);
+    console.log("users", users)
+    client.emit('newUser', users)
+    client.broadcast.to(roomName).emit('newUser', users)
+
+
+}
+
+function removeCardHandle(data){
+  client.emit('removeCard', data)
+  client.broadcast.to(data[1]).emit('removeCard', data)
+}
+
+function countFlagsData(data){
+  let userCount = 0
+  let gameuser = []
+  const room = io.sockets.adapter.rooms[data[1]];
+  if(room){
+  let players = Object.keys(room.sockets).length
+  let flags =  data[0]
+  console.log("flagdata", room)
+console.log("flagusers", data[1], data[0])
+  if (players == flags && players > 1){
+  console.log("match")
+  let userobj = Object.values(users)
+  console.log("userobj", userobj)
+  for ( i = 0; i < userobj.length; i++){
+    if (userobj[i].gameCode ===  data[1] || userobj[i].code ===  data[1]){
+      // userCount++
+      // console.log("countTimes", userCount)
+      gameuser.push(userobj[i])
+  }
+}
+
+    let startv = Math.floor(Math.random() * (gameuser.length))
+    console.log("gameuser", gameuser[startv].socketId, gameuser[startv] )
+    io.to(gameuser[startv].socketId).emit('startVote');
+// userCount = 0
+gameuser = ""
+}else{
+  console.log("Try again")
+}
+
+  }
+
+}
+
+function newUserHandle(username){
+  console.log("usernamevv1", username)
+users[client.id] = username 
+
+console.log("usernamez1", username.username.name)
+client.emit('userEmit', username, client.id)
 
 }
 
@@ -109,7 +187,7 @@ console.log('call')
       client.emit('subFlagData', flagState)
     }else if (flagState != null){
       // codeStr = String(flagState.room[0].code[0].code.code)
-      console.log("codeStrz")
+      console.log("flagState != null")
       // client.emit('subFlagData', flagState)
     }
 }
@@ -139,19 +217,19 @@ function FlagCardsHandle(data){
     client.broadcast.to(codeStr).emit('subFlagData', {room:[{code:[{code},{cards}]}]})
 }
 }
-function subFlagCardHandle(data){
-  console.log("subFlagDataSFCH", data)
-    if (data != null){
-      let code = data.room.code
-        let cards = data.room.cards
+// function subFlagCardHandle(data){
+//   console.log("subFlagDataSFCH", data)
+//     if (data != null){
+//       let code = data.room.code
+//         let cards = data.room.cards
   
-      flagState.push({room:[{code:[{code},{cards}]}]})
-      console.log("flagStatezz", flagState)
-      // client.emit('subFlagData', flagState)
-  }else{
-    console.log('data === null')
-  }
-}
+//       flagState.push({room:[{code:[{code},{cards}]}]})
+//       console.log("flagStatezz", flagState)
+//       // client.emit('subFlagData', flagState)
+//   }else{
+//     console.log('data === null')
+//   }
+// }
   function handleUnknown(){
     client.emit('unknownData', {data: "True"});
   }
@@ -204,13 +282,25 @@ console.log('pperkss', pp)
 client.emit('ppperks', pp)
 
  }
+
+ function playerData(displayUser){
+   
+   let playerdc = displayUser
+// client.emit('userLeft', displayUser);
+  // client.broadcast.to(codez).emit('userLeft', displayUser);
+   console.log('called playerDC', playerdc)
+   return playerdc;
+ }
  client.on('disconnect', ()=>{
-  console.log('disconnect', client.id)
-  // flagState = ""
+  console.log('disconnect', String(Object.keys(users)))   
+let name = Object.values(users)
+console.log("name", name.length, name, users)
+let res = name.filter(n => n === playerData());
+delete users[client.id]
 
-  console.log('disconnect2', io.sockets.adapter.rooms[client.id])
+console.log("res", res)
+console.log("usersdc", users)
   })
-
 });
 
 

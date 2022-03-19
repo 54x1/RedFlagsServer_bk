@@ -2,11 +2,15 @@
 // let socket = io();
 let pppperksss;
 let cards = []
+const username = {};
+let displayUser;
 const socket = io('https://red-flags-server.herokuapp.com/')
 const gameScreen = document.getElementById('gameScreen');
 const initialScreen = document.getElementById('initialScreen');
+const loginSection = document.getElementById('login-section');
 const newGameBtn = document.getElementById('newGameButton');
 const joinGameBtn = document.getElementById('joinGameButton');
+const loginGameBtn = document.getElementById('loginGameButton');
 const gameCodeInput = document.getElementById('gameCodeInput');
 const newPerks = document.getElementById('new-red-flags');
 const gamePerk1 = document.getElementById('perk1');
@@ -23,6 +27,11 @@ newPerks.addEventListener('click', newPerksFunc);
 //        perk1: perk1val.value,
 //        perk2s: perk2val.value
 //    });
+$('.loginForm').submit(function(e){
+  e.preventDefault()
+})
+
+
 socket.on('socketio', socketio)
 
 function socketio(data){
@@ -43,9 +52,89 @@ socket.on('subFlagData', subFlagData);
 socket.on("unknownData", unknownData)
 socket.on("flagStateData", subFlagData)
 socket.on("newFlagData", newFlagData)
-socket.on("disconnecting", () => {
-  console.log("socket.rooms", socket.rooms); // the Set contains at least the socket ID
+socket.on("userEmit", newUserData )
+socket.on("userLeft", displayName)
+socket.on("startVote", startVoteData)
+socket.on("removeCard", removeCard)
+function removeCard(data){
+  console.log("remdaat",data)
+  console.log('bb', String(data[0]))
+  console.log('aa', $('.public-flags .card-section').text() )
+  
+  $('.public-flags .card-section').each(function (){
+    let remName = $(this).html()
+    if (remName == String(data[0])){
+      console.log($(this))
+      $('.public-flags .card-section').not($(this)).remove();
+    }
+  })
+  
+
+}
+function startVoteData(){
+  console.log("voting time")
+$('.public-flags .card-section').css({"background-color":"#c82333", "color":"white"})
+  $('.public-flags .text-danger').html("Choose the winning FLAG")
+
+
+$(document).on('click', '.public-flags .card-section', function() {
+  remCard =  [$(this).html(), gameCodeDisplay.innerText, displayUser]
+
+  socket.emit('removeCard', remCard)
+$('.public-flags .card-section').css({"background-color":"white", "color":"black"})
+$('.public-flags .text-danger').html("FLAGS")
+})
+}
+usernameGen()
+function displayName(data){
+  console.log("dataxxxx", data)
+}
+function usernameGen(){
+  var id =  haiku() + new Date().getUTCMilliseconds();
+
+displayUser = id
+$('.loginForm .user span').html(displayUser)
+// return id
+
+}
+function haiku(){
+  var adjs = ["autumn", "hidden", "bitter", "misty", "silent", "empty", "dry",
+  "dark", "summer", "icy", "delicate", "quiet", "white", "cool", "spring",
+  "winter", "patient", "twilight", "dawn", "crimson", "wispy", "weathered",
+  "blue", "billowing", "broken", "cold", "damp", "falling", "frosty", "green",
+  "long", "late", "lingering", "bold", "little", "morning", "muddy", "old",
+  "red", "rough", "still", "small", "sparkling", "throbbing", "shy",
+  "wandering", "withered", "wild", "black", "young", "holy", "solitary",
+  "fragrant", "aged", "snowy", "proud", "floral", "restless", "divine",
+  "polished", "ancient", "purple", "lively", "nameless"]
+
+  , nouns = ["waterfall", "river", "breeze", "moon", "rain", "wind", "sea",
+  "morning", "snow", "lake", "sunset", "pine", "shadow", "leaf", "dawn",
+  "glitter", "forest", "hill", "cloud", "meadow", "sun", "glade", "bird",
+  "brook", "butterfly", "bush", "dew", "dust", "field", "fire", "flower",
+  "firefly", "feather", "grass", "haze", "mountain", "night", "pond",
+  "darkness", "snowflake", "sliver", "sound", "sky", "shape", "town",
+  "thunder", "violet", "water", "wildflower", "wave", "water", "resonance",
+  "sun", "wood", "dream", "cherry", "tree", "fog", "frost", "voice", "paper",
+  "frog", "smoke", "star"];
+
+  return adjs[Math.floor(Math.random()*(adjs.length-1))]+"_"+nouns[Math.floor(Math.random()*(nouns.length-1))];
+}
+$('#genNewUser').click(function(){
+  usernameGen() 
+})
+socket.on("disconnect", () => {
+  
+  console.log('here', displayUser)
+
+  socket.emit('player', displayUser)
 });
+
+function newUserData(data, c){
+console.log("datac1 called", data.username.name, c)
+displayUser = data.username.name
+socket.emit('player', displayUser)
+}
 function newFlagData(data){
   console.log('newFlagData', data)
   // if (data.room[0].code.code)
@@ -74,7 +163,7 @@ else{
  data.filter(cc =>  cc.room[0].code[0].code.code === gameCodeDisplay.innerText ).map(
          m => $('.public-flags').append("<div class='card-section text-center'>"+m.room[0].code[1].cards.cards[0]+"</div>")
          )
-    console.log("data", data)
+    console.log("data.filter", data)
     // if (data[i].room[0].code[0].code.code){
 
 
@@ -83,113 +172,11 @@ else{
   // })
 }
 }
-// $(data).each(function (i) {
-  // console.log("data[i].length", data[i])
-  // if (data[i] == 0){
-  //   console.log(data)
-  //   if(data[i].room[0].code[0].code.code != null){
-  //     console.log('subFlagDatam2', data)
-  //     console.log('data[i]', data[i].room[0].code[0].code.code)
-  //     if (data[i].room[0].code[0].code.code == gameCodeDisplay.innerText){
-      
-  //       socket.emit('subFlagCard', {
-  //         room: [
-  //           {
-  //           code: data[i].room[0].code[0].code.code
-  //           },
-  //           {
-  //             cards: data[i].room[0].code[1].cards.cards
-  //           }
-  //         ]
-  //       })
-  //     }
-  //       }
-  // }else{
-  //   if(data.room[0].code[0].code.code != null){
-  //     console.log('subFlagDatam2', data)
-  //     console.log('data[i]', data.room[0].code[0].code.code)
-  //     if (data.room[0].code[0].code.code == gameCodeDisplay.innerText){
-      
-  //       socket.emit('subFlagCard', {
-  //         room: [
-  //           {
-  //           code: data.room[0].code[0].code.code
-  //           },
-  //           {
-  //             cards: data.room[0].code[1].cards.cards
-  //           }
-  //         ]
-  //       })
-  //     }
-  //       }
-  // }
-
-// })
-// }
-
-
-// $(data).map(o => $(data[o].room[o]).each(function (i){
-//   ddd = []
-//   dd = []
-//   d = []
-//   ddd.push(data[o].room[i].code[1].cards.cards[0])
-//   dd.push(data[o].room[i].code[0].code.code)
-//   d.push(data[o].room[i])
-
-//   data = {
-//     room:[
-//       {
-//         code:[
-//           {
-//             dd
-//           }
-//       ]
-//     },
-//     {
-//       cards: [
-//         {
-//           ddd
-//         },
-//         {
-//           cards
-//         }
-//       ]
-//     }
-//     ]
-//     }
-//     console.log('data', data)
-// socket.emit('subFlagCard', data)
-
-//   let df = d.filter(c => console.log(c))
-// let ddf = dd.filter(cc => cc === gameCodeDisplay.innerText)
-//   let dddf = ddd.filter(ccc => console.log(ccc))
-
-//   console.log("df", df)
-//   console.log("ddf", ddf)
-//   console.log("dddf", dddf)
-//   console.log("d", d)
-//   console.log("dd", dd)
-//   console.log("ddd", ddd)
-
-
-  
-// //   console.log('gameCodeDisplay.innerText)', gameCodeDisplay.innerText)
-// //   // console.log("String", String(data[i].room[i].code[0].code.code))
-// //   $('.public-flags').append("<div class='card-section text-center'>"+ddd+"</div>")
-// //   // if (ddd){
-// //   // console.log('insde if here')
-// //   // 
-// //   // }else{
-// //   //   console.log(data[i].room[0].code[1].cards.cards)
-// //   // }
-// // })
-// })
-// )
 
 
 
 $(document).on('click', '.fa-plus-square', function() {
-$('.home-section').hide()
+$('.game-container').hide()
 $('.flag-section').show()
 $('.perk1').html(perk1.innerText)
 $('.perk2').html(perk2.innerText)
@@ -204,7 +191,7 @@ $('.perk2').html(perk2.innerText)
 })
 $(document).on('click', '.flags .card-section', function() {
   if (confirm('Submit this FLAG?') == true) {
-    $('.home-section').show()
+    $('.game-container').show()
 $('.flag-section').hide()
 cards.push($(this).text())
 // $('.home-section .public-flags').append("<div class='card-section text-center'>"+ $(this).html()+"</div>")
@@ -233,9 +220,13 @@ data = {
   console.log('dataz', data)
 // socket.emit('subFlagCard', data)
 $("#sign").bind('click', function(){ return false; });
-$("#sign").css( {"cursor":"not-allowed"});
+$("#sign").css( {"cursor":"not-allowed"});  
 $('#sign').html('<i class="text-secondary far fa-plus-square"></i>')
     $(this).remove()
+    let countFlags = $('.public-flags .card-section').length + 1
+    console.log("countFlag", countFlags)
+    socket.emit("countFlags", [countFlags, gameCodeDisplay.innerText])
+
   }
   // // $(this).click(function (){
   //   console.log($('.red-flag-section .card-section').html())
@@ -289,6 +280,7 @@ function handleNewPerks(data){
 function newGame() {
   socket.emit('newGame');
 
+
 // perk();
   init();
 }
@@ -313,13 +305,36 @@ return data
 }
 
 
-$(joinGameBtn).on('click', function(){
+// function getRandomInt(userCount) {
+//   console.log(Math.floor(Math.random() * (userCount+1)))
+//   return Math.floor(Math.random() * (userCount+1));
 
+// }
+
+
+
+
+$(loginGameBtn).on('click', function(){
+  // let userCount = 1
+  // getRandomInt(userCount)
+  user = displayUser
+  console.log("displayUser", displayUser)
+  if (user){
+  loginSection.style.display = "none"
+  initialScreen.style.display = "block"
+  username["name"] = user
+  console.log("username", username)
+  }
+})
+$(joinGameBtn).on('click', function(){
+$
   $(gameCodeDisplay).html($(gameCodeInput).val());
   $(perk1).html($(gamePerk1).val());
   socket.emit('perks');
   const code = gameCodeInput.value;
   socket.emit('joinGame', code);
+  let socketId = socket.id
+socket.emit('newUser', {socketId, code, username})
   // if($('.public-flags .card-section').length){
   //   console.log('text', $('.red-flag-section .card-section').html())
   //   socket.emit('newJoinFlagData', $('.red-flag-section .card-section').html())
@@ -430,6 +445,8 @@ function handleGameOver(data) {
 
 function handleGameCode(gameCode) {
   gameCodeDisplay.innerText = gameCode;
+  let socketId = socket.id
+  socket.emit('newUser', {socketId, gameCode, username})
 }
 
 function handlePerks(perks){
