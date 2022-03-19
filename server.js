@@ -8,6 +8,7 @@ const express = require('express');
 const socketIO = require('socket.io');
 const { flags } = require('socket.io/lib/namespace');
 const cli = require('nodemon/lib/cli');
+const { count } = require('console');
 
 const publicPath = path.join(__dirname, '/frontend/');
 
@@ -125,11 +126,36 @@ function handleNewGame() {
 
 }
 
-function removeCardHandle(data){
+function removeCardHandle(data, text){
   client.emit('removeCard', data)
-  client.broadcast.to(data[1]).emit('removeCard', data)
+  client.broadcast.to(data[1]).emit('removeCard', data, text)
 }
 
+let prev = null
+function checkss(number, data){
+  if(number == prev){
+    number = Math.floor(Math.random() * data) + 1
+    console.log("cn2", number)
+    return number
+  }
+   else{
+      console.log('cn', num)
+      prev = num
+      return num
+    }
+}
+function ss(data) {
+  let number = Math.floor(Math.random() * data) + 1;
+
+  if(number == prev){
+    checkss(number, data)
+  }
+   else{
+    prev = number
+    
+      return number     
+    }
+}
 function countFlagsData(data){
   let userCount = 0
   let gameuser = []
@@ -150,8 +176,19 @@ console.log("flagusers", data[1], data[0])
       gameuser.push(userobj[i])
   }
 }
+console.log(gameuser.length, data[0])
+let s = ss(gameuser.length)
+let startv
+if (s == null){
+  console.log(prev)
+  startv = prev
+}else{
+  console.log(s)
+    startv = s
+}
 
-    let startv = Math.floor(Math.random() * (gameuser.length))
+
+    console.log("astartv", startv)
     console.log("gameuser", gameuser[startv].socketId, gameuser[startv] )
     io.to(gameuser[startv].socketId).emit('startVote');
 // userCount = 0

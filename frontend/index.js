@@ -1,10 +1,10 @@
 
 // let socket = io();
+const socket = io('https://red-flags-server.herokuapp.com/')
 let pppperksss;
 let cards = []
 const username = {};
 let displayUser;
-const socket = io('https://red-flags-server.herokuapp.com/')
 const gameScreen = document.getElementById('gameScreen');
 const initialScreen = document.getElementById('initialScreen');
 const loginSection = document.getElementById('login-section');
@@ -56,11 +56,11 @@ socket.on("userEmit", newUserData )
 socket.on("userLeft", displayName)
 socket.on("startVote", startVoteData)
 socket.on("removeCard", removeCard)
-function removeCard(data){
-  console.log("remdaat",data)
+function removeCard(data, text){
+  console.log("remdaat", data, text)
   console.log('bb', String(data[0]))
   console.log('aa', $('.public-flags .card-section').text() )
-  
+  $('.public-flags .text-danger').html(text)
   $('.public-flags .card-section').each(function (){
     let remName = $(this).html()
     if (remName == String(data[0])){
@@ -79,10 +79,12 @@ $('.public-flags .card-section').css({"background-color":"#c82333", "color":"whi
 
 $(document).on('click', '.public-flags .card-section', function() {
   remCard =  [$(this).html(), gameCodeDisplay.innerText, displayUser]
-
-  socket.emit('removeCard', remCard)
+text = "Winner FLAG"
+  socket.emit('removeCard', remCard, text )
 $('.public-flags .card-section').css({"background-color":"white", "color":"black"})
 $('.public-flags .text-danger').html("Winner FLAG")
+
+$('#gameScreen .col-centered').append('<div id="new-red-flags-next-game" class="btn btn-danger"><span class="title">Next Round</span><i class="bottom-right fas fa-arrow-right"></i></div>')
 })
 }
 usernameGen()
@@ -102,7 +104,7 @@ function haiku(){
   "dark", "summer", "icy", "delicate", "quiet", "white", "cool", "spring",
   "winter", "patient", "twilight", "dawn", "crimson", "wispy", "weathered",
   "blue", "billowing", "broken", "cold", "damp", "falling", "frosty", "green",
-  "long", "late", "lingering", "bold", "little", "morning", "muddy", "old",
+  "long", "lucky", "lingering", "bold", "little", "morning", "muddy", "old",
   "red", "rough", "still", "small", "sparkling", "throbbing", "shy",
   "wandering", "withered", "wild", "black", "young", "holy", "solitary",
   "fragrant", "aged", "snowy", "proud", "floral", "restless", "divine",
@@ -131,6 +133,7 @@ socket.on("disconnect", () => {
 });
 
 function newUserData(data, c){
+  
 console.log("datac1 called", data.username.name, c)
 displayUser = data.username.name
 socket.emit('player', displayUser)
@@ -267,10 +270,45 @@ function flagData(data){
   $(".home-section .public-flags").append("<div class='card-section'>"+data+"</div>")
 }
 
+let prev = null
+function checkss(number, data){
+  if(number == prev){
+    number = Math.floor(Math.random() * data) + 1
+    console.log("cn2", number)
+    return number
+  }
+   else{
+      console.log('cn', num)
+      prev = num
+      return num
+    }
+}
+function ss(data) {
+  let number = Math.floor(Math.random() * data) + 1;
 
+  if(number == prev){
+    checkss(number, data)
+  }
+   else{
+    prev = number
+    
+      return number     
+    }
+}
 
 function handleNewPerks(data){
-  console.log("data", data)
+
+let countFlags = $('.public-flags .card-section').length + 1
+let s = ss(2)
+
+if (s == null){
+  console.log(prev)
+}else{
+  console.log(s)
+}
+
+
+  // console.log("data", data)
   let perks = data;
   perk1.innerText = perks[0];
   perk2.innerText = perks[1];
@@ -485,4 +523,24 @@ function reset() {
   gameCodeInput.value = '';
   initialScreen.style.display = "block";
   gameScreen.style.display = "none";
+}
+
+
+function shuffle(array) {
+  var i = array.length,
+      j = 0,
+      temp;
+
+  while (i--) {
+
+      j = Math.floor(Math.random() * (i+1));
+
+      // swap randomly chosen element with current element
+      temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+
+  }
+// console.log(array)
+  return array;
 }
