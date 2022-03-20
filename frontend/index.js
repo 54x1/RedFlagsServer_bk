@@ -1,10 +1,11 @@
 
-// let socket = io();
-const socket = io('https://red-flags-server.herokuapp.com/')
+let socket = io();
+// const socket = io('https://red-flags-server.herokuapp.com/')
 let pppperksss;
 let cards;
 const username = {};
 let displayUser;
+let socketId
 const gameScreen = document.getElementById('gameScreen');
 const initialScreen = document.getElementById('initialScreen');
 const loginSection = document.getElementById('login-section');
@@ -12,21 +13,14 @@ const newGameBtn = document.getElementById('newGameButton');
 const joinGameBtn = document.getElementById('joinGameButton');
 const loginGameBtn = document.getElementById('loginGameButton');
 const gameCodeInput = document.getElementById('gameCodeInput');
-const newPerks = document.getElementById('new-red-flags');
+const newPerks = document.getElementById('fa-redo');
 const gamePerk1 = document.getElementById('perk1');
 const gameCodeDisplay = document.getElementById('gameCodeDisplay');
 const perk1 = document.getElementById('perk1');
 const perk2 = document.getElementById('perk2');
 newGameBtn.addEventListener('click', newGame);
 newPerks.addEventListener('click', newPerksFunc);
-// joinGameBtn.addEventListener('click', joinGame);
-// var perk1val = document.getElementsByClassName('perk3');
-// var perk2val = document.getElementsByClassName('perk4');
-// // console.log(perk2val.value);
-// socket.emit('perks', {
-//        perk1: perk1val.value,
-//        perk2s: perk2val.value
-//    });
+
 $('.loginForm').submit(function(e){
   e.preventDefault()
 })
@@ -36,6 +30,7 @@ socket.on('socketio', socketio)
 
 function socketio(data){
 console.log('socket.io', data)
+socketId = data
 }
 socket.on('init', handleInit);
 socket.on('gameState', handleGameState);
@@ -50,13 +45,29 @@ socket.on('tooManyPlayers', handleTooManyPlayers);
 socket.on('flagData', flagData);
 socket.on('subFlagData', subFlagData);
 socket.on("unknownData", unknownData)
-socket.on("flagStateData", subFlagData)
+// socket.on("flagStateData", subFlagData)
 socket.on("newFlagData", newFlagData)
 socket.on("userEmit", newUserData )
 socket.on("userLeft", displayName)
 socket.on("startVote", startVoteData)
 socket.on("removeCard", removeCard)
 socket.on("newFlagCard", newFlagCard)
+socket.on("playerdc", playerdc)
+socket.on("removeCard", removeCardData)
+socket.on("testff", testff)
+function testff(data){
+console.log("datatestff", data)
+}
+
+function removeCardData(data){
+
+}
+
+function playerdc(data){
+  $('.user').append("<p>Player: "+data+" has left</p>")
+  console.log(data)
+}
+
 function removeCard(data, text){
   console.log("remdaat", data, text)
   console.log('bb', String(data[0]))
@@ -156,14 +167,14 @@ socket.on("disconnect", () => {
   
   console.log('here', displayUser)
 
-  socket.emit('player', displayUser)
+  socket.emit('playerDis', displayUser)
 });
 
 function newUserData(data, c){
   
 console.log("datac1 called", data.username.name, c)
 displayUser = data.username.name
-socket.emit('player', displayUser)
+socket.emit('player', displayUser, gameCodeDisplay.innerText)
 }
 function newFlagData(data){
   console.log('newFlagData', data)
@@ -178,7 +189,7 @@ if (data.length == null || data.length == 0){
   console.log('subFlagDatam.length', data)
 
     if (data.room[0].code[0].code.code === gameCodeDisplay.innerText){
-
+console.log(data)
   $('.public-flags').append("<div class='card-section text-center'>"+data.room[0].code[1].cards.cards+"</div>")
 //        )
 
@@ -190,12 +201,12 @@ if (data.length == null || data.length == 0){
   //   )
 }
 else{
- data.filter(cc =>  cc.room[0].code[0].code.code === gameCodeDisplay.innerText ).map(
-         m => $('.public-flags').append("<div class='card-section text-center'>"+m.room[0].code[1].cards.cards+"</div>")
+ data.filter(cc =>  cc.room[0].code.code === gameCodeDisplay.innerText ).map
+ (m => $('.public-flags').append("<div class='card-section text-center'>"+m.room[1].cards.cards+"</div>")
          )
     console.log("data.filter", data)
     // if (data[i].room[0].code[0].code.code){
-
+  
 
     // }
   
@@ -222,7 +233,8 @@ cards = $(this).text()
 // $('.home-section .public-flags').append("<div class='card-section text-center'>"+ $(this).html()+"</div>")
 console.log("cards", cards)
 let code = gameCodeDisplay.innerText
-socket.emit('FlagCards', {room:[{code},{cards}]})
+let user = $(".user span").html()
+socket.emit('FlagCards', {room:[{code},{cards},{user}, {socketId}]})
 
 data = {
   room:[
@@ -545,24 +557,4 @@ function reset() {
   gameCodeInput.value = '';
   initialScreen.style.display = "block";
   gameScreen.style.display = "none";
-}
-
-
-function shuffle(array) {
-  var i = array.length,
-      j = 0,
-      temp;
-
-  while (i--) {
-
-      j = Math.floor(Math.random() * (i+1));
-
-      // swap randomly chosen element with current element
-      temp = array[i];
-      array[i] = array[j];
-      array[j] = temp;
-
-  }
-// console.log(array)
-  return array;
 }

@@ -51,6 +51,7 @@ client.on('newJoinFlagData', newJoinFlagDataHandle)
 client.on('countFlags', countFlagsData)
 client.on('player', playerData)
 client.on('newRound', handleNewRound)
+client.on("playerDis", playerDis)
 
 function handleJoinGame(roomName) {
 
@@ -224,10 +225,10 @@ function newJoinFlagDataHandle(cards){
 function newJoinFlagHandle(){
   console.log("newJoinFlagHandle", flagState)
 console.log('call')
-
+codeStr = flagState
+console.log(codeStr)
     if(flagState[0] != null){
-      codeStr = String(flagState[0].room[0].code[0].code.code)
-      console.log(codeStr)
+
       client.emit('subFlagData', flagState)
     }else if (flagState != null){
       // codeStr = String(flagState.room[0].code[0].code.code)
@@ -251,14 +252,15 @@ function FlagCardsHandle(data){
   if (data != null){
       let code = data.room[0]
       let cards = data.room[1]
-
-    flagState.push({room:[{code:[{code},{cards}]}]})
-    console.log("flagState2", flagState)
-    // client.emit('subFlagData', {room:[{code:[{code},{cards}]}]})
+      let user = data.room[2]
+      let socketId = data.room[3]
+// push data to global list 
+    flagState.push({room:[{code},{cards},{user},{socketId}]})
+    console.log("flagState2", flagState[0].room[0], flagState[0].room[1], flagState[0].room[2], flagState[0].room[3])
     codeStr = String(Object.values(code))
     console.log("codeStr", codeStr)
-    client.emit('subFlagData', {room:[{code:[{code},{cards}]}]})
-    client.broadcast.to(codeStr).emit('subFlagData', {room:[{code:[{code},{cards}]}]})
+    client.emit('subFlagData', {room:[{code:[{code},{cards},{user}, {socketId}]}]})
+    client.broadcast.to(codeStr).emit('subFlagData', {room:[{code:[{code},{cards},{user},{socketId}]}]})
 }
 }
 // function subFlagCardHandle(data){
@@ -326,24 +328,39 @@ console.log('pperkss', pp)
 client.emit('ppperks', pp)
 
  }
-
+let playerdc;
  function playerData(displayUser){
    
-   let playerdc = displayUser
+   playerdc = displayUser
 // client.emit('userLeft', displayUser);
   // client.broadcast.to(codez).emit('userLeft', displayUser);
    console.log('called playerDC', playerdc)
    return playerdc;
  }
+
+function playerDis(data, code){
+client.emit("playerdc". data)
+client.broadcast.to(code).emit('playerdc', data)
+} 
  client.on('disconnect', ()=>{
+
   console.log('disconnect', String(Object.keys(users)))   
 let name = Object.values(users)
-console.log("name", name.length, name, users)
-let res = name.filter(n => n === playerData());
+console.log("name", name.length, name)
+// let res = name.includes(n => n === )
 delete users[client.id]
+console.log("be4flagState", flagState)
+if (flagState[0] != null){
 
-console.log("res", res)
+let ff = [flagState].filter(f => f[0].room[3].socketId.socketId != client.id)
+flagState = ff
+}
+
+client.emit('removeCard')
+// console.log("res", res)
 console.log("usersdc", users)
+console.log("flagStatedc", flagState)
+// client.emit("playerDis", )
   })
 });
 
