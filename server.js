@@ -50,7 +50,7 @@ client.on('newJoinFlag', newJoinFlagHandle)
 client.on('newJoinFlagData', newJoinFlagDataHandle)
 client.on('countFlags', countFlagsData)
 client.on('player', playerData)
-
+client.on('newRound', handleNewRound)
 
 function handleJoinGame(roomName) {
 
@@ -100,6 +100,15 @@ function userLeftHandle(data){
 console.log("datazzz", data)
 }
 
+
+function handleNewRound(code){
+  handlePerks()
+  console.log("pp", pp)
+  client.emit('perks', pp);
+  client.emit('newFlagCard')
+  client.broadcast.to(code).emit('newFlagCard')
+  client.broadcast.to(code).emit('perks', pp)
+}
 function handleNewGame() {
   var length = 6;
   let roomName = makeid(length);

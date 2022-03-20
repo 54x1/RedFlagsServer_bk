@@ -56,6 +56,7 @@ socket.on("userEmit", newUserData )
 socket.on("userLeft", displayName)
 socket.on("startVote", startVoteData)
 socket.on("removeCard", removeCard)
+socket.on("newFlagCard", newFlagCard)
 function removeCard(data, text){
   console.log("remdaat", data, text)
   console.log('bb', String(data[0]))
@@ -71,6 +72,27 @@ function removeCard(data, text){
   
 
 }
+function newFlagCard(){
+  $.getJSON('flags.json', function(data) {
+    console.log("dataflags", data)
+    var randInt4 = Math.floor(Math.random() * (data.flags.length));
+$('.game-place .flags').append("<div class='card-section text-center'>"+data.flags[randInt4].card+"</div>");
+});
+$("#sign").unbind('click');
+$("#sign").css( {"cursor":"pointer"});
+$('.public-flags .text-danger').html("FLAG")
+$('.public-flags .card-section').remove()
+$('#sign').html('<i class="text-danger far fa-plus-square"></i>')
+console.log("end newflagcard here")
+}
+
+$(document).on('click', '#new-red-flags-next-game', function() {
+  let code = gameCodeDisplay.innerText
+  socket.emit('newRound', code)
+console.log("clicked right here")
+$(this).remove()
+})
+
 function startVoteData(){
   console.log("voting time")
 $('.public-flags .card-section').css({"background-color":"#c82333", "color":"white"})
@@ -91,6 +113,8 @@ usernameGen()
 function displayName(data){
   console.log("dataxxxx", data)
 }
+
+
 function usernameGen(){
   var id =  haiku() + new Date().getUTCMilliseconds();
 
@@ -178,20 +202,15 @@ else{
 
 
 
+  
 $(document).on('click', '.fa-plus-square', function() {
 $('.game-container').hide()
 $('.flag-section').show()
 $('.perk1').html(perk1.innerText)
 $('.perk2').html(perk2.innerText)
-
-
-// alert("You have submitted your flag!")
-// $('#sign').html("<i class='text-danger fas fa-times-circle'></i>")
-// $(".flags").children().bind('click', function(){ return false; });
-// $(".flags .card-section").css( {"cursor":"not-allowed"});
-// console.log( $('.red-flag-section .card-section').html())
-// socket.emit('subFlagCard', $('.red-flag-section .card-section').html())
+console.log('fa-plus-square')
 })
+
 $(document).on('click', '.flags .card-section', function() {
   if (confirm('Submit this FLAG?') == true) {
     $('.game-container').show()
