@@ -2,7 +2,7 @@
 // let socket = io();
 const socket = io('https://red-flags-server.herokuapp.com/')
 let pppperksss;
-let cards = []
+let cards;
 const username = {};
 let displayUser;
 const gameScreen = document.getElementById('gameScreen');
@@ -91,6 +91,7 @@ $(document).on('click', '#new-red-flags-next-game', function() {
   socket.emit('newRound', code)
 console.log("clicked right here")
 $(this).remove()
+$('#new-red-flags-next-game').remove()
 })
 
 function startVoteData(){
@@ -100,15 +101,17 @@ $('.public-flags .card-section').css({"background-color":"#c82333", "color":"whi
 
 
 $(document).on('click', '.public-flags .card-section', function() {
+  if( $(this).css('background-color') == 'rgb(200, 35, 51)') {
   remCard =  [$(this).html(), gameCodeDisplay.innerText, displayUser]
 text = "Winner FLAG"
   socket.emit('removeCard', remCard, text )
 $('.public-flags .card-section').css({"background-color":"white", "color":"black"})
 $('.public-flags .text-danger').html("Winner FLAG")
-
 $('#gameScreen .col-centered').append('<div id="new-red-flags-next-game" class="btn btn-danger"><span class="title">Next Round</span><i class="bottom-right fas fa-arrow-right"></i></div>')
+  }
 })
 }
+
 usernameGen()
 function displayName(data){
   console.log("dataxxxx", data)
@@ -119,7 +122,7 @@ function usernameGen(){
   var id =  haiku() + new Date().getUTCMilliseconds();
 
 displayUser = id
-$('.loginForm .user span').html(displayUser)
+$('.user span').html(displayUser)
 // return id
 
 }
@@ -176,7 +179,7 @@ if (data.length == null || data.length == 0){
 
     if (data.room[0].code[0].code.code === gameCodeDisplay.innerText){
 
-  $('.public-flags').append("<div class='card-section text-center'>"+data.room[0].code[1].cards.cards[0]+"</div>")
+  $('.public-flags').append("<div class='card-section text-center'>"+data.room[0].code[1].cards.cards+"</div>")
 //        )
 
     }
@@ -188,7 +191,7 @@ if (data.length == null || data.length == 0){
 }
 else{
  data.filter(cc =>  cc.room[0].code[0].code.code === gameCodeDisplay.innerText ).map(
-         m => $('.public-flags').append("<div class='card-section text-center'>"+m.room[0].code[1].cards.cards[0]+"</div>")
+         m => $('.public-flags').append("<div class='card-section text-center'>"+m.room[0].code[1].cards.cards+"</div>")
          )
     console.log("data.filter", data)
     // if (data[i].room[0].code[0].code.code){
@@ -215,7 +218,7 @@ $(document).on('click', '.flags .card-section', function() {
   if (confirm('Submit this FLAG?') == true) {
     $('.game-container').show()
 $('.flag-section').hide()
-cards.push($(this).text())
+cards = $(this).text()
 // $('.home-section .public-flags').append("<div class='card-section text-center'>"+ $(this).html()+"</div>")
 console.log("cards", cards)
 let code = gameCodeDisplay.innerText

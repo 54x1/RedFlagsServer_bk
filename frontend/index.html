@@ -21,7 +21,7 @@
     .col-centered {
       float: none;
       margin: 0 auto;
-      padding: 0 24px 0;
+      padding: 0 12px 0;
     }
 
     .red-flag-section p,
@@ -124,9 +124,9 @@
 
     .right {
       margin-right: 2.5%;
-      width: 50px;
+      width: 20px;
       top: 45px;
-      right: 20px;
+      right: 50px;
       font-size: 2em;
       position: absolute;
     }
@@ -183,6 +183,8 @@
       border: 3px solid #dae0e5;
     border-radius: 0.25rem;
     text-align: center;
+    padding: 12px;
+    width: 100%;
     }
 
     .bottom-right{
@@ -215,7 +217,7 @@ margin-left: 1em;
   <section id="initialScreen" class="container home-section">
     <div class="h-100">
       <div class="d-flex flex-column align-items-center justify-content-center h-100">
-        <h1>Red Flags Game</h1>
+        <h1  class="mb-4">Red Flags Game</h1>
         <button type="submit" class="btn btn-danger" id="newGameButton">
           Create New Game
         </button>
@@ -233,15 +235,16 @@ margin-left: 1em;
   <div id="gameScreen" class="h-100">
     <div class="d-flex flex-column align-items-center justify-content-center h-100">
 
-      <h1>Your game code is: <span id="gameCodeDisplay"></span></h1>
-
+      <h1  class="mb-4">Your game code is: <span id="gameCodeDisplay"></span></h1>
+      <div class="user"><span></span></div>
       <div class="col-sx-6 col-md-12 col-centered">
 
 
         <div id="new-red-flags" class="btn btn-danger">
           <i class="fas fa-redo left"></i>
-          <i class="fas fa-flag right"></i>
+          <i class="fas fa-trophy right"></i>
           <span class="title">Red Flags</span>
+
         </div>
         <div class="game-section vcenter">
 
