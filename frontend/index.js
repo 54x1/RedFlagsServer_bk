@@ -1,6 +1,6 @@
 
-// let socket = io();
-const socket = io('https://red-flags-server.herokuapp.com/')
+let socket = io();
+// const socket = io('https://red-flags-server.herokuapp.com/')
 let pppperksss;
 let cards;
 const username = {};
@@ -201,10 +201,10 @@ console.log(data)
   //   )
 }
 else{
- data.filter(cc =>  cc.room[0].code.code === gameCodeDisplay.innerText ).map
- (m => $('.public-flags').append("<div class='card-section text-center'>"+m.room[1].cards.cards+"</div>")
+  console.log("data.filter", data)
+ data.filter(cc =>  cc.room[0].code.code === gameCodeDisplay.innerText ).map(m => $('.public-flags').append("<div class='card-section text-center'>"+m.room[1].cards.cards+"</div>")
          )
-    console.log("data.filter", data)
+
     // if (data[i].room[0].code[0].code.code){
   
 
