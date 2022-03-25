@@ -256,7 +256,7 @@ function FlagCardsHandle(data){
       let socketId = data.room[3]
 // push data to global list 
     flagState.push({room:[{code},{cards},{user},{socketId}]})
-    console.log("flagState2", flagState[0].room[0], flagState[0].room[1], flagState[0].room[2], flagState[0].room[3])
+    // console.log("flagState2", flagState[0].room[0], flagState[0].room[1], flagState[0].room[2], flagState[0].room[3])
     codeStr = String(Object.values(code))
     console.log("codeStr", codeStr)
     client.emit('subFlagData', {room:[{code:[{code},{cards},{user}, {socketId}]}]})
