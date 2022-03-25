@@ -226,7 +226,7 @@ function newJoinFlagHandle(){
   console.log("newJoinFlagHandle", flagState)
 console.log('call')
 codeStr = flagState
-console.log(codeStr)
+console.log("codeStr", flagState)
     if(flagState[0] != null){
 
       client.emit('subFlagData', flagState)
@@ -256,7 +256,7 @@ function FlagCardsHandle(data){
       let socketId = data.room[3]
 // push data to global list 
     flagState.push({room:[{code},{cards},{user},{socketId}]})
-    console.log("flagState2",  flagState[0].room[3])
+    console.log("flagStatepush",  flagState)
     codeStr = String(Object.values(code))
     console.log("codeStr", codeStr)
     client.emit('subFlagData', {room:[{code:[{code},{cards},{user}, {socketId}]}]})
