@@ -189,7 +189,7 @@ if (data.length == null || data.length == 0){
   console.log('subFlagDatam.length', data)
 
     if (data.room[0].code[0].code.code === gameCodeDisplay.innerText){
-console.log(data)
+console.log("dataoneset", data)
   $('.public-flags').append("<div class='card-section text-center'>"+data.room[0].code[1].cards.cards+"</div>")
 //        )
 
