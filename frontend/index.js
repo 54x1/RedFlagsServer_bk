@@ -1,6 +1,6 @@
 
-let socket = io();
-// const socket = io('https://red-flags-server.herokuapp.com/')
+// let socket = io();
+const socket = io('https://red-flags-server.herokuapp.com/')
 let pppperksss;
 let cards;
 const username = {};
