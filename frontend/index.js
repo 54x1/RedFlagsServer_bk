@@ -202,7 +202,7 @@ console.log("dataoneset", data)
 }
 else{
   console.log("data.filter", data)
- data.filter(cc =>   cc.filter(c => c.room[0].code.code === gameCodeDisplay.innerText ).map(m => $('.public-flags').append("<div class='card-section text-center'>"+m.room[1].cards.cards+"</div>")
+ data.filter(cc =>   cc.filter(c => c.room[0].code.code === gameCodeDisplay.innerText ).map(m => $('.public-flags').append("<div class='card-section text-center'>"+m.room[1].cards.cards+"</div>"))
          )
 // cc[0].room[0].code.code === gameCodeDisplay.innerText
         //  
