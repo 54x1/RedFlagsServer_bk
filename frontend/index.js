@@ -395,7 +395,7 @@ return data
 $(loginGameBtn).on('click', function(){
   // let userCount = 1
   // getRandomInt(userCount)
-  user = displayUserf
+  user = displayUser
   console.log("displayUser", displayUser)
   if (user){
   loginSection.style.display = "none"
