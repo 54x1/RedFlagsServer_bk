@@ -202,8 +202,12 @@ console.log("dataoneset", data)
 }
 else{
   console.log("data.filter", data)
- data.filter(cc =>   cc.filter(c => c.room[0].code.code === gameCodeDisplay.innerText ).map(m => $('.public-flags').append("<div class='card-section text-center'>"+m.room[1].cards.cards+"</div>"))
-         )
+ data.filter(cc =>   cc.each(function (i){
+  if (c[i].room[0].code.code === gameCodeDisplay.innerText){
+    $('.public-flags').append("<div class='card-section text-center'>"+c[i].room[1].cards.cards+"</div>")
+  }
+   }
+   )
 // cc[0].room[0].code.code === gameCodeDisplay.innerText
         //  
     // if (data[i].room[0].code[0].code.code){
@@ -390,7 +394,7 @@ return data
 $(loginGameBtn).on('click', function(){
   // let userCount = 1
   // getRandomInt(userCount)
-  user = displayUser
+  user = displayUserf
   console.log("displayUser", displayUser)
   if (user){
   loginSection.style.display = "none"
