@@ -1,6 +1,6 @@
 
-// let socket = io();
-const socket = io('https://red-flags-server.herokuapp.com/')
+let socket = io();
+// const socket = io('https://red-flags-server.herokuapp.com/')
 let pppperksss;
 let cards;
 const username = {};
@@ -57,7 +57,9 @@ socket.on("removeCard", removeCard)
 socket.on("newFlagCard", newFlagCard)
 socket.on("playerdc", playerdc)
 socket.on("removeCard", removeCardData)
-// socket.on("votingSettings", votingSettings)
+socket.on("userJoined", userJoinedData)
+socket.on("userJoinedDisplay", userJoinedDisplay)
+socket.on('leaderboardDisplayData', leaderboardDisplayData)
 socket.on("testff", testff)
 
 function testff(data){
@@ -69,7 +71,52 @@ if (voting === true){
 $("#sign").css( {"cursor":"not-allowed"});  
 $('#sign').html('<i class="text-secondary far fa-plus-square"></i>')
 }
+function leaderboardDisplayData(data){
+let d = []
+d.push(data)
+console.log(d)
+// d.each(function(i){
+  // console.log(d[i])
 
+// })
+  $('.leaderboard-section ol').append("<li><mark>"+data+"</mark><small>0</small></li>") 
+  
+}
+function userJoinedDisplay(data){
+ 
+  $('.alert').fadeIn()
+
+
+  $('.alert').append( "<div class='alert-success' role='alert'>"+data+" has joined</div>") 
+  $('.leaderboard-section ol').append("<li><mark>"+data+"</mark><small>0</small></li>") 
+  console.log("userJoinedDisplay", data)
+  $('.leaderboard-section li mark').each(function (){
+
+let user = $(this).text()
+let code = gameCodeDisplay.innerText
+let room = {room:[{code}, {user}]}
+    socket.emit("leaderboard",room)
+
+  })
+  user = ""
+  room = ""
+
+  $(".alert-success").fadeTo(1300, 300).slideUp(300, function(){
+    $(".alert-success").slideUp(300);
+});
+}
+function userJoinedData(data){
+  let d = []
+  d.push(data)
+  console.log("userJoinedData", d)
+  $('.leaderboard-section ol').append("<li><mark><b>"+data+"</b></mark><small>0</small></li>")
+
+}
+
+$(document).on('click', '.fa-trophy', function() {
+  $('.game-container').hide()
+$('.leaderboard-section').show()
+})
 function removeCardData(data){
 
 
@@ -87,8 +134,23 @@ console.log("b", b)
 }
 
 function playerdc(data){
-  $('.user').append("<p>Player: "+data+" has left</p>")
-  console.log(data)
+  console.log('pfunc', $('.leaderboard-section mark').text())
+
+  $('.leaderboard-section mark').each(function (){
+if ($(this).text() === data){
+  $(this).parent().remove()
+}
+  })
+
+
+
+  $('.alert').fadeIn()
+
+  $('.alert').append("<div class='alert-secondary' role='alert'>"+data+" has left</div>")
+  console.log("playerdcfunc", data)
+  $(".alert-secondary").fadeTo(1300, 300).slideUp(300, function(){
+    $(".alert-secondary").slideUp(300);
+});
 }
 
 function removeCard(data, text){
@@ -115,7 +177,7 @@ $('.game-place .flags').append("<div class='card-section text-center'>"+data.fla
 });
 $("#sign").unbind('click');
 $("#sign").css( {"cursor":"pointer"});
-$('.public-flags .text-danger').html("FLAGS")
+$('.public-flags .text-danger').html("RED FLAGS")
 $('.public-flags .card-section').remove()
 $('#sign').html('<i class="text-danger far fa-plus-square"></i>')
 console.log("end newflagcard here")
@@ -194,6 +256,14 @@ socket.on("disconnect", () => {
   console.log('here', displayUser)
 
   socket.emit('playerDis', displayUser)
+  $('.alert').fadeIn()
+
+  $('.alert').append("<div class='alert-secondary' role='alert'>"+displayUser+" has left</div>")
+  $(".alert-secondary").fadeTo(1300, 300).slideUp(300, function(){
+    $(".alert-secondary").slideUp(300);
+});
+  console.log("playerdc", displayUser)
+socket.emit('player', displayUser, gameCodeDisplay.innerText)
 });
 
 function newUserData(data, c){
@@ -266,6 +336,10 @@ console.log('cards', $('.public-card-section .card-section').html())
 // }
 }
 
+$('.leaderboard-section .fa-times').click(function (){
+  $('.leaderboard-section').hide()
+  $('.game-container').show()
+})
 
   
 $(document).on('click', '.fa-plus-square', function() {
@@ -388,7 +462,6 @@ function newGame() {
 
 
 // perk();
-  init();
 }
 
 function newPerksFunc(){
@@ -435,6 +508,7 @@ $(loginGameBtn).on('click', function(){
 $(joinGameBtn).on('click', function(){
   const code = gameCodeInput.value;
 socket.emit('joinGame', code);
+
 let us =  $(".user span").html()
 console.log('the d', d)
 // && cc[i][2].user.user !== us
@@ -478,6 +552,7 @@ function init(roomName) {
   let socketId = socket.id
 socket.emit('newUser', {socketId, code, username})
   socket.emit('newJoinFlag')
+
   initialScreen.style.display = "none";
   gameScreen.style.display = "block";
   //
@@ -563,7 +638,7 @@ function handleGameOver(data) {
 function handleGameCode(gameCode) {
   gameCodeDisplay.innerText = gameCode;
   let socketId = socket.id
-  socket.emit('newUser', {socketId, gameCode, username})
+  // socket.emit('newUser', {socketId, gameCode, username})
 }
 
 function handlePerks(perks){

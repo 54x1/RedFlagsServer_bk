@@ -131,6 +131,13 @@
       position: absolute;
     }
 
+    .exit-right{
+      right: 50px;
+      font-size: 2em;
+      position: absolute;
+      cursor: pointer;
+    }
+
     .left {
       margin-left: 2.5%;
       width: 50px;
@@ -196,13 +203,29 @@ margin-left: 1em;
     #new-red-flags-next-game{
       margin-bottom: 1.75rem;
     }
+
+    .leaderboard-section{
+      display: none;
+    }
     
+    .alert{
+      display: none;
+      padding: 0;
+
+    }
+    .alert-success, .alert-secondary{
+      position: relative;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    }
   </style>
 </head>
 
 <body>
   <section id="login-section" class="container login-section">
-    <h1 class="text-center mb-4">Red Flags Game</h1>
+    <h1 class="text-center mb-4">Red Flags Online</h1>
     <form class="loginForm">
       <div class="user"><span></span></div>
       <button type="submit" class="btn btn-danger" id="genNewUser">
@@ -217,7 +240,7 @@ margin-left: 1em;
   <section id="initialScreen" class="container home-section">
     <div class="h-100">
       <div class="d-flex flex-column align-items-center justify-content-center h-100">
-        <h1  class="mb-4">Red Flags Game</h1>
+        <h1  class="mb-4">Red Flags Online</h1>
         <button type="submit" class="btn btn-danger" id="newGameButton">
           Create New Game
         </button>
@@ -236,6 +259,8 @@ margin-left: 1em;
     <div class="d-flex flex-column align-items-center justify-content-center h-100">
 
       <h1  class="mb-4">Your game code is: <span id="gameCodeDisplay"></span></h1>
+      <div class="alert">
+      </div>
       <div class="user"><span></span></div>
       <div class="col-sx-6 col-md-12 col-centered">
 
@@ -250,7 +275,7 @@ margin-left: 1em;
 
           <div class="game-content">
 
-            <p>Would you rather date someone who: </p>
+            <p class="h5"> Would you rather date someone who: </p>
             <p id="perk1" class="perk1 text-center">
 
             </p>
@@ -267,12 +292,12 @@ margin-left: 1em;
         </div>
         <div class="public-flags">
           <p class="text-danger">
-            FLAGS
+            RED FLAGS
           </p>
         </div>
         <div class="red-flag-section text-danger text-center">
           <p>
-            FLAG CARDS
+            SELECT RED FLAG
           </p>
           <p id="sign">
             <i class="text-danger far fa-plus-square"></i>
@@ -285,12 +310,12 @@ margin-left: 1em;
 
   </div>
   </section>
-  <section class="container flag-section">
+  <section class="flag-section container">
     <div class="game-section vcenter">
 
       <div class="game-content">
 
-        <p>Would you rather date someone who: </p>
+        <p class="h5">Would you rather date someone who: </p>
         <p id="perk1" class="perk1 text-center">
 
         </p>
@@ -334,6 +359,12 @@ margin-left: 1em;
         </div>
       </div>
     </div>
+  </section>
+  <section class="leaderboard-section container">
+    <i class="fa fa-times exit-right text-danger" aria-hidden="true"></i>
+
+    <ol>
+    </ol>
   </section>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>

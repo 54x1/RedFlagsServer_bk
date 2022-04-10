@@ -54,6 +54,13 @@ client.on('newRound', handleNewRound)
 client.on("playerDis", playerDis)
 client.on("newRoundClear", newRoundClear)
 client.on("voting", votingHandle)
+client.on("leaderboard", leaderboardData)
+function leaderboardData(data){
+  console.log("leaderboardData", data.room[0].code)
+  // client.emit("leaderboardDisplayData", data.room[1].user)
+  client.broadcast.to(data.room[0].code).emit('leaderboardDisplayData',  data.room[1].user)
+  data = ""
+}
 function newRoundClear(code){
  
  a = flagState.filter(e => e[0].code.code === code);
@@ -243,6 +250,9 @@ users[client.id] = username
 
 console.log("usernamez1", username.username.name)
 client.emit('userEmit', username, client.id)
+client.broadcast.to(username.code).emit('userJoinedDisplay', username.username.name)
+client.emit('userJoined',  username.username.name)
+
 
 }
 
@@ -357,25 +367,30 @@ client.emit('ppperks', pp)
 
  }
 let playerdc;
- function playerData(displayUser){
+let displayCode
+ function playerData(displayUser, code){
    
    playerdc = displayUser
+   displayCode = code
 // client.emit('userLeft', displayUser);
-  // client.broadcast.to(codez).emit('userLeft', displayUser);
-   console.log('called playerDC', playerdc)
-   return playerdc;
+  // client.broadcast.to(code).emit('playerdc', displayUser);
+   console.log('called playerDC', displayCode, playerdc)
+   return displayCode, playerdc;
  }
 
-function playerDis(data, code){
-client.emit("playerdc". data)
-client.broadcast.to(code).emit('playerdc', data)
+function playerDis(code, disname){
+  console.log('hhhere', code, disname)
+// client.emit("playerdc", data)
+// client.broadcast.to(code).emit('playerdc', data)
+return code, disname;
 } 
  client.on('disconnect', ()=>{
 
   console.log('disconnect', String(Object.keys(users)))   
 let name = Object.values(users)
-console.log("name", name.length, name)
-// let res = name.includes(n => n === )
+console.log("nameeee", name, playerdc, displayCode)
+// playerData()
+client.broadcast.to(displayCode).emit('playerdc', playerdc)
 delete users[client.id]
 console.log("be4flagState", flagState)
 let d = []
@@ -388,8 +403,10 @@ d.push(flagState)
 // f[0].room[3].
 client.emit('removeCard')
 // console.log("res", res)
-console.log("usersdc", users)
-console.log("flagStatedc", flagState[0])
+
+
+
+console.log("flagStatedc", flagState)
 // client.emit("playerDis", )
   })
 })
