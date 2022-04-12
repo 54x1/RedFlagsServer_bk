@@ -55,6 +55,24 @@ client.on("playerDis", playerDis)
 client.on("newRoundClear", newRoundClear)
 client.on("voting", votingHandle)
 client.on("leaderboard", leaderboardData)
+client.on('RandomCard', RandomCardData)
+function RandomCardData (data){
+console.log("RandomCardData", data)
+// console.log("subFlagDataHDCH", data)
+if (data != null){
+    let code = data.room[0]
+    let cards = data.room[1]
+    let user = data.room[2]
+    let socketId = data.room[3]
+// push data to global list 
+  flagState.push([{code},{cards},{user},{socketId}])
+  console.log("flagStatepush",  flagState[0])
+  codeStr = String(Object.values(code))
+  console.log("codeStr", codeStr)
+  client.emit('subFlagDataRandom', {room:[{code:[{code},{cards},{user}, {socketId}]}]})
+  client.broadcast.to(codeStr).emit('subFlagDataRandom', {room:[{code:[{code},{cards},{user},{socketId}]}]})
+}
+}
 function leaderboardData(data){
   console.log("leaderboardData", data.room[0].code)
   // client.emit("leaderboardDisplayData", data.room[1].user)
