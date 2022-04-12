@@ -1,6 +1,6 @@
 
-// let socket = io();
-const socket = io('https://red-flags-server.herokuapp.com/')
+let socket = io();
+// const socket = io('https://red-flags-server.herokuapp.com/')
 let pppperksss;
 let cards;
 const username = {};
@@ -345,9 +345,135 @@ $('.leaderboard-section .fa-times').click(function (){
 $(document).on('click', '.fa-plus-square', function() {
 $('.game-container').hide()
 $('.flag-section').show()
+$('.public-flags').show()
 $('.perk1').html(perk1.innerText)
 $('.perk2').html(perk2.innerText)
-console.log('fa-plus-square')
+
+//             setTimeout(function(){
+//                 $('.game-place .flags .card-section:nth-child(1)').css({'background-color':"rgb(200, 35, 51)", "color": "white"})
+//            }, colorCountCardsTimer);
+//            setTimeout(function(){
+//             $('.game-place .flags .card-section:nth-child(2)').css({'background-color':"rgb(200, 35, 51)", "color": "white"})
+//             $('.game-place .flags .card-section:nth-child(1)').css({'background-color':"white", "color": "black", "border": "3px solid #c82333"})
+            
+//        }, colorCountCardsTimer*2);
+//        setTimeout(function(){
+//         $('.game-place .flags .card-section:nth-child(4)').css({'background-color':"rgb(200, 35, 51)", "color": "white"})
+//         $('.game-place .flags .card-section:nth-child(2)').css({'background-color':"white", "color": "black", "border": "3px solid #c82333"})
+//    }, colorCountCardsTimer*3);
+//    setTimeout(function(){
+//     $('.game-place .flags .card-section:nth-child(3)').css({'background-color':"rgb(200, 35, 51)", "color": "white"})
+//     $('.game-place .flags .card-section:nth-child(4)').css({'background-color':"white", "color": "black", "border": "3px solid #c82333"})
+// }, colorCountCardsTimer*4);
+// }
+            
+let timer = 15
+startTimer(timer);
+function startTimer(duration) {
+  let count = 0
+  timer = duration
+  let minutes, seconds;
+
+    let setTime = setInterval(function () {
+
+        minutes = parseInt(timer / 60, 10)
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+         $('.time').text("Select a Red Flag "+minutes + ":" + seconds);
+        
+        if (timer-- < 1) {
+            // alert('here < 1')
+            timer = 0
+            $('.time').text("Waiting for others");
+            clearInterval(setTime)
+            numCards = $('.game-place .flags .card-section').length
+RandCard = Math.floor(Math.random() * numCards) + 1
+            console.log(RandCard)
+           let colorCountCardsTimer = 150
+           setTimeout(function(){
+            colorCountCards()
+           }, 700)
+           setTimeout(function(){
+            colorCountCards()
+          },1300);
+          setTimeout(function(){
+            colorCountCards()
+
+          },1900);
+          setTimeout(function(){
+
+              $('.game-place .flags .card-section').css({'background-color':"rgb(200, 35, 51)", "color": "white"})
+
+        }, 2600);
+        setTimeout(function(){
+          console.log('2')
+          $('.game-place .flags .card-section').css({'background-color':"white", "color": "black", "border": "3px solid #c82333"})
+
+        
+   
+   }, 2800);
+      setTimeout(function(){
+        console.log('3')
+        $('.game-place .flags .card-section').css({'background-color':"rgb(200, 35, 51)", "color": "white"})
+
+
+    }, 3000);
+    setTimeout(function(){
+      console.log('4')
+
+      $('.game-place .flags .card-section').css({'background-color':"white", "color": "black", "border": "3px solid #c82333"})
+  
+  }, 3200);
+
+  setTimeout(function(){
+    console.log('4')
+
+    $('.game-place .flags .card-section:nth-child('+RandCard+')').css({'background-color':"rgb(200, 35, 51)", "color": "white"})
+}, 3400);
+function colorCountCards(){
+  $('.game-place .flags .card-section').each(function (i){
+      setTimeout(function(){
+        console.log(i)
+
+        $('.game-place .flags .card-section:nth-child('+(i+1)+')').css({'background-color':"rgb(200, 35, 51)", "color": "white"})
+
+        $('.game-place .flags .card-section:nth-child('+(--i+1)+')').css({'background-color':"white", "color": "black", "border": "3px solid #c82333"})
+        if (i === 2){
+          $('.game-place .flags .card-section:nth-child(4)').css({'background-color':"rgb(200, 35, 51)", "color": "white"})
+          
+            
+        }else if (i !== 2){
+          $('.game-place .flags .card-section:nth-child(4)').css({'background-color':"white", "color": "black", "border": "3px solid #c82333"})
+     
+          console.log('here')
+         
+       
+        }
+
+   }, colorCountCardsTimer*i);
+
+  })
+
+}
+            
+
+        }
+        
+        if (timer === 8 && count === 0){
+          if (confirm('More Time?') == true) {      
+          timer = 20;
+          count++
+          }else{
+            console.log('no extra time')
+          }
+        }
+    }, 1000);
+
+}
+
 })
 
 $(document).on('click', '.flags .card-section', function() {
@@ -544,6 +670,7 @@ let playerNumber;
 let gameActive = false;
 
 function init(roomName) {
+  $('.public-flags').hide()
   const code = roomName;
   $(gameCodeDisplay).html(roomName);
   $(perk1).html($(gamePerk1).val());
