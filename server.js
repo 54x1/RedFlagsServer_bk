@@ -56,9 +56,17 @@ client.on("newRoundClear", newRoundClear)
 client.on("voting", votingHandle)
 client.on("leaderboard", leaderboardData)
 client.on('RandomCard', RandomCardData)
+client.on('chooseWinner', chooseWinnerData )
+
+function chooseWinnerData(data){
+  console.log(data)
+  // client.s('chooseWinnerDisplay', data)
+  client.broadcast.to(data[1]).emit('chooseWinnerDisplay', data[0])
+}
+
+
 function RandomCardData (data){
 console.log("RandomCardData", data)
-// console.log("subFlagDataHDCH", data)
 if (data != null){
     let code = data.room[0]
     let cards = data.room[1]
@@ -66,9 +74,9 @@ if (data != null){
     let socketId = data.room[3]
 // push data to global list 
   flagState.push([{code},{cards},{user},{socketId}])
-  console.log("flagStatepush",  flagState[0])
+  console.log("flagStatepushRand",  flagState)
   codeStr = String(Object.values(code))
-  console.log("codeStr", codeStr)
+  console.log("codeStrRand", codeStr)
   client.emit('subFlagDataRandom', {room:[{code:[{code},{cards},{user}, {socketId}]}]})
   client.broadcast.to(codeStr).emit('subFlagDataRandom', {room:[{code:[{code},{cards},{user},{socketId}]}]})
 }
@@ -224,6 +232,7 @@ function countFlagsData(data){
   if(room){
   let players = Object.keys(room.sockets).length
   let flags =  data[0]
+  let user =  data[2]
   console.log("flagdata", room)
 console.log("flagusers", data[1], data[0])
   if (players == flags && players > 1){
@@ -251,7 +260,7 @@ if (s == null){
 startv--
     console.log("astartv", startv)
     console.log("gameuser", gameuser[startv].socketId, gameuser[startv] )
-    io.to(gameuser[startv].socketId).emit('startVote');
+    io.to(gameuser[startv].socketId).emit('startVote', user);
 // userCount = 0
 gameuser = ""
 }else{
@@ -281,26 +290,18 @@ function newJoinFlagDataHandle(cards){
 function newJoinFlagHandle(){
   console.log("newJoinFlagHandle", flagState)
 console.log('call')
-codeStr = flagState
-console.log("codeStr", flagState)
-    if(flagState[0] != null){
+// codeStr = flagState
+// console.log("codeStr", flagState)
+    // if(flagState[0] != null){
 
       client.emit('newFlagData', flagState)
-    }else if (flagState != null){
-      // codeStr = String(flagState.room[0].code[0].code.code)
-      console.log("flagState != null")
-      // client.emit('subFlagData', flagState)
-    }
+    // }else if (flagState != null){
+    //   // codeStr = String(flagState.room[0].code[0].code.code)
+    //   console.log("flagState != null")
+    //   // client.emit('subFlagData', flagState)
+    // }
 }
-      // client.emit('newFlagData', );
 
-  //   let flagq =  flagState
-  //   console.log("flagState1", flagq)
-  //   client.emit('newFlagData', flagq);
-  //   // io.to(flagq.room[0].code).emit('subFlagData', flagq);
-  // }else{
-  //   client.emit('newFlagData');
-  // }
 
 
 function FlagCardsHandle(data){
