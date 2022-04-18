@@ -385,7 +385,7 @@ $('.public-flags').show()
 $('.perk1').html(perk1.innerText)
 $('.perk2').html(perk2.innerText)
             
-let timer = 1
+let timer = 12
 numCards = $('.game-place .flags .card-section').length
 let RandCard = Math.floor(Math.random() * numCards) + 1
 startTimer(timer);
