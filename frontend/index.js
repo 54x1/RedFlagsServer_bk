@@ -403,69 +403,10 @@ function colorCountCards(RandCard){
           $('.game-place .flags .card-section:nth-child(4)').css({'background-color':"#dae0e5", "color": "rgb(200, 35, 51)"})
           
             
-<<<<<<< HEAD
 let timer = 12
 numCards = $('.game-place .flags .card-section').length
 let RandCard = Math.floor(Math.random() * numCards) + 1
 startTimer(timer);
-=======
-        }else if (i !== 2){
-          $('.game-place .flags .card-section:nth-child(4)').css({'background-color':"white", "color": "black", "border": "3px solid #c82333"})
-     
-          // console.log('here')
-         
-       
-        }
-
-   }, i*100)
-         setTimeout(function(){
-        console.log(i)
-
-        $('.game-place .flags .card-section:nth-child('+(i+1)+')').css({'background-color':"#dae0e5", "color": "rgb(200, 35, 51)", "border": "3px solid #dae0e5"})
-
-        $('.game-place .flags .card-section:nth-child('+(--i+1)+')').css({'background-color':"white", "color": "black", "border": "3px solid #dae0e5"})
-        if (i === 2){
-          $('.game-place .flags .card-section:nth-child(4)').css({'background-color':"#dae0e5", "color": "rgb(200, 35, 51)", "border": "3px solid #dae0e5"})
-          
-            
-        }else if (i !== 2){
-          $('.game-place .flags .card-section:nth-child(4)').css({'background-color':"white", "color": "black", "border": "3px solid #dae0e5"})
-     
-          // console.log('here')
-         
-       
-        }
-
-   }, 400+i*100)
-//    console.log('iii',colorCountCardsTimer*i*2)
-   setTimeout(function(){
-    $('.game-place .flags .card-section').css({'background-color':"#dae0e5", "color": "rgb(200, 35, 51)", "border": "3px solid #dae0e5"})
-}, 800)
-
-setTimeout(function(){
-  $('.game-place .flags .card-section').css({'background-color':"white", "rgb(200, 35, 51)": "black", "border": "3px solid #dae0e5"})
-}, 1000)
-setTimeout(function(){
-  $('.game-place .flags .card-section').css({'background-color':"#dae0e5", "color": "rgb(200, 35, 51)", "border": "3px solid #dae0e5"})
-}, 1200)
-
-setTimeout(function(){
-$('.game-place .flags .card-section').css({'background-color':"white", "color": "black", "border": "3px solid #dae0e5"})
-},1400)
-
-  setTimeout(function(){
-   
-  $('.game-place .flags .card-section:nth-child('+RandCard+')').css({'background-color':"rgb(200, 35, 51)", "color": "white", "border": "3px solid #dae0e5"})
-
-    }, 1600)
-
-  })
-
-
-
-}
-
->>>>>>> d708943c55c1c6b7bf1daf53925cf3654431b366
 function startTimer(duration) {
   let count = 0
   let timer = duration
