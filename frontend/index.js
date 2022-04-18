@@ -9,6 +9,7 @@ let socketId
 let d = []
 let da = []
 let voting = false
+let selected = false
 const gameScreen = document.getElementById('gameScreen');
 const initialScreen = document.getElementById('initialScreen');
 const loginSection = document.getElementById('login-section');
@@ -62,6 +63,7 @@ socket.on("userJoined", userJoinedData)
 socket.on("userJoinedDisplay", userJoinedDisplay)
 socket.on('leaderboardDisplayData', leaderboardDisplayData)
 socket.on('subFlagDataRandom', subFlagDataRandom)
+socket.on('chooseWinnerDisplay', chooseWinnerDisplay)
 socket.on("testff", testff)
 
 function testff(data){
@@ -74,10 +76,18 @@ $("#sign").css( {"cursor":"not-allowed"});
 $('#sign').html('<i class="text-secondary far fa-plus-square"></i>')
 }
 
+
+
+function chooseWinnerDisplay(data){
+console.log("datazzz",  data)
+$('.public-flags .text-danger').html("'"+data+"'" + " is choosing FLAG")
+}
+
+
 function subFlagDataRandom(data){
  console.log("called2",  $(".user span").html())
   console.log('subFlagDataRandomzzz', data)
-console.log('cards', $('.public-card-section .card-section').html())
+// console.log('cards', $('.public-card-section .card-section').html())
 // if (data.length == null || data.length == 0){
   da.push(data)
     da.filter(cc => cc.room[0].code[0].code.code === gameCodeDisplay.innerText && cc.room[0].code[1].cards.cards !== $('.public-flags .card-section').html()).map(
@@ -97,7 +107,6 @@ console.log('cards', $('.public-card-section .card-section').html())
       
       data = {room:[{code},{cards},{user}, {socketId}]}
         console.log('dataz', data)
-      // socket.emit('subFlagCard', data)
       $("#sign").bind('click', function(){ return false; });
       $("#sign").css( {"cursor":"not-allowed"});  
       $('#sign').html('<i class="text-secondary far fa-plus-square"></i>')
@@ -230,13 +239,14 @@ $(this).remove()
 $('#new-red-flags-next-game').remove()
 })
 
-function startVoteData(voting){
+function startVoteData(){
   console.log("voting time")
+  socket.emit('chooseWinner', [$(".user span").html(), gameCodeDisplay.innerText])
 $('.public-flags .card-section').css({"background-color":"#c82333", "color":"white"})
-  $('.public-flags .text-danger').html("Choose the winning FLAG")
+  $('.public-flags .text-danger').html("Choose the winner FLAG")
 $(document).on('click', '.public-flags .card-section', function() {
   if( $(this).css('background-color') == 'rgb(200, 35, 51)') {
-  remCard =  [$(this).html(), gameCodeDisplay.innerText, displayUser]
+  remCard =  [$(this).html(), gameCodeDisplay.innerText]
 text = "Winner FLAG"
   socket.emit('removeCard', remCard, text )
 $('.public-flags .card-section').css({"background-color":"white", "color":"black"})
@@ -309,6 +319,7 @@ displayUser = data.username.name
 socket.emit('player', displayUser, gameCodeDisplay.innerText)
 }
 function newFlagData(data){
+  // $('.public-flags').show()
   console.log('vvote', voting)
   let us =  $(".user span").html()
   console.log("called1",  $(".user span").html())
@@ -323,9 +334,10 @@ function newFlagData(data){
   }
 }
 function subFlagData(data){
+
   console.log("called2",  $(".user span").html())
   console.log('subFlagDataz', data)
-console.log('cards', $('.card-section').html())
+// console.log('cards', $('.card-section').html())
 // if (data.length == null || data.length == 0){
   da.push(data)
     da.filter(cc => cc.room[0].code[0].code.code === gameCodeDisplay.innerText && cc.room[0].code[1].cards.cards !== $('.public-flags .card-section').html()).map(
@@ -377,22 +389,89 @@ $('.leaderboard-section .fa-times').click(function (){
   $('.game-container').show()
 })
 
-  
-$(document).on('click', '.fa-plus-square', function() {
-$('.game-container').hide()
-$('.flag-section').show()
-$('.public-flags').show()
-$('.perk1').html(perk1.innerText)
-$('.perk2').html(perk2.innerText)
+function colorCountCards(RandCard){
+  $('.game-place .flags .card-section').each(function (i){
+    // let numCards = $('.game-place .flags .card-section').length
+    // let RandCard = Math.floor(Math.random() * numCards) + 1
+      setTimeout(function(){
+        console.log(i)
+
+        $('.game-place .flags .card-section:nth-child('+(i+1)+')').css({'background-color':"#dae0e5", "color": "rgb(200, 35, 51)"})
+
+        $('.game-place .flags .card-section:nth-child('+(--i+1)+')').css({'background-color':"white", "color": "black", "border": "3px solid #c82333"})
+        if (i === 2){
+          $('.game-place .flags .card-section:nth-child(4)').css({'background-color':"#dae0e5", "color": "rgb(200, 35, 51)"})
+          
             
+<<<<<<< HEAD
 let timer = 12
 numCards = $('.game-place .flags .card-section').length
 let RandCard = Math.floor(Math.random() * numCards) + 1
 startTimer(timer);
+=======
+        }else if (i !== 2){
+          $('.game-place .flags .card-section:nth-child(4)').css({'background-color':"white", "color": "black", "border": "3px solid #c82333"})
+     
+          // console.log('here')
+         
+       
+        }
+
+   }, i*100)
+         setTimeout(function(){
+        console.log(i)
+
+        $('.game-place .flags .card-section:nth-child('+(i+1)+')').css({'background-color':"#dae0e5", "color": "rgb(200, 35, 51)", "border": "3px solid #dae0e5"})
+
+        $('.game-place .flags .card-section:nth-child('+(--i+1)+')').css({'background-color':"white", "color": "black", "border": "3px solid #dae0e5"})
+        if (i === 2){
+          $('.game-place .flags .card-section:nth-child(4)').css({'background-color':"#dae0e5", "color": "rgb(200, 35, 51)", "border": "3px solid #dae0e5"})
+          
+            
+        }else if (i !== 2){
+          $('.game-place .flags .card-section:nth-child(4)').css({'background-color':"white", "color": "black", "border": "3px solid #dae0e5"})
+     
+          // console.log('here')
+         
+       
+        }
+
+   }, 400+i*100)
+//    console.log('iii',colorCountCardsTimer*i*2)
+   setTimeout(function(){
+    $('.game-place .flags .card-section').css({'background-color':"#dae0e5", "color": "rgb(200, 35, 51)", "border": "3px solid #dae0e5"})
+}, 800)
+
+setTimeout(function(){
+  $('.game-place .flags .card-section').css({'background-color':"white", "rgb(200, 35, 51)": "black", "border": "3px solid #dae0e5"})
+}, 1000)
+setTimeout(function(){
+  $('.game-place .flags .card-section').css({'background-color':"#dae0e5", "color": "rgb(200, 35, 51)", "border": "3px solid #dae0e5"})
+}, 1200)
+
+setTimeout(function(){
+$('.game-place .flags .card-section').css({'background-color':"white", "color": "black", "border": "3px solid #dae0e5"})
+},1400)
+
+  setTimeout(function(){
+   
+  $('.game-place .flags .card-section:nth-child('+RandCard+')').css({'background-color':"rgb(200, 35, 51)", "color": "white", "border": "3px solid #dae0e5"})
+
+    }, 1600)
+
+  })
+
+
+
+}
+
+>>>>>>> d708943c55c1c6b7bf1daf53925cf3654431b366
 function startTimer(duration) {
   let count = 0
-  timer = duration
+  let timer = duration
   let minutes, seconds;
+    let numCards = $('.game-place .flags .card-section').length
+    let RandCard = Math.floor(Math.random() * numCards) + 1
 
     let setTime = setInterval(function () {
 
@@ -404,88 +483,18 @@ function startTimer(duration) {
 
          $('.time').text("Select a Red Flag "+minutes + ":" + seconds);
         
-        if (timer-- < 1) {
+        if (timer-- < 1 && selected === false) {
             // alert('here < 1')
-            timer = 0
+            // timer = 0
             $('.time').text("Waiting for others");
             $(".flags .card-section").bind('click', function(){ return false; });
-$("#sign").css( {"cursor":"not-allowed"});  
+$(".flags .card-section").css( {"cursor":"not-allowed"});  
             clearInterval(setTime)
+            colorCountCards(RandCard)
+   }
 
-
-            console.log(RandCard)
-           let colorCountCardsTimer = 150
-           setTimeout(function(){
-            colorCountCards()
-           }, 700)
-           setTimeout(function(){
-            colorCountCards()
-          },1300);
-          setTimeout(function(){
-            colorCountCards()
-
-          },1900);
-          setTimeout(function(){
-
-              $('.game-place .flags .card-section').css({'background-color':"rgb(200, 35, 51)", "color": "white"})
-
-        }, 2600);
-        setTimeout(function(){
-          // console.log('2')
-          $('.game-place .flags .card-section').css({'background-color':"white", "color": "black", "border": "3px solid #c82333"})
-
-        
-   
-   }, 2800);
-      setTimeout(function(){
-        // console.log('3')
-        $('.game-place .flags .card-section').css({'background-color':"rgb(200, 35, 51)", "color": "white"})
-
-
-    }, 3000);
-    setTimeout(function(){
-      // console.log('4')
-
-      $('.game-place .flags .card-section').css({'background-color':"white", "color": "black", "border": "3px solid #c82333"})
-  
-  }, 3200);
-
-  setTimeout(function(){
-    // console.log('4')
-
-    $('.game-place .flags .card-section:nth-child('+RandCard+')').css({'background-color':"rgb(200, 35, 51)", "color": "white"})
-}, 3400);
-function colorCountCards(){
-  $('.game-place .flags .card-section').each(function (i){
-      setTimeout(function(){
-        // console.log(i)
-
-        $('.game-place .flags .card-section:nth-child('+(i+1)+')').css({'background-color':"rgb(200, 35, 51)", "color": "white"})
-
-        $('.game-place .flags .card-section:nth-child('+(--i+1)+')').css({'background-color':"white", "color": "black", "border": "3px solid #c82333"})
-        if (i === 2){
-          $('.game-place .flags .card-section:nth-child(4)').css({'background-color':"rgb(200, 35, 51)", "color": "white"})
-          
-            
-        }else if (i !== 2){
-          $('.game-place .flags .card-section:nth-child(4)').css({'background-color':"white", "color": "black", "border": "3px solid #c82333"})
-     
-          // console.log('here')
+        if (timer === 8 && count === 0 && selected === false){
          
-       
-        }
-
-   }, colorCountCardsTimer*i);
-
-  })
-
-}
-
-
-
-        }
-        
-        if (timer === 8 && count === 0){
           if (confirm('More Time?') == true) {      
           timer = 20;
           count++
@@ -493,31 +502,48 @@ function colorCountCards(){
             console.log('no extra time')
           }
         }
-        if (timer === 0){
-          setTimeout(function(){
+
+
+
+        if (timer === 0 && selected === false){
+          let numCards = $('.game-place .flags .card-section').length
+          let RandCard = Math.floor(Math.random() * numCards) + 1
+          console.log('timer', timer)
           let Rcards = $('.game-place .flags .card-section:nth-child('+RandCard+')').text()
-let cards = Rcards
-let code = gameCodeDisplay.innerText
-let user = $(".user span").html()
-socket.emit('RandomCard', {room:[{code},{cards},{user}, {socketId}]})
-
-data = {room:[{code},{Rcards},{user}, {socketId}]}
-  console.log('dataz', data)
-        
-      }, 5000);
-    }
-
+          let cards = Rcards
+          let code = gameCodeDisplay.innerText
+          let user = $(".user span").html()
+          setTimeout(function(){
+          socket.emit('RandomCard', {room:[{code},{cards},{user}, {socketId}]})
+          
+          data = {room:[{code},{cards},{user}, {socketId}]}
+            console.log('dataRandz', data)
+          }, 3000)
+        }
  
         
     }, 1000);
 
+
  
 }
+  
+$(document).on('click', '.fa-plus-square', function() {
+$('.game-container').hide()
+$('.flag-section').show()
+$('.public-flags').show()
+$('.perk1').html(perk1.innerText)
+$('.perk2').html(perk2.innerText)
+selected = false
+let time = 1
+startTimer(time);
 
 })
 
 $(document).on('click', '.flags .card-section', function() {
   if (confirm('Submit this FLAG?') == true) {
+     selected = true;
+     console.log("selected", selected)
     $('.game-container').show()
 $('.flag-section').hide()
 cards = $(this).text()
@@ -674,7 +700,7 @@ $(loginGameBtn).on('click', function(){
 $(joinGameBtn).on('click', function(){
   const code = gameCodeInput.value;
 socket.emit('joinGame', code);
-$('.public-flags').show()
+
 let us =  $(".user span").html()
 console.log('the d', d)
 // && cc[i][2].user.user !== us
