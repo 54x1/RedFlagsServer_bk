@@ -21,7 +21,8 @@ let io = socketIO(server);
 const users = {}
 
 let pp
-let flagState = [];
+let flagState = []
+let flagStateRand = []
 let pperkss;
 let gameData = []
 let game = []
@@ -73,8 +74,8 @@ if (data != null){
     let user = data.room[2]
     let socketId = data.room[3]
 // push data to global list 
-  flagState.push([{code},{cards},{user},{socketId}])
-  console.log("flagStatepushRand",  flagState)
+  flagStateRand.push([{code},{cards},{user},{socketId}])
+  console.log("flagStatepushRand",  flagStateRand)
   codeStr = String(Object.values(code))
   console.log("codeStrRand", codeStr)
   client.emit('subFlagDataRandom', {room:[{code:[{code},{cards},{user}, {socketId}]}]})
@@ -293,8 +294,13 @@ console.log('call')
 // codeStr = flagState
 // console.log("codeStr", flagState)
     // if(flagState[0] != null){
-
+if (flagState){
       client.emit('newFlagData', flagState)
+}
+else{
+  client.emit('newFlagData', flagStateRand)
+}
+     
     // }else if (flagState != null){
     //   // codeStr = String(flagState.room[0].code[0].code.code)
     //   console.log("flagState != null")

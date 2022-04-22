@@ -8,6 +8,7 @@ let displayUser;
 let socketId
 let d = []
 let da = []
+let pubFlags = []
 let voting = false
 let selected = false
 const gameScreen = document.getElementById('gameScreen');
@@ -29,7 +30,7 @@ $('.loginForm').submit(function(e){
   e.preventDefault()
 })
 
-$('.public-flags').hide()
+// $('.public-flags').hide()
 
 socket.on('socketio', socketio)
 
@@ -80,7 +81,7 @@ $('#sign').html('<i class="text-secondary far fa-plus-square"></i>')
 
 function chooseWinnerDisplay(data){
 console.log("datazzz",  data)
-$('.public-flags .text-danger').html("'"+data+"'" + " is choosing FLAG")
+$('.public-flags .text-danger').html("'"+data+"'" + " is choosing the winner FLAG")
 }
 
 
@@ -323,12 +324,12 @@ function newFlagData(data){
   console.log('vvote', voting)
   let us =  $(".user span").html()
   console.log("called1",  $(".user span").html())
-  console.log('newFlagData', data)
+  console.log('newFlagData', [...new Set(data)])
   d.push(data)
   
   for (let i=0; i< data.length; i++){
     // console.log('here', d.length, data.length)
-  d.filter(cc =>  cc[i][0].code.code === gameCodeDisplay.innerText  && cc[i][2].user.user !== us).map(
+    [...new Set(d)].filter(cc =>  cc[i][0].code.code === gameCodeDisplay.innerText  && cc[i][2].user.user !== us).map(
     m =>   $('.public-flags').append("<div class='card-section text-center'>"+m[i][1].cards.cards+"</div>")
     )
   }
@@ -336,13 +337,19 @@ function newFlagData(data){
 function subFlagData(data){
 
   console.log("called2",  $(".user span").html())
-  console.log('subFlagDataz', data)
+
+
+  $('.public-flags').show()
 // console.log('cards', $('.card-section').html())
 // if (data.length == null || data.length == 0){
   da.push(data)
-    da.filter(cc => cc.room[0].code[0].code.code === gameCodeDisplay.innerText && cc.room[0].code[1].cards.cards !== $('.public-flags .card-section').html()).map(
+
+  pubFlags.push($('.public-flags .card-section').text())
+  newDa = [...new Set(da)]
+  newDa.filter(cc => cc.room[0].code[0].code.code === gameCodeDisplay.innerText && pubFlags.filter(vv => cc.room[0].code[1].cards.cards !== vv)).map(
       m =>   $('.public-flags').append("<div class='card-section text-center'>"+m.room[0].code[1].cards.cards+"</div>")
       )
+      console.log('subFlagDataz', newDa)
 
 
 
@@ -476,9 +483,7 @@ function startTimer(duration) {
 
          $('.time').text("Select a Red Flag "+minutes + ":" + seconds);
         
-        if (timer-- < 1 && selected === false) {
-            // alert('here < 1')
-            // timer = 0
+        if (--timer === -1 && selected === false) {
             $('.time').text("Waiting for others");
             $(".flags .card-section").bind('click', function(){ return false; });
 $(".flags .card-section").css( {"cursor":"not-allowed"});  
@@ -498,7 +503,7 @@ $(".flags .card-section").css( {"cursor":"not-allowed"});
 
 
 
-        if (timer === 0 && selected === false){
+        if (timer === -1 && selected === false){
           let numCards = $('.game-place .flags .card-section').length
           let RandCard = Math.floor(Math.random() * numCards) + 1
           console.log('timer', timer)
@@ -516,9 +521,6 @@ $(".flags .card-section").css( {"cursor":"not-allowed"});
  
         
     }, 1000);
-
-
- 
 }
   
 $(document).on('click', '.fa-plus-square', function() {
@@ -527,15 +529,16 @@ $('.flag-section').show()
 $('.public-flags').show()
 $('.perk1').html(perk1.innerText)
 $('.perk2').html(perk2.innerText)
-selected = false
-let time = 1
-startTimer(time);
 
+
+let time = 5
+startTimer(time);
 })
 
 $(document).on('click', '.flags .card-section', function() {
+
   if (confirm('Submit this FLAG?') == true) {
-     selected = true;
+    selected = true
      console.log("selected", selected)
     $('.game-container').show()
 $('.flag-section').hide()
