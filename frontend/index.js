@@ -50,6 +50,7 @@ socket.on('ppperks', handlePPerks);
 // socket.on('tooManyPlayers', handleTooManyPlayers);
 // socket.on('flagData', flagData);
 socket.on('subFlagData', subFlagData);
+socket.on('subFlagDataSelf', subFlagDataSelf)
 // socket.on("unknownData", unknownData)
 // // socket.on("flagStateData", subFlagData)
  socket.on("newFlagData", newFlagData)
@@ -338,10 +339,9 @@ socket.emit('player', displayUser, gameCodeDisplay.innerText)
 	}
 }
 
-
-function subFlagData(data){
- $('.public-flags').html("")
-	console.log("called2",  $(".user span").html())
+function subFlagDataSelf(data){
+$('.public-flags').html("")
+	console.log("called3",  $(".user span").html())
 
 
 	$('.public-flags').show()
@@ -351,9 +351,43 @@ function subFlagData(data){
   newDa.filter(cc => cc.room[0].code[0].code.code === gameCodeDisplay.innerText && pubFlags.filter(vv => cc.room[0].code[1].cards.cards !== vv)).map(
       m =>   $('.public-flags').append("<div class='card-section text-center'>"+m.room[0].code[1].cards.cards+"</div>")
       )
+      console.log('subFlagDatazself', da)
+      console.log('subFlagDatazselfd', d)
+	  console.log('zz', pubFlags.filter(vv => console.log('vv', vv)))
+		ne  = [...new Set(d)]
+console.log('ne', ne)
+		if (ne[0].length !== 0){
+			
+		
+for (let i=0; i< ne[0].length; i++){
+	ne.filter(cc => cc[0][i].code.code === gameCodeDisplay.innerText  && pubFlags.filter(vv => cc[0][1].cards.cards !== vv)).map(
+      m =>  $('.public-flags').append(  $('.public-flags').append("<div class='card-section text-center'>"+m[0][1].cards.cards+"</div>"))
+      )
+}
+	//    
+		}
+}
+
+function subFlagData(data){
+	console.log("called2",  $(".user span").html())
+
+
+	$('.public-flags').show()
+	da.push(data)
+	$('.public-flags .card-section').each(function (){
+pubFlags.push($(this).text())
+	})
+  
+  newDa = [...new Set(da)]
+  newDa.filter(cc => cc.room[0].code[0].code.code === gameCodeDisplay.innerText && pubFlags.filter(vv => vv)).map(
+      m =>   $('.public-flags').append("<div class='card-section text-center'>"+m.room[0].code[1].cards.cards+"</div>")
+      )
       console.log('subFlagDataz', da)
+	  console.log('subFlagDatazzz', pubFlags)
 
 
+	//m[i][1].cards.cards
+	// cc[i][0].code.code === gameCodeDisplay.innerText  && cc[i][2].user.user !== us
 
 /*
     try{
@@ -700,27 +734,6 @@ $(loginGameBtn).on('click', function(){
 $(joinGameBtn).on('click', function(){
 	const code = gameCodeInput.value;
 socket.emit('joinGame', code);
-
-let us =  $(".user span").html()
-console.log('the d', d)
-// && cc[i][2].user.user !== us
-for (let i=0; i< d.length; i++){
-
-c = d.filter(cc =>  cc[i][0].code.code === gameCodeDisplay.innerText  );
-c.forEach(f => d.splice(d.findIndex(e => e[i][1].cards.cards === f[i][1].cards.cards),1));  
-console.log('cc', c)
-}
-
-	// if($('.public-flags .card-section').length){
-	//   console.log('text', $('.red-flag-section .card-section').html())
-	//   socket.emit('newJoinFlagData', $('.red-flag-section .card-section').html())
-	//   }else{
-		// }
-
-	console.log('un', unknownData())
-	// if (unknownData() == 'True'){
-	// init();
-	// }
 })
 
 function handlePPerks(pperks){
