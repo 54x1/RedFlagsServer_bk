@@ -360,11 +360,16 @@ console.log('ne', ne)
 			
 		
 for (let i=0; i< ne[0].length; i++){
-	ne.filter(cc => cc[0][i].code.code === gameCodeDisplay.innerText  && pubFlags.filter(vv => cc[0][1].cards.cards !== vv)).map(
-      m =>  $('.public-flags').append(  $('.public-flags').append("<div class='card-section text-center'>"+m[0][1].cards.cards+"</div>"))
+	console.log('FUNZ', ne.filter(cc => cc[i][1].cards.cards))
+	ne.filter(cc => cc[i][0].code.code === gameCodeDisplay.innerText && cc[i][1].cards.cards !== newDa.filter(cc => cc.room[0].code[1].cards.cards)).map( m =>
+      $('.public-flags').append("<div class='card-section text-center'>"+m[0][1].cards.cards+"</div>")
       )
 }
-	//    
+/*
+	ne.filter(cc => cc[0][i].code.code === gameCodeDisplay.innerText).map(
+      m =>  $('.public-flags').append("<div class='card-section text-center'>"+m[0][1].cards.cards+"</div>")
+      )
+	  */
 		}
 }
 
@@ -379,11 +384,14 @@ pubFlags.push($(this).text())
 	})
   
   newDa = [...new Set(da)]
+
   newDa.filter(cc => cc.room[0].code[0].code.code === gameCodeDisplay.innerText && pubFlags.filter(vv => vv)).map(
       m =>   $('.public-flags').append("<div class='card-section text-center'>"+m.room[0].code[1].cards.cards+"</div>")
       )
-      console.log('subFlagDataz', da)
+      console.log('subFlagDataz', newDa.filter(cc => cc.room[0].code[0].code.code === gameCodeDisplay.innerText && cc.room[0].code[1].cards.cards !== pubFlags.filter(vv => vv)))
 	  console.log('subFlagDatazzz', pubFlags)
+	  socket
+	  console.log('zzzz',  newDa)
 
 
 	//m[i][1].cards.cards
