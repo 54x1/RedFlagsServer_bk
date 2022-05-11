@@ -322,7 +322,7 @@ function FlagCardsHandle(data){
     codeStr = String(Object.values(code))
     console.log("codeStr", codeStr)
      client.emit('subFlagData', {room:[{code:[{code},{cards},{user}, {socketId}]}]})
-    client.broadcast.to(codeStr).emit('subFlagDataSelf', {room:[{code:[{code},{cards},{user},{socketId}]}]})
+    client.broadcast.to(codeStr).emit('subFlagData', {room:[{code:[{code},{cards},{user},{socketId}]}]})
 }
 }
 // function subFlagCardHandle(data){
