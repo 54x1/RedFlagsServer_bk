@@ -324,7 +324,7 @@ socket.emit('player', displayUser, gameCodeDisplay.innerText)
 
 
  function newFlagData(data){
-	// $('.public-flags').show()
+
 	console.log('vvote', voting)
 	let us =  $(".user span").html()
 	console.log("called1",  us)
@@ -332,6 +332,9 @@ socket.emit('player', displayUser, gameCodeDisplay.innerText)
 	d.push(data)
 	
 	for (let i=0; i< data.length; i++){
+			if ([...new Set(d)].filter(cc =>  cc[i][0].code.code === gameCodeDisplay.innerText).length !== 0){
+		$('.public-flags').css({"display":"flex"})
+	}
 		// console.log('here', d.length, data.length)
 		[...new Set(d)].filter(cc =>  cc[i][0].code.code === gameCodeDisplay.innerText  && cc[i][2].user.user !== us).map(
 		m =>   $('.public-flags').append("<div class='card-section text-center'>"+m[i][1].cards.cards+"</div>")
@@ -343,7 +346,7 @@ function subFlagDataSelf(data){
 	console.log("called3",  $(".user span").html())
 
 
-	$('.public-flags').show()
+	
 	da.push(data)
 	$('.public-flags .card-section').each(function (){
 pubFlags.push($(this).text())
@@ -374,7 +377,7 @@ function subFlagData(data){
 	console.log("called2",  $(".user span").html())
 
 
-	$('.public-flags').show()
+	$('.public-flags').css({"display":"flex"})
 	da.push(data)
 	$('.public-flags .card-section').each(function (){
 pubFlags.push($(this).text())
@@ -544,7 +547,7 @@ $(".flags .card-section").css( {"cursor":"not-allowed"});
 $(document).on('click', '.fa-plus-square', function() {
 $('.game-container').hide()
 $('.flag-section').show()
-$('.public-flags').show()
+$('.public-flags').css({"display":"flex"})
 $('.perk1').html(perk1.innerText)
 $('.perk2').html(perk2.innerText)
 
