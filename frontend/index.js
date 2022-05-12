@@ -61,8 +61,8 @@ socket.on("removeCard", removeCard)
 socket.on("newFlagCard", newFlagCard)
 // socket.on("playerdc", playerdc)
 // socket.on("removeCard", removeCardData)
-// socket.on("userJoined", userJoinedData)
-// socket.on("userJoinedDisplay", userJoinedDisplay)
+socket.on("userJoined", userJoinedData)
+socket.on("userJoinedDisplay", userJoinedDisplay)
 // socket.on('leaderboardDisplayData', leaderboardDisplayData)
 // socket.on('subFlagDataRandom', subFlagDataRandom)
 socket.on('chooseWinnerDisplay', chooseWinnerDisplay)
@@ -132,37 +132,37 @@ function subFlagDataRandom(data){
 // 	$('.leaderboard-section ol').append("<li><mark>"+data+"</mark><small>0</small></li>") 
 	
 // }
-// function userJoinedDisplay(data){
+function userJoinedDisplay(data){
  
-// 	$('.alert').fadeIn()
+	$('.alert').fadeIn()
 
 
-// 	$('.alert').append( "<div class='alert-success' role='alert'>"+data+" has joined</div>") 
-// 	$('.leaderboard-section ol').append("<li><mark>"+data+"</mark><small>0</small></li>") 
-// 	console.log("userJoinedDisplay", data)
-// 	$('.leaderboard-section li mark').each(function (){
+	$('.alert').append( "<div class='alert-success' role='alert'>"+data+" has joined</div>") 
+	$('.leaderboard-section ol').append("<li><mark>"+data+"</mark><small>0</small></li>") 
+	console.log("userJoinedDisplay", data)
+	$('.leaderboard-section li mark').each(function (){
 
-// let user = $(this).text()
-// let code = gameCodeDisplay.innerText
-// let room = {room:[{code}, {user}]}
-// 		socket.emit("leaderboard",room)
+let user = $(this).text()
+let code = gameCodeDisplay.innerText
+let room = {room:[{code}, {user}]}
+		socket.emit("leaderboard",room)
 
-// 	})
-// 	user = ""
-// 	room = ""
+	})
+	user = ""
+	room = ""
 
-// 	$(".alert-success").fadeTo(1300, 300).slideUp(300, function(){
-// 		$(".alert-success").slideUp(300);
-// });
-// }
+	$(".alert-success").fadeTo(1300, 300).slideUp(300, function(){
+		$(".alert-success").slideUp(300);
+});
+}
 
-// function userJoinedData(data){
-// 	let d = []
-// 	d.push(data)
-// 	console.log("userJoinedData", d)
-// 	$('.leaderboard-section ol').append("<li><mark><b>"+data+"</b></mark><small>0</small></li>")
+function userJoinedData(data){
+	let d = []
+	d.push(data)
+	console.log("userJoinedData", d)
+	$('.leaderboard-section ol').append("<li><mark><b>"+data+"</b></mark><small>0</small></li>")
 
-// }
+}
 
 $(document).on('click', '.fa-trophy', function() {
 	$('.game-container').hide()
@@ -258,7 +258,7 @@ text = "Winner FLAG"
 	socket.emit('removeCard', remCard, text )
 $('.public-flags .card-section').css({"background-color":"white", "color":"black"})
 $('.public-flags .text-danger').html("Winner FLAG")
-$('#gameScreen .col-centered').append('<div id="new-red-flags-next-game" class="btn btn-danger"><span class="title">Next Round</span><i class="bottom-right fas fa-arrow-right"></i></div>')
+$('#gameScreen .red-flag-row').append('<div id="new-red-flags-next-game" class="btn btn-danger"><span class="title">Next Round</span><i class="bottom-right fas fa-arrow-right"></i></div>')
 	}
 })
 voting = true
