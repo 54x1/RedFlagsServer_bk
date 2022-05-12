@@ -200,7 +200,7 @@ function handleNewGame() {
 }
 
 function removeCardHandle(data, text){
-  client.emit('removeCard', data)
+  // client.emit('removeCardSelf', data)
   client.broadcast.to(data[1]).emit('removeCard', data, text)
 }
 
