@@ -66,23 +66,26 @@ socket.on("newFlagCard", newFlagCard)
 // socket.on('leaderboardDisplayData', leaderboardDisplayData)
 // socket.on('subFlagDataRandom', subFlagDataRandom)
 socket.on('chooseWinnerDisplay', chooseWinnerDisplay)
+socket.on('isVotingData', isVotingData)
 // socket.on("testff", testff)
 
 function testff(data){
 console.log("datatestff", data)
 }
 
-// if (voting === true){
-//   $("#sign").bind('click', function(){ return false; });
-// $("#sign").css( {"cursor":"not-allowed"});  
-// $('#sign').html('<i class="text-secondary far fa-plus-square"></i>')
-// }
+
 
 
 
 function chooseWinnerDisplay(data){
 console.log("datazzz",  data)
 $('.public-flags .text-danger').html("'"+data+"'" + " is choosing the winner FLAG")
+}
+
+function isVotingData(data){
+	voting = data
+	console.log('isVotingData', voting)
+
 }
 
 
@@ -258,7 +261,8 @@ $('.public-flags .text-danger').html("Winner FLAG")
 $('#gameScreen .col-centered').append('<div id="new-red-flags-next-game" class="btn btn-danger"><span class="title">Next Round</span><i class="bottom-right fas fa-arrow-right"></i></div>')
 	}
 })
-voting === true;
+voting = true
+socket.emit('isVoting', voting, gameCodeDisplay.innerText)
 }
 
 usernameGen()
@@ -323,8 +327,17 @@ socket.emit('player', displayUser, gameCodeDisplay.innerText)
 // }
 
 
- function newFlagData(data){
-
+ function newFlagData(data, voting){
+	if (voting){
+console.lof('votin',voting)
+  $("#sign").bind('click', function(){ return false; });
+$("#sign").css( {"cursor":"not-allowed"});  
+$('#sign').html('<i class="text-secondary far fa-plus-square"></i>')
+	}
+	else{
+		$("#sign").unbind('click');
+$("#sign").css( {"cursor":"pointer"});
+	}
 	console.log('vvote', voting)
 	let us =  $(".user span").html()
 	console.log("called1",  us)

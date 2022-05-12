@@ -58,10 +58,14 @@ client.on("voting", votingHandle)
 client.on("leaderboard", leaderboardData)
 client.on('RandomCard', RandomCardData)
 client.on('chooseWinner', chooseWinnerData )
+client.on('isVoting', isVotingData)
 
+function isVotingData(data, code){
+  client.emit('isVotingData', data)
+  client.broadcast.to(code).emit('isVotingData', data)
+}
 function chooseWinnerData(data){
   console.log(data)
-  // client.s('chooseWinnerDisplay', data)
   client.broadcast.to(data[1]).emit('chooseWinnerDisplay', data[0])
 }
 
