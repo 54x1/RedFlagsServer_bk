@@ -32,7 +32,7 @@
 
     #sign .fa-plus-square {
       cursor: pointer;
-      font-size: 3em;
+      font-size: 8em;
     }
 
     .red-flag-row{
@@ -40,7 +40,6 @@
     }
     .vcenter,
     .game-section,
-    .red-flag-section,
     .card-section,
     .public-flags {
 
@@ -63,8 +62,7 @@
       flex: 1 1 100%;
     }
 
-    .game-section,
-    .red-flag-section {
+    .game-section {
       width: calc(50% - 0.75em);
       height: auto;
 
@@ -87,8 +85,9 @@
     }
 
     .red-flag-section {
-      margin: 12px auto;
-      height: 130px;
+      margin: 0 auto;
+      height: fit-content;
+      padding: 0;
     }
 
     .red-flag-section .card-section {
@@ -315,11 +314,9 @@ margin-left: 1em;
         </div>
         <div class="red-flag-row">
         <div class="red-flag-section text-danger text-center">
-          <p>
-            <p>SELECT</p> RED FLAG
-          </p>
-          <p id="sign">
+          <div id="sign">
             <i class="text-danger far fa-plus-square"></i>
+          </div>
         </div>
       </div>
       </div>
