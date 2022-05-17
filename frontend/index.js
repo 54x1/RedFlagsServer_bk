@@ -65,7 +65,8 @@ socket.on("newFlagCard", newFlagCard)
 socket.on("userJoined", userJoinedData)
 socket.on("userJoinedDisplay", userJoinedDisplay)
 // socket.on('leaderboardDisplayData', leaderboardDisplayData)
-// socket.on('subFlagDataRandom', subFlagDataRandom)
+socket.on('subFlagDataRandom', subFlagDataRandom)
+// socket.on('subFlagDataRand', subFlagDataRandData)
 socket.on('chooseWinnerDisplay', chooseWinnerDisplay)
 socket.on('isVotingData', isVotingData)
 // socket.on("testff", testff)
@@ -95,10 +96,23 @@ function subFlagDataRandom(data){
 	console.log('subFlagDataRandomzzz', data)
 // console.log('cards', $('.public-card-section .card-section').html())
 	da.push(data)
-		da.filter(cc => cc.room[0].code[0].code.code === gameCodeDisplay.innerText && cc.room[0].code[1].cards.cards !== $('.public-flags .card-section').html()).map(
-			m =>   $('.public-flags').append("<div class='card-section text-center'>"+m.room[0].code[1].cards.cards+"</div>")
-			)
-
+		for (let i=0; i< data.length; i++){
+			if ([...new Set(da)].filter(cc =>  cc[i][0].code.code === gameCodeDisplay.innerText).length !== 0){
+		$('.public-flags').css({"display":"flex"})
+	}
+		// console.log('here', d.length, data.length)
+		[...new Set(da)].filter(cc =>  cc[i][0].code.code === gameCodeDisplay.innerText  && cc[i][2].user.user !== us).map(
+		m =>   $('.public-flags').append("<div class='card-section text-center'>"+m[i][1].cards.cards+"</div>")
+		)
+	}
+	// let b = pubFlags.filter(vv => vv) 
+	// $('.public-flags').append(
+	// "<div class='card-section text-center'>"+
+	// 	da.filter(bb => bb.room[0].code[0].code.code === gameCodeDisplay.innerText).filter(
+	// 	bb=> !b.includes(
+	// 		bb.room[0].code[1].cards.cards
+	// 		))[0].room[0].code[1].cards.cards+
+	// "</div>")
 
 
 			$('.game-container').show()
@@ -112,9 +126,7 @@ function subFlagDataRandom(data){
 			
 			data = {room:[{code},{cards},{user}, {socketId}]}
 				console.log('dataz', data)
-			$("#sign").bind('click', function(){ return false; });
-			$("#sign").css( {"cursor":"not-allowed"});  
-			$('#sign').html('<i class="text-secondary far fa-plus-square"></i>')
+		$('#gameScreen .red-flag-row').html("<p class='red-flag-msg'><b>Waiting on others </b></p>")
 					$(this).remove()
 					let countFlags = $('.public-flags .card-section').length + 1
 					console.log("countFlag", countFlags)
@@ -451,7 +463,7 @@ $('.leaderboard-section .fa-times').click(function (){
 })
 
 function colorCountCards(RandCard){
-	/*
+	
 	$('.game-place .flags .card-section').each(function (i){
 		// let numCards = $('.game-place .flags .card-section').length
 		// let RandCard = Math.floor(Math.random() * numCards) + 1
@@ -518,11 +530,11 @@ $('.game-place .flags .card-section').css({'background-color':"white", "color": 
 	})
 
 
-*/
+
 }
 
 function startTimer(duration) {
-	/*
+	
 	let count = 0
 	let timer = duration
 	let minutes, seconds;
@@ -577,7 +589,7 @@ $(".flags .card-section").css( {"cursor":"not-allowed"});
  
 				
 		}, 1000);
-		*/
+		
 }
 	
 $(document).on('click', '.fa-plus-square', function() {
@@ -589,7 +601,7 @@ $('.perk2').html(perk2.innerText)
 
 
 let time = 5
-startTimer(time);
+// startTimer(time);
 })
 
 $(document).on('click', '.flags .card-section', function() {

@@ -56,7 +56,7 @@ client.on("playerDis", playerDis)
 client.on("newRoundClear", newRoundClear)
 client.on("voting", votingHandle)
 client.on("leaderboard", leaderboardData)
-client.on('RandomCard', RandomCardData)
+// client.on('RandomCard', RandomCardData)
 client.on('chooseWinner', chooseWinnerData )
 client.on('isVoting', isVotingData)
 
@@ -327,7 +327,7 @@ function FlagCardsHandle(data){
     console.log("flagStatepush",  flagState[0])
     codeStr = String(Object.values(code))
     console.log("codeStr", codeStr)
-     client.emit('subFlagData', {room:[{code:[{code},{cards},{user}, {socketId}]}]})
+     client.emit('subFlagDataSelf', {room:[{code:[{code},{cards},{user}, {socketId}]}]})
     client.broadcast.to(codeStr).emit('subFlagData', {room:[{code:[{code},{cards},{user},{socketId}]}]})
 }
 }
