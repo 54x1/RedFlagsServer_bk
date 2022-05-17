@@ -61,7 +61,7 @@ socket.on("removeCard", removeCard)
 socket.on("removeCardSelf", removeCardSelf)
 socket.on("newFlagCard", newFlagCard)
 // socket.on("playerdc", playerdc)
-// socket.on("removeCard", removeCardData)
+ socket.on("removeFlag", removeFlagData)
 socket.on("userJoined", userJoinedData)
 socket.on("userJoinedDisplay", userJoinedDisplay)
 // socket.on('leaderboardDisplayData', leaderboardDisplayData)
@@ -171,21 +171,21 @@ $('.leaderboard-section').show()
 })
 
 
-// function removeCardData(data){
+function removeFlagData(data){
 
 
 
-// 	b = da.filter(e => e.room[0].code[0].code.code === gameCodeDisplay.innerText);
-// 	b.forEach(f => da.splice(da.findIndex(e => e.room[0].code[0].code.code === f.room[0].code[0].code.code),1));
+	b = da.filter(e => e.room[0].code[0].code.code === gameCodeDisplay.innerText);
+	b.forEach(f => da.splice(da.findIndex(e => e.room[0].code[0].code.code === f.room[0].code[0].code.code),1));
 
 
 	
  
-// // da.filter(cc => cc.room[0].code[0].code.code === gameCodeDisplay.innerText).remove(cc.room[0].code[1].cards.cards)
-// console.log("rem", data)
-// console.log("da", da)
-// console.log("b", b)
-// }
+// da.filter(cc => cc.room[0].code[0].code.code === gameCodeDisplay.innerText).remove(cc.room[0].code[1].cards.cards)
+console.log("rem", data)
+console.log("da", da)
+console.log("b", b)
+}
 
 // function playerdc(data){
 // 	console.log('pfunc', $('.leaderboard-section mark').text())

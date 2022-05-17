@@ -200,6 +200,8 @@ function handleNewGame() {
 }
 
 function removeCardHandle(data, text){
+  client.emit('removeFlag')
+    client.broadcast.to(data[1]).emit('removeFlag')
   client.emit('removeCardSelf', data, text)
   client.broadcast.to(data[1]).emit('removeCard', data, text)
 }
@@ -429,7 +431,7 @@ d.push(flagState)
 // }
 
 // f[0].room[3].
-client.emit('removeCard')
+client.emit('removeFlag')
 // console.log("res", res)
 
 
