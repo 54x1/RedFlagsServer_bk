@@ -239,7 +239,6 @@ if (d[0].length > 0){
   // da.filter(cc => cc.room[0].code[0].code.code === gameCodeDisplay.innerText).remove(cc.room[0].code[1].cards.cards)
 
   console.log("da", da);
-  console.log("b", b);
 }
 
 function playerdc(data) {
@@ -625,69 +624,96 @@ pubFlags.push($(this).text())
 // 			bb.room[0].code[1].cards.cards
 			// ))[0][0].code[1].cards.cards
 // map( m => $('.public-flags').append("<div class='card-section text-center'>"+m+"</div>")
-$('.public-flags').append(
-	"<div class='card-section text-center'>"
-	+newDa.filter(bb => bb.room[0].code[0].code).filter(bb=> !b.includes(bb.room[0].code[1].cards))[0].room[0].code[1].cards+
-	"</div>")
+   $('.public-flags').append("<div class='card-section text-center'>"+
+ newDa.filter(bb => bb.room[0].code[0].code).filter(bb=> !b.includes(bb.room[0].code[1].cards)).map(m=>m.room[0].code[1].cards)+"</div>")
       console.log('subFlagDatazself', da)
       console.log('subFlagDatazselfd', newDa)
-	  console.log('zz',newDa.filter(bb => bb.room[0].code[0].code).filter(bb=> !b.includes(bb.room[0].code[1].cards))[0].room[0].code[1].cards
+	  console.log('zz', newDa.filter(bb => bb.room[0].code[0].code).filter(bb=> !b.includes(bb.room[0].code[1].cards)).map(m=>m.room[0].code[1].cards)
       )
 }
 
 function subFlagData(data) {
-  console.log("called2", $(".user span").html());
+    console.log("called2", $(".user span").html());
 
-  $(".public-flags").css({ display: "flex" });
-  da.push(data);
-  $(".public-flags .card-section").each(function () {
-    pubFlags.push($(this).text());
-  });
 
-  newDa = [...new Set(da)];
-  let b = pubFlags.filter((vv) => vv);
+	
+	da.push(data)
+	$('.public-flags .card-section').each(function (){
+pubFlags.push($(this).text())
+	})
+  
+  newDa = [...new Set(da)]
+   let b = pubFlags.filter(vv => vv) 
+// newDa.filter(bb => bb.room[0].code[0].code.code === gameCodeDisplay.innerText).filter(
+// 		bb=> !b.includes(
+// 			bb.room[0].code[1].cards.cards
+			// ))[0][0].code[1].cards.cards
+// map( m => $('.public-flags').append("<div class='card-section text-center'>"+m+"</div>")
 
-  // map( m => $('.public-flags').append("<div class='card-section text-center'>"+m+"</div>")
-  $(".public-flags").append(
-    '<div class="card-section text-center">' +
-      newDa
-        .filter(
-          (bb) => bb.room[0].code[0].code.code === gameCodeDisplay.innerText
-        )
-        .filter((bb) => !b.includes(bb.room[0].code[1].cards.cards))[0].room[0].code[1].cards.cards +
-      "</div>"
-  );
+   $('.public-flags').append("<div class='card-section text-center'>"+
+ newDa.filter(bb => bb.room[0].code[0].code).filter(bb=> !b.includes(bb.room[0].code[1].cards)).map(m=>m.room[0].code[1].cards)+"</div>")
+  
 
-  console.log(
-    "nnnn",
-    newDa
-        .filter(
-          (bb) => bb.room[0].code[0].code.code === gameCodeDisplay.innerText
-        )
-        .filter((bb) => !b.includes(bb.room[0].code[1].cards.cards))[0].room[0].code[1].cards.cards
-  );
-
-  console.log(
-    "subFlagDatazx",
-    newDa.filter(
-      (cc) => cc.room[0].code[0].code.code === gameCodeDisplay.innerText
-    )
-  );
-  //   console.log('zzzz',  newDa.filter(cc => cc.room[0].code[1].cards.cards).some(pubFlags.filter(vv => vv)))
-  console.log(
-    "zzzzzx",
-    pubFlags.filter((vv) => vv)
-  );
-
-  console.log(
-    "subFlagDatazzz",
-    newDa
-      .filter(
-        (bb) => bb.room[0].code[0].code.code === gameCodeDisplay.innerText
+// $('.public-flags').append(
+// 	"<div class='card-section text-center'>"
+// 	+newDa.filter(bb => bb.room[0].code[0].code).filter(bb=> !b.includes(bb.room[0].code[1].cards))+
+// 	"</div>")
+      console.log('subFlagDatazselfz', newDa)
+      console.log('subFlagDatazselfdz', b)
+	  console.log('zzz',newDa.filter(bb => bb.room[0].code[0].code).filter(bb=> !b.includes(bb.room[0].code[1].cards)).map(m=>m.room[0].code[1].cards)
       )
-      .filter((bb) => !b.includes(bb.room[0].code[1].cards.cards))[0].room[0]
-      .code[1].cards.cards
-  );
+  // console.log("called2", $(".user span").html());
+
+  // $(".public-flags").css({ display: "flex" });
+  // da.push(data);
+  // $(".public-flags .card-section").each(function () {
+  //   pubFlags.push($(this).text());
+  // });
+
+  // newDa = [...new Set(da)];
+  // let b = pubFlags.filter((vv) => vv);
+
+  // // map( m => $('.public-flags').append("<div class='card-section text-center'>"+m+"</div>")
+  // $(".public-flags").append(
+  //   '<div class="card-section text-center">' +
+  //     newDa
+  //       .filter(
+  //         (bb) => bb.room[0].code[0].code.code === gameCodeDisplay.innerText
+  //       )
+  //       .filter((bb) => !b.includes(bb.room[0].code[1].cards.cards))[0].room[0].code[1].cards.cards +
+  //     "</div>"
+  // );
+
+  // console.log(
+  //   "nnnn",
+  //   newDa
+  //       .filter(
+  //         (bb) => bb.room[0].code[0].code.code === gameCodeDisplay.innerText
+  //       )
+  //       .filter((bb) => !b.includes(bb.room[0].code[1].cards.cards))[0].room[0].code[1].cards.cards
+  // );
+
+  // console.log(
+  //   "subFlagDatazx",
+  //   newDa.filter(
+  //     (cc) => cc.room[0].code[0].code.code === gameCodeDisplay.innerText
+  //   )
+  // );
+  // //   console.log('zzzz',  newDa.filter(cc => cc.room[0].code[1].cards.cards).some(pubFlags.filter(vv => vv)))
+  // console.log(
+  //   "zzzzzx",
+  //   pubFlags.filter((vv) => vv)
+  // );
+
+  // console.log(
+  //   "subFlagDatazzz",
+  //   newDa
+  //     .filter(
+  //       (bb) => bb.room[0].code[0].code.code === gameCodeDisplay.innerText
+  //     )
+  //     .filter((bb) => !b.includes(bb.room[0].code[1].cards.cards))[0].room[0]
+  //     .code[1].cards.cards
+  // );
 }
 
 $(".leaderboard-section .fa-times").click(function () {

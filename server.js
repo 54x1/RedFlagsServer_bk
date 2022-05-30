@@ -363,7 +363,7 @@ function newJoinFlagHandle(){
 function FlagCardsHandle(data){
   console.log("subFlagDataHDCH", data)
   client.emit('testff', data)
-  if (data.room[1].cards != '' ){
+  if (data.room[1].cards !== "" ){
       let code = data.room[0].code
       let cards = data.room[1].cards
       let user = data.room[2].user
@@ -371,8 +371,8 @@ function FlagCardsHandle(data){
 // push data to global list 
     flagState.push([{code},{cards},{user},{socketId}])
     console.log("flagStatepush",  flagState[0])
-    codeStr = String(Object.values(code))
-    console.log("codeStr", codeStr)
+    codeStr = String(code)
+    console.log("codeStrzzz", codeStr)
      client.emit('subFlagDataSelf', {room:[{code:[{code},{cards},{user}, {socketId}]}]})
     client.broadcast.to(codeStr).emit('subFlagData', {room:[{code:[{code},{cards},{user},{socketId}]}]})
 }
