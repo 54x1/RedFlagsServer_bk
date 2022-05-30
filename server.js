@@ -61,10 +61,15 @@ client.on('chooseWinner', chooseWinnerData )
 client.on('isVoting', isVotingData)
 client.on('timer', timerData)
 client.on('newTimer', newTimerData)
+client.on('newRoundClean', newRoundClean)
 
+function newRoundClean(code){
+  flagState
+  client.emit('removeFlag')
+}
 function newTimerData(data){
   console.log("console", rArr, data[0], data[1])
-  client.emit("testff", rArr, data[0], data[1])
+  client.emit("testffz", rArr, data[0], data[1])
 rArr.filter(d => d)
 }
 function isVotingData(data, code){
@@ -138,12 +143,9 @@ function leaderboardData(data){
 }
 function newRoundClear(code){
  
- a = flagState.filter(e => e[0].code.code === code);
- a.forEach(f => flagState.splice(flagState.findIndex(e => e[0].code.code === f[0].code.code ),1));
+  flagState = flagState.filter(e => e[0].code.code !== code)
 
- console.log("theAAA", a, flagState)
-
- console.log("codeaft", flagState, code)
+ console.log("theAAA", flagState, code)
 
 }
 
@@ -211,7 +213,7 @@ console.log("datazzz", data)
 
 
 function handleNewRound(code, d){
-  console.log("d", d)
+  console.log("d", d[0])
   handlePerks()
   console.log("pp", pp)
   client.emit('perks', pp);
@@ -246,8 +248,8 @@ function handleNewGame() {
 
 function removeCardHandle(data, text){
   console.log("removeFlag", data)
-  client.emit('removeFlag', data[0])
-    client.broadcast.to(data[1]).emit('removeFlag', data[0])
+  client.emit('removeFlag', data[1])
+    client.broadcast.to(data[1]).emit('removeFlag', data[1])
   client.emit('removeCardSelf', data, text)
   client.broadcast.to(data[1]).emit('removeCard', data, text)
 }
@@ -478,7 +480,7 @@ d.push(flagState)
 // }
 
 // f[0].room[3].
-client.emit('removeFlag')
+client.emit('removeFlag', displayCode)
 // console.log("res", res)
 
 })
