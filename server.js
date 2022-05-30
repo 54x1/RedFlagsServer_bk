@@ -19,8 +19,8 @@ let server = http.createServer(app);
 let io = socketIO(server);
 
 const users = {}
-
-let pp
+let rArr = []
+let pp;
 let flagState = []
 let flagStateRand = []
 let pperkss;
@@ -52,14 +52,21 @@ client.on('newJoinFlagData', newJoinFlagDataHandle)
 client.on('countFlags', countFlagsData)
 client.on('player', playerData)
 client.on('newRound', handleNewRound)
-client.on("playerDis", playerDis)
+// client.on("playerDis", playerDis)
 client.on("newRoundClear", newRoundClear)
 client.on("voting", votingHandle)
 client.on("leaderboard", leaderboardData)
 // client.on('RandomCard', RandomCardData)
 client.on('chooseWinner', chooseWinnerData )
 client.on('isVoting', isVotingData)
+client.on('timer', timerData)
+client.on('newTimer', newTimerData)
 
+function newTimerData(data){
+  console.log("console", rArr, data[0], data[1])
+  client.emit("testff", rArr, data[0], data[1])
+rArr.filter(d => d)
+}
 function isVotingData(data, code){
   client.emit('isVotingData', data)
   client.broadcast.to(code).emit('isVotingData', data)
@@ -69,16 +76,53 @@ function chooseWinnerData(data){
   client.broadcast.to(data[1]).emit('chooseWinnerDisplay', data[0])
 }
 
+function timerData(data){
+
+    let r = genRandNum(data)
+  // let rr = generateRandomBetween()
+function genRandNum(){
+  let min = 500;
+  let max = 800;
+
+  let rand =  Math.floor(Math.random() * (max - min)) + min;
+  rArr.push({room:[{code:[{data},{rand}]}]})
+    client.emit("randTime", rArr)
+}
+
+
+function generateRandomBetween (min, max, r) {
+
+    let ranNum = Math.floor(Math.random() * (max - min)) + min;
+
+    if (r === ranNum) {
+        ranNum = generateRandomBetween((r+500), (max+500), r);
+    }
+
+    return ranNum;  
+
+}
+
+
+
+
+
+
+
+ 
+console.log("rrr", r)
+
+// client.emit("randTime", r)
+}
 
 function RandomCardData (data){
 console.log("RandomCardData", data)
-if (data != null){
+if (data !== ""){
     let code = data.room[0]
     let cards = data.room[1]
     let user = data.room[2]
     let socketId = data.room[3]
 // push data to global list 
-  flagStateRand.push([{code},{cards},{user},{socketId}])
+  flagStateRand.push({room:[{code:[{code},{cards},{user}, {socketId}]}]})
   console.log("flagStatepushRand",  flagStateRand)
   codeStr = String(Object.values(code))
   console.log("codeStrRand", codeStr)
@@ -178,6 +222,7 @@ function handleNewRound(code, d){
 function handleNewGame() {
   var length = 6;
   let roomName = makeid(length);
+    // let roomName = 1;
   clientRooms[client.id] = roomName;
   client.emit('gameCode', roomName);
   console.log("roomNamez", clientRooms[client.id])
@@ -200,8 +245,9 @@ function handleNewGame() {
 }
 
 function removeCardHandle(data, text){
-  client.emit('removeFlag')
-    client.broadcast.to(data[1]).emit('removeFlag')
+  console.log("removeFlag", data)
+  client.emit('removeFlag', data[0])
+    client.broadcast.to(data[1]).emit('removeFlag', data[0])
   client.emit('removeCardSelf', data, text)
   client.broadcast.to(data[1]).emit('removeCard', data, text)
 }
@@ -285,7 +331,7 @@ console.log("usernamez1", username.username.name)
 client.emit('userEmit', username, client.id)
 client.broadcast.to(username.code).emit('userJoinedDisplay', username.username.name)
 client.emit('userJoined',  username.username.name)
-
+username = ""
 
 }
 
@@ -295,16 +341,15 @@ function newJoinFlagDataHandle(cards){
 
 function newJoinFlagHandle(){
   console.log("newJoinFlagHandle", flagState)
-console.log('call')
-// codeStr = flagState
-// console.log("codeStr", flagState)
-    // if(flagState[0] != null){
-if (flagState){
+
+    //if(flagState[0] != null){
+//if (flagState){
       client.emit('newFlagData', flagState)
-}
-else{
-  client.emit('newFlagData', flagStateRand)
-}
+//}
+//else{
+//  client.emit('newFlagData', flagStateRand)
+//}
+  //  }
      
     // }else if (flagState != null){
     //   // codeStr = String(flagState.room[0].code[0].code.code)
@@ -317,11 +362,12 @@ else{
 
 function FlagCardsHandle(data){
   console.log("subFlagDataHDCH", data)
-  if (data != null){
-      let code = data.room[0]
-      let cards = data.room[1]
-      let user = data.room[2]
-      let socketId = data.room[3]
+  client.emit('testff', data)
+  if (data.room[1].cards != '' ){
+      let code = data.room[0].code
+      let cards = data.room[1].cards
+      let user = data.room[2].user
+      let socketId = data.room[3].socketId
 // push data to global list 
     flagState.push([{code},{cards},{user},{socketId}])
     console.log("flagStatepush",  flagState[0])
@@ -339,6 +385,8 @@ function FlagCardsHandle(data){
   
 //       flagState.push({room:[{code:[{code},{cards}]}]})
 //       console.log("flagStatezz", flagState)
+
+//       console.log("flagStatezz", flagState)
 //       // client.emit('subFlagData', flagState)
 //   }else{
 //     console.log('data === null')
@@ -348,7 +396,7 @@ function FlagCardsHandle(data){
     client.emit('unknownData', {data: "True"});
   }
   function handleFlag(data){
-    if (data != null){
+    if (data !== ""){
 console.log('flagdatabkend', data)
 client.emit('flagData', data);
   }
@@ -402,8 +450,7 @@ let displayCode
    
    playerdc = displayUser
    displayCode = code
-// client.emit('userLeft', displayUser);
-  // client.broadcast.to(code).emit('playerdc', displayUser);
+  client.broadcast.to(displayCode).emit('playerdc', playerdc);
    console.log('called playerDC', displayCode, playerdc)
    return displayCode, playerdc;
  }
@@ -411,14 +458,14 @@ let displayCode
 function playerDis(code, disname){
   console.log('hhhere', code, disname)
 // client.emit("playerdc", data)
-// client.broadcast.to(code).emit('playerdc', data)
+client.broadcast.to(code).emit('playerdc', disname)
 return code, disname;
 } 
- client.on('disconnect', ()=>{
+client.on('disconnect', ()=>{
 
   console.log('disconnect', String(Object.keys(users)))   
 let name = Object.values(users)
-console.log("nameeee", name, playerdc, displayCode)
+console.log("nameeee", playerdc, displayCode)
 // playerData()
 client.broadcast.to(displayCode).emit('playerdc', playerdc)
 delete users[client.id]
@@ -434,14 +481,8 @@ d.push(flagState)
 client.emit('removeFlag')
 // console.log("res", res)
 
-
-
-console.log("flagStatedc", flagState)
-// client.emit("playerDis", )
-  })
 })
-
-
+})
 
 server.listen(port, ()=>{
   console.log(`Server is up on port ${port}`);
