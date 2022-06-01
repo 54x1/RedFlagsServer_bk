@@ -64,7 +64,7 @@ client.on('newTimer', newTimerData)
 client.on('newRoundClean', newRoundClean)
 
 function newRoundClean(code){
-  flagState
+  flagState.filter(x=> x[0].code)
   client.emit('removeFlag')
 }
 function newTimerData(data){
@@ -143,8 +143,7 @@ function leaderboardData(data){
 }
 function newRoundClear(code){
  
-  flagState = flagState.filter(e => e[0].code.code !== code)
-
+  flagState = flagState.filter(e => e[0].code !== code)
  console.log("theAAA", flagState, code)
 
 }
@@ -341,12 +340,13 @@ function newJoinFlagDataHandle(cards){
   console.log("newJoinFlagDataHandle", cards)
 }
 
-function newJoinFlagHandle(){
-  console.log("newJoinFlagHandle", flagState)
+function newJoinFlagHandle(code){
+  console.log("newJoinFlagHandle", flagState.filter(f=>f[0].code === code))
 
     //if(flagState[0] != null){
 //if (flagState){
-      client.emit('newFlagData', flagState)
+  client.emit("testff", flagState.filter(f=>f[0].code === code) )
+      client.emit('newFlagData', flagState.filter(f=>f[0].code === code))
 //}
 //else{
 //  client.emit('newFlagData', flagStateRand)
@@ -468,6 +468,7 @@ client.on('disconnect', ()=>{
   console.log('disconnect', String(Object.keys(users)))   
 let name = Object.values(users)
 console.log("nameeee", playerdc, displayCode)
+flagState = flagState.filter(e => e[0].code !== displayCode)
 // playerData()
 client.broadcast.to(displayCode).emit('playerdc', playerdc)
 delete users[client.id]

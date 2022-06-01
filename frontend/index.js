@@ -50,7 +50,7 @@ socket.on("ppperks", handlePPerks);
 // socket.on('unknownCode', handleUnknownCode);
 // socket.on('tooManyPlayers', handleTooManyPlayers);
 // socket.on('flagData', flagData);
-socket.on("subFlagData", subFlagData);
+socket.on("subFlagData", subFlagDataSelf);
 socket.on("subFlagDataSelf", subFlagDataSelf);
 // socket.on("unknownData", unknownData)
 // // socket.on("flagStateData", subFlagData)
@@ -208,8 +208,8 @@ function removeFlagData(data) {
 console.log('z', data)
 console.log("dadada", da );
  
-a = da.filter(e => e.room[0].code[0].code === data);
-a.forEach(f => da.splice(da.findIndex(e => e.room[0].code[0].code  === f.room[0].code[0].code  ),1));
+a = da.filter(e => e[0].room[0].code[0].code === data);
+a.forEach(f => da.splice(da.findIndex(e => e[0].room[0].code[0].code  === f[0].room[0].code[0].code  ),1));
 
 console.log("dadada", a );
  
@@ -323,14 +323,15 @@ function newFlagCard() {
     '<div class="red-flag-section text-danger text-center"><p id="sign" style="cursor: pointer;"><i class="text-danger far fa-plus-square"></i></p></div></div>'
   );
   socket.emit("newRoundClear", code);
-  // voting === false
+  voting == false
 }
 
 $(document).on("click", "#new-red-flags-next-game", function () {
-  // voting === false
+   voting == false
   let code = gameCodeDisplay.innerText;
+  console.log("fd", d)
   socket.emit("newRound", code, d);
-  socket.emit("newRoundClean", code);
+  socket.emit("newRoundClear", code);
   socket.emit('newTimer', [code, timerRand])
   console.log("clicked right here");
   $(this).remove();
@@ -575,8 +576,9 @@ function newFlagData(data) {
   
   let us =  $(".user span").html()
 	console.log("called1",  us)
-	console.log('newFlagData', [...new Set(data)])
-	d.push([...new Set(data)])
+  
+	console.log('newFlagData', data.filter(e => e[0].code === gameCodeDisplay.innerText))
+	d.push(data.filter(e => e[0].code === gameCodeDisplay.innerText))
 
 	
 	// 	// console.log('here', d.length, data.length)
@@ -627,24 +629,21 @@ function subFlagDataSelf(data) {
   console.log("called3", $(".user span").html());
 
 
-	if (data !== ""){
-	da.push(data)
-  }
+
+    console.log("ddzzz", [data].filter(e => e.room[0].code[0].code === gameCodeDisplay.innerText))
+	da.push([data].filter(e => e.room[0].code[0].code === gameCodeDisplay.innerText))
+
 	$('.public-flags .card-section').each(function (){
 pubFlags.push($(this).text())
 	})
   
   newDa = [...new Set(da)]
    let b = pubFlags.filter(vv => vv) 
-// newDa.filter(bb => bb.room[0].code[0].code.code === gameCodeDisplay.innerText).filter(
-// 		bb=> !b.includes(
-// 			bb.room[0].code[1].cards.cards
-			// ))[0][0].code[1].cards.cards
-// map( m => $('.public-flags').append("<div class='card-section text-center'>"+m+"</div>")
-let newFlagArr = [...new Set(newDa)].filter(bb => bb.room[0].code[0].code === gameCodeDisplay.innerText).filter(bb=> !b.includes(bb.room[0].code[1].cards))
+console.log("newda", newDa.filter(bb=>bb[0].room[0].code[0].code === gameCodeDisplay.innerText))
+let newFlagArr = newDa.filter(bb=>bb[0].room[0].code[0].code === gameCodeDisplay.innerText).filter(bb=> !b.includes(bb[0].room[0].code[1].cards))
 let newFlagArrSet = [...(newFlagArr)]
    $('.public-flags').append("<div class='card-section text-center'>"+
-   newFlagArr.map(m=>m.room[0].code[1].cards)+"</div>")
+   newFlagArr.map(m=>m[0].room[0].code[1].cards)+"</div>")
       console.log('subFlagDatazself', da)
       console.log('subFlagDatazselfd',  newDa)
 	  console.log('zz', newFlagArrSet 
@@ -677,66 +676,6 @@ $('.public-flags').css({"display":"flex"})
  newDa.filter(bb => bb.room[0].code[0].code).filter(bb=> !b.includes(bb.room[0].code[1].cards)).map(m=>m.room[0].code[1].cards)+"</div>")
   
 
-// $('.public-flags').append(
-// 	"<div class='card-section text-center'>"
-// 	+newDa.filter(bb => bb.room[0].code[0].code).filter(bb=> !b.includes(bb.room[0].code[1].cards))+
-// 	"</div>")
-      console.log('subFlagDatazselfz', newDa)
-      console.log('subFlagDatazselfdz', b)
-	  console.log('zzz', newDa.filter(bb => bb.room[0].code[0].code).filter(bb=> !b.includes(bb.room[0].code[1].cards)).map(m=>m.room[0].code[1].cards)
-      )
-  // console.log("called2", $(".user span").html());
-
-  // $(".public-flags").css({ display: "flex" });
-  // da.push(data);
-  // $(".public-flags .card-section").each(function () {
-  //   pubFlags.push($(this).text());
-  // });
-
-  // newDa = [...new Set(da)];
-  // let b = pubFlags.filter((vv) => vv);
-
-  // // map( m => $('.public-flags').append("<div class='card-section text-center'>"+m+"</div>")
-  // $(".public-flags").append(
-  //   '<div class="card-section text-center">' +
-  //     newDa
-  //       .filter(
-  //         (bb) => bb.room[0].code[0].code.code === gameCodeDisplay.innerText
-  //       )
-  //       .filter((bb) => !b.includes(bb.room[0].code[1].cards.cards))[0].room[0].code[1].cards.cards +
-  //     "</div>"
-  // );
-
-  // console.log(
-  //   "nnnn",
-  //   newDa
-  //       .filter(
-  //         (bb) => bb.room[0].code[0].code.code === gameCodeDisplay.innerText
-  //       )
-  //       .filter((bb) => !b.includes(bb.room[0].code[1].cards.cards))[0].room[0].code[1].cards.cards
-  // );
-
-  // console.log(
-  //   "subFlagDatazx",
-  //   newDa.filter(
-  //     (cc) => cc.room[0].code[0].code.code === gameCodeDisplay.innerText
-  //   )
-  // );
-  // //   console.log('zzzz',  newDa.filter(cc => cc.room[0].code[1].cards.cards).some(pubFlags.filter(vv => vv)))
-  // console.log(
-  //   "zzzzzx",
-  //   pubFlags.filter((vv) => vv)
-  // );
-
-  // console.log(
-  //   "subFlagDatazzz",
-  //   newDa
-  //     .filter(
-  //       (bb) => bb.room[0].code[0].code.code === gameCodeDisplay.innerText
-  //     )
-  //     .filter((bb) => !b.includes(bb.room[0].code[1].cards.cards))[0].room[0]
-  //     .code[1].cards.cards
-  // );
 }
 
 $(".leaderboard-section .fa-times").click(function () {
@@ -1127,7 +1066,7 @@ function init(roomName) {
 
   let socketId = socket.id;
   socket.emit("newUser", { socketId, code, username });
-  socket.emit("newJoinFlag");
+  socket.emit("newJoinFlag", code);
 
   initialScreen.style.display = "none";
   gameScreen.style.display = "block";
